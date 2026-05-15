@@ -1,15 +1,12 @@
-# Tao symlink:
-# sudo ln -s /etc/nginx/sites-available/jenkins /etc/nginx/sites-enabled/jenkins
-#
-# Neu bao "File exists", xoa link cu roi tao lai:
-# sudo rm -f /etc/nginx/sites-enabled/jenkins
-# sudo ln -s /etc/nginx/sites-available/jenkins /etc/nginx/sites-enabled/jenkins
-#
+# apt install nginx -y
+# cd /etc/nginx
+# vi conf.d/jenkins.nameURL.tech.conf
+
 # Luu y:
 # - Khong them dau "/" o cuoi proxy_pass.
 # - Neu Nginx va Jenkins cung may, nen doi upstream thanh 127.0.0.1:8080.
 # - Neu dung domain public that, nen them TLS va redirect 80 -> 443.
-
+# - Sau khi xong thi restart nginx: systemctl restart nginx
 upstream jenkins {
     keepalive 32;
     server jenkins.h1eudayne.tech:8080;

@@ -97,6 +97,9 @@ templates/
         harbor/
         private-registry-tls/
       vuejs/
+    mysql/
+      install/
+        ubuntu/
     nginx/
 ```
 

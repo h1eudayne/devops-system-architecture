@@ -1,0 +1,34 @@
+import jenkins.model.Jenkins
+import hudson.FilePath
+
+def backupPath = "/datas/shoeshop/backups"
+
+if (action != 'rollback') {
+    return ['Not used for this action:selected']
+}
+
+if (!server?.trim()) {
+    return ['Select server first:selected']
+}
+
+def node = Jenkins.get().getNode(server.trim())
+if (node == null) {
+    return ["Node not found: ${server}"]
+}
+
+def channel = node.getChannel()
+if (channel == null) {
+    return ["Node offline: ${server}"]
+}
+
+def remoteDir = new FilePath(channel, backupPath)
+if (!remoteDir.exists()) {
+    return ["Backup folder not found: ${backupPath}"]
+}
+
+def backups = remoteDir.list("*.zip")
+    .findAll { !it.isDirectory() }
+    .sort { a, b -> b.lastModified() <=> a.lastModified() }
+    .collect { it.name }
+
+return backups ?: ['No backup files found']

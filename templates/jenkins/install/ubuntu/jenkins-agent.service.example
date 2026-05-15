@@ -1,0 +1,22 @@
+#File service để jenkins agent chạy với server
+#Lưu vào /etc/systemd/system/jenkins-agent-service
+
+[Unit]
+Description=Jenkins Agent Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/lib/jenkins
+ExecStart=/bin/bash -lc 'exec java -jar /var/lib/jenkins/agent.jar -jnlpUrl http://jenkins.h1eudayne.tech:8080/computer/lab-server/jenkins-agent.jnlp -secret @secret-file -workDir "/var/lib/jenkins" >> /var/lib/jenkins/nohup.out 2>&1'
+User=jenkins
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+Sau khi chạy xong chạy 4 lệnh sau
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins-agent
+sudo systemctl start jenkins-agent
+sudo systemctl status jenkins-agent
