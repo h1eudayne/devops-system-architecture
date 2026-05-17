@@ -1,0 +1,29 @@
+# Cau hinh Ingress cho du an car-serv
+# Su dung Ingress Nginx Controller (da cai dat qua Helm)
+#
+# Yeu cau:
+#   - Da cai dat Ingress Nginx Controller
+#   - Da tao namespace "car-serv"
+#   - Da deploy service "car-serv1-service" trong namespace "car-serv"
+#
+# Cach su dung:
+#   kubectl apply -f ingress-car-serv.yml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: car-serv-ingress
+  namespace: car-serv
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: car-serv-onpre.devopsedu.vn
+      http:
+        paths:
+          - backend:
+              service:
+                name: car-serv1-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
