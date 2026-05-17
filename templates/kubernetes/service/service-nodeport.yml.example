@@ -1,0 +1,41 @@
+# =============================================================================
+# Template: Kubernetes Service - NodePort
+# -----------------------------------------------------------------------------
+# Service NodePort expose ung dung ra ngoai cluster thong qua mot port
+# co dinh tren moi Node (range 30000-32767).
+# Client truy cap qua: http://<NODE_IP>:<NODE_PORT>
+#
+# Huong dan:
+#   1. Copy file nay va doi ten bo .example
+#   2. Thay cac placeholder:
+#      - <APP_NAME>        : ten ung dung, phai khop voi label cua Deployment
+#      - <NAMESPACE>       : namespace chua Deployment (vd: car-serv)
+#      - <SERVICE_PORT>    : port cua Service trong cluster (vd: 80)
+#      - <CONTAINER_PORT>  : port container dang lang nghe (vd: 80, 8080)
+#      - <NODE_PORT>       : port expose ra ngoai Node (range 30000-32767)
+#   3. Apply:
+#      kubectl apply -f service-nodeport.yml
+#   4. Kiem tra:
+#      kubectl get svc -n <NAMESPACE>
+#      curl http://<NODE_IP>:<NODE_PORT>
+#
+# Luu y:
+#   - selector.app phai trung voi labels.app trong Deployment template.
+#   - NodePort phu hop cho dev/staging hoac khi khong co LoadBalancer.
+#   - Cho production, nen dung LoadBalancer hoac Ingress thay the.
+# =============================================================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <APP_NAME>-service
+  namespace: <NAMESPACE>
+spec:
+  type: NodePort
+  selector:
+    app: <APP_NAME>
+  ports:
+    - protocol: TCP
+      port: <SERVICE_PORT>
+      targetPort: <CONTAINER_PORT>
+      nodePort: <NODE_PORT>

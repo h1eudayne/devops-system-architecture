@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# ==============================================================================
+# 02-deploy-ingress-nginx.sh
+# Cai dat Ingress Nginx Controller len cum Kubernetes
+# Chay script nay voi user co quyen kubectl (devops)
+# Yeu cau: da chay script 01-prepare-ingress-nginx.sh truoc
+# ==============================================================================
+
+set -euo pipefail
+
+# ==============================================================================
+# Chuyen sang user devops
+# ==============================================================================
+echo ">>> Chuyen sang user devops ..."
+su - devops
+
+# ------------------------------------------------------------------------------
+# Bien cau hinh
+# ------------------------------------------------------------------------------
+NAMESPACE="ingress-nginx"
+INGRESS_DIR="${HOME}/ingress-nginx"
+
+# ==============================================================================
+# Buoc 1: Tao namespace
+# ==============================================================================
+echo ">>> [1/2] Tao namespace ${NAMESPACE} ..."
+kubectl create ns ${NAMESPACE} --dry-run=client -o yaml | kubectl apply -f -
+
+# ==============================================================================
+# Buoc 2: Cai dat Ingress Nginx bang Helm
+# ==============================================================================
+echo ">>> [2/2] Cai dat Ingress Nginx Controller ..."
+helm -n ${NAMESPACE} install ingress-nginx \
+    -f ${INGRESS_DIR}/values.yaml \
+    ${INGRESS_DIR}
+
+echo ""
+echo "==========================================================================="
+echo "  HOAN TAT cai dat Ingress Nginx Controller!"
+echo ""
+echo "  Kiem tra trang thai:"
+echo "    kubectl get pods -n ${NAMESPACE}"
+echo "    kubectl get svc -n ${NAMESPACE}"
+echo ""
+echo "  Truy cap:"
+echo "    HTTP:  http://<NODE_IP>:30080"
+echo "    HTTPS: https://<NODE_IP>:30443"
+echo "==========================================================================="

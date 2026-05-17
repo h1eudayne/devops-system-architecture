@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# ==============================================================================
+# 01-install-helm.sh
+# Cai dat Helm - Kubernetes Package Manager
+# Chay script nay tren node co kubectl (thuong la master node)
+# Yeu cau: user co quyen sudo
+# ==============================================================================
+
+set -euo pipefail
+
+# ------------------------------------------------------------------------------
+# Bien cau hinh - thay doi phien ban neu can
+# ------------------------------------------------------------------------------
+HELM_VERSION="v3.16.2"
+HELM_ARCHIVE="helm-${HELM_VERSION}-linux-amd64.tar.gz"
+HELM_URL="https://get.helm.sh/${HELM_ARCHIVE}"
+
+# ==============================================================================
+# Buoc 1: Tai file cai dat Helm
+# ==============================================================================
+echo ">>> [1/4] Tai Helm ${HELM_VERSION} ..."
+wget -q --show-progress "${HELM_URL}" -O "/tmp/${HELM_ARCHIVE}"
+
+# ==============================================================================
+# Buoc 2: Giai nen file
+# ==============================================================================
+echo ">>> [2/4] Giai nen ${HELM_ARCHIVE} ..."
+tar xvf "/tmp/${HELM_ARCHIVE}" -C /tmp/
+
+# ==============================================================================
+# Buoc 3: Di chuyen binary vao /usr/bin
+# ==============================================================================
+echo ">>> [3/4] Cai dat Helm vao /usr/bin ..."
+sudo mv /tmp/linux-amd64/helm /usr/bin/
+
+# ==============================================================================
+# Buoc 4: Kiem tra phien ban
+# ==============================================================================
+echo ">>> [4/4] Kiem tra phien ban Helm ..."
+helm version
+
+# ==============================================================================
+# Don dep file tam
+# ==============================================================================
+echo ">>> Don dep file tam ..."
+rm -f "/tmp/${HELM_ARCHIVE}"
+rm -rf /tmp/linux-amd64/
+
+echo ""
+echo "==========================================================================="
+echo "  HOAN TAT cai dat Helm ${HELM_VERSION}!"
+echo ""
+echo "  Kiem tra lai bang lenh:"
+echo "    helm version"
+echo ""
+echo "  Mot so lenh Helm co ban:"
+echo "    helm repo add <ten-repo> <url>     # Them Helm repo"
+echo "    helm repo update                    # Cap nhat repo"
+echo "    helm search repo <ten-chart>        # Tim chart"
+echo "    helm install <ten> <chart>          # Cai dat chart"
+echo "    helm list                           # Xem cac release da cai"
+echo "==========================================================================="

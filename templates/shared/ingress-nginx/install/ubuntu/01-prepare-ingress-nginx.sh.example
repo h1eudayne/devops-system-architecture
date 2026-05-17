@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# ==============================================================================
+# 01-prepare-ingress-nginx.sh
+# Tai va cau hinh Ingress Nginx chart truoc khi cai dat
+# Chay script nay voi quyen ROOT tren master node
+# Yeu cau: da cai dat Helm
+# ==============================================================================
+
+set -euo pipefail
+
+# ------------------------------------------------------------------------------
+# Bien cau hinh - thay doi cho phu hop voi moi truong
+# ------------------------------------------------------------------------------
+DEVOPS_USER="devops"
+DEVOPS_HOME="/home/${DEVOPS_USER}"
+INGRESS_DIR="${DEVOPS_HOME}/ingress-nginx"
+
+NODEPORT_HTTP="30080"
+NODEPORT_HTTPS="30443"
+
+# ==============================================================================
+# Buoc 1: Them Helm repo ingress-nginx
+# ==============================================================================
+echo ">>> [1/5] Them Helm repo ingress-nginx ..."
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+# ==============================================================================
+# Buoc 2: Cap nhat Helm repo
+# ==============================================================================
+echo ">>> [2/5] Cap nhat Helm repo ..."
+helm repo update
+
+# ==============================================================================
+# Buoc 3: Tai chart ingress-nginx
+# ==============================================================================
+echo ">>> [3/5] Tai chart ingress-nginx ..."
+cd /tmp
+helm pull ingress-nginx/ingress-nginx
+tar -xzf ingress-nginx-*.tgz
+
+# ==============================================================================
+# Buoc 4: Chinh sua values.yaml (NodePort + port config)
+# ==============================================================================
+echo ">>> [4/5] Cau hinh values.yaml ..."
+
+VALUES_FILE="/tmp/ingress-nginx/values.yaml"
+
+# Doi type: LoadBalancer => type: NodePort
+sed -i 's/type: LoadBalancer/type: NodePort/g' "${VALUES_FILE}"
+
+# Cau hinh nodePort http va https
+sed -i "s/# nodePort: \"\"/nodePort: \"${NODEPORT_HTTP}\"/1" "${VALUES_FILE}"
+# Lan thu hai (https)
+sed -i "0,/nodePort: \"\"/s/nodePort: \"\"/nodePort: \"${NODEPORT_HTTPS}\"/" "${VALUES_FILE}"
+
+echo "  - type: NodePort"
+echo "  - http nodePort: ${NODEPORT_HTTP}"
+echo "  - https nodePort: ${NODEPORT_HTTPS}"
+
+# ==============================================================================
+# Buoc 5: Copy chart vao thu muc devops
+# ==============================================================================
+echo ">>> [5/5] Copy chart vao ${INGRESS_DIR} ..."
+cp -rf /tmp/ingress-nginx "${DEVOPS_HOME}/"
+chown -R ${DEVOPS_USER}:${DEVOPS_USER} "${INGRESS_DIR}"
+
+# Don dep
+rm -f /tmp/ingress-nginx-*.tgz
+
+echo ""
+echo "==========================================================================="
+echo "  HOAN TAT chuan bi Ingress Nginx!"
+echo ""
+echo "  Chart da duoc copy vao: ${INGRESS_DIR}"
+echo "  values.yaml da duoc cau hinh:"
+echo "    - Service type: NodePort"
+echo "    - HTTP  nodePort: ${NODEPORT_HTTP}"
+echo "    - HTTPS nodePort: ${NODEPORT_HTTPS}"
+echo ""
+echo "  Tiep theo: chuyen sang user devops va chay script 02"
+echo "    su - ${DEVOPS_USER}"
+echo "    bash 02-deploy-ingress-nginx.sh"
+echo "==========================================================================="
