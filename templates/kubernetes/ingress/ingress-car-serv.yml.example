@@ -1,21 +1,40 @@
-# Cau hinh Ingress cho du an car-serv
-# Su dung Ingress Nginx Controller (da cai dat qua Helm)
+# ==============================================================================
+# Cau hinh Ingress cho du an car-serv (on-premise)
+# Su dung Ingress Nginx Controller (da cai dat qua Helm tren NodePort)
+# ==============================================================================
 #
 # Yeu cau:
-#   - Da cai dat Ingress Nginx Controller
+#   - Da cai dat Ingress Nginx Controller voi NodePort 30080/30443
+#     (xem: templates/shared/ingress-nginx/install/ubuntu/)
+#   - Da cai dat Helm
+#     (xem: templates/shared/helm/install/ubuntu/)
 #   - Da tao namespace "car-serv"
+#     (xem: templates/kubernetes/namespace.yml.example)
 #   - Da deploy service "car-serv1-service" trong namespace "car-serv"
+#     (xem: templates/kubernetes/service/service-nodeport.yml.example)
+#   - Da cau hinh Nginx Load Balancer tren server rieng
+#     (xem: templates/kubernetes/load-balancer/nginx/k8s-loadbalancer.conf)
 #
 # Cach su dung:
 #   kubectl apply -f ingress-car-serv.yml
-#   Hoac cai dung thang tren Rancher (Import YAML)
+#   Hoac import truc tiep tren Rancher:
+#   Dashboard -> Service Discovery -> Services -> Create -> Import YAML
+#
+# Add host (phuong phap dung khi khong co DNS that):
+#   - Linux/Mac:
+#     sudo vi /etc/hosts
+#     => Them dong: <LOADBALANCER_SERVER_IP> car-serv-onpre.h1eudayne.tech
+#   - Windows:
+#     notepad C:\Windows\System32\drivers\etc\hosts
+#     => Them dong: <LOADBALANCER_SERVER_IP> car-serv-onpre.h1eudayne.tech
 #
 # Luu y:
 #   - Bat buoc phai co "ingressClassName: nginx" trong spec
-#   - Neu day khong phai domain ngoai (domain that) thi phai add host tren may client:
-#     sudo vi /etc/hosts    (Linux/Mac)
-#     notepad C:\Windows\System32\drivers\etc\hosts    (Windows)
-#     => Them dong: <NODE_IP> car-serv-onpre.devopsedu.vn
+#   - <LOADBALANCER_SERVER_IP> la IP cua server chay Nginx load balancer,
+#     KHONG phai IP cua Kubernetes node
+#   - Traffic flow: Client -> Nginx LB (:80) -> K8s NodePort (:30080)
+#                   -> Ingress Controller -> Service -> Pod
+# ==============================================================================
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -25,7 +44,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: car-serv-onpre.devopsedu.vn
+    - host: car-serv-onpre.h1eudayne.tech
       http:
         paths:
           - backend:

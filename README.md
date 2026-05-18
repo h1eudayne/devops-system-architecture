@@ -93,6 +93,20 @@ Repository nay dung de luu va tai su dung cac file CI/CD da duoc chuan hoa cho n
 |       |   `-- nginx-jenkins-subdomain.conf.example
 |       `-- continuous-deployment/
 |           `-- README.md
+|-- templates/
+|   `-- kubernetes/
+|       |-- namespace.yml.example
+|       |-- pod.yml.example
+|       |-- deployment/
+|       |-- service/
+|       |   |-- README.md
+|       |   `-- service-nodeport.yml.example
+|       |-- ingress/
+|       |   |-- README.md
+|       |   `-- ingress-car-serv.yml.example
+|       `-- load-balancer/
+|           `-- nginx/
+|               `-- k8s-loadbalancer.conf
 `-- .gitignore
 ```
 
@@ -161,6 +175,11 @@ Tai nguyen dung chung nhu config Nginx, Dockerfile mau, shell snippet, hoac file
 | Kubernetes | Ubuntu | Join worker node vao cum K8s (mo hinh 1 master + 2 worker) | `templates/shared/kubernetes/install/ubuntu/04-join-worker.sh.example` |
 | Kubernetes | Ubuntu | Join control-plane node bo sung vao cum K8s HA (mo hinh 3 master) | `templates/shared/kubernetes/install/ubuntu/05-join-control-plane.sh.example` |
 | Kubernetes | Ubuntu | Reset cum K8s de cai lai tu dau | `templates/shared/kubernetes/install/ubuntu/06-reset-cluster.sh.example` |
+| Helm | Ubuntu | Bash script cai dat Helm v3.16.2 (Kubernetes Package Manager) tren Ubuntu | `templates/shared/helm/install/ubuntu/01-install-helm.sh.example` |
+| Ingress Nginx | Ubuntu | Bash script (root) tai chart Ingress Nginx, chinh sua values.yaml sang NodePort 30080/30443 | `templates/shared/ingress-nginx/install/ubuntu/01-prepare-ingress-nginx.sh.example` |
+| Ingress Nginx | Ubuntu | Bash script (devops) tao namespace va cai dat Ingress Nginx Controller qua Helm | `templates/shared/ingress-nginx/install/ubuntu/02-deploy-ingress-nginx.sh.example` |
+| Nginx | Load Balancer | Nginx config phan phoi traffic den cac K8s node qua NodePort 30080 (dung cho on-premise) | `templates/kubernetes/load-balancer/nginx/k8s-loadbalancer.conf` |
+| Kubernetes | Ingress | Cau hinh Ingress Nginx cho du an car-serv (on-premise, domain h1eudayne.tech) | `templates/kubernetes/ingress/ingress-car-serv.yml.example` |
 
 ## Goi y mo rong tiep theo
 
