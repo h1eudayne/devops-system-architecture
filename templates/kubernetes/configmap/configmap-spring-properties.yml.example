@@ -1,0 +1,41 @@
+# =============================================================================
+# Template: ConfigMap cho application.properties (Spring Boot)
+# =============================================================================
+# Thay the cac placeholder:
+#   <CONFIGMAP_NAME>  : ten ConfigMap        (vd: ecommerce-backend-application-properties-configmap)
+#   <NAMESPACE>       : namespace            (vd: ecommerce)
+#   <DB_IP>           : IP database server   (vd: 192.168.1.115)
+#   <DB_NAME>         : ten database         (vd: full-stack-ecommerce)
+#   <DB_USER>         : user database        (vd: ecommerceapp)
+#   <DB_PASSWORD>     : mat khau database    (vd: StrongPa55WorD)
+#
+# Cach dung:
+#   kubectl apply -f configmap.yml
+#   kubectl get configmap -n <NAMESPACE>
+# =============================================================================
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CONFIGMAP_NAME>
+  namespace: <NAMESPACE>
+data:
+  # Luu y: ten key (application.properties) phai trung voi ten file
+  # da setup trong Dockerfile (spring.config.location)
+  application.properties: |
+    spring.datasource.url=jdbc:mysql://<DB_IP>:3306/<DB_NAME>
+    spring.datasource.username=<DB_USER>
+    spring.datasource.password=<DB_PASSWORD>
+    spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+    spring.datasource.sql-script-encoding=UTF-8
+
+    spring.jpa.properties.hibernate.globally_quoted_identifiers=true
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+    spring.jpa.hibernate.ddl-auto=none
+    spring.jpa.show-sql=true
+    spring.jpa.properties.hibernate.format_sql=true
+
+    spring.data.rest.base-path=/api
+    spring.data.rest.detection-strategy=ANNOTATED
+
+    allowed.origins=<ALLOWED_ORIGINS>

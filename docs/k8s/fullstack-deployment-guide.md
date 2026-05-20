@@ -351,6 +351,9 @@ Tao namespace cho du an (vd: `ecommerce`).
 
 Tao ConfigMap chua `application.properties` de backend doc cau hinh tu K8s thay vi hardcode trong image.
 
+> Tai lieu tham khao: [`kubernetes/configmap/README.md`](../../templates/kubernetes/configmap/README.md)
+> Template: [`configmap-spring-properties.yml.example`](../../templates/kubernetes/configmap/configmap-spring-properties.yml.example)
+
 **Noi dung file ConfigMap:**
 
 ```yaml
@@ -604,6 +607,7 @@ Truy cap domain tren trinh duyet de kiem tra.
 | Nginx config | Angular nginx.conf | [`docker/frontend/angular/nginx.conf.example`](../../templates/docker/frontend/angular/nginx.conf.example) |
 | Dockerfile Backend | Java Dockerfile | [`docker/backend/java/`](../../templates/docker/backend/java/README.md) |
 | K8s Fullstack YAML | Deployment + Service + Ingress | [`kubernetes/full-stack/`](../../templates/kubernetes/full-stack/README.md) |
+| K8s ConfigMap | ConfigMap cho Spring Boot | [`kubernetes/configmap/`](../../templates/kubernetes/configmap/README.md) |
 | Rancher | Cai dat Rancher Server | [`shared/rancher/`](../../templates/shared/rancher/README.md) |
 | Ingress Nginx | Cai Ingress Controller | [`shared/ingress-nginx/install/ubuntu/`](../../templates/shared/ingress-nginx/install/ubuntu/README.md) |
 
