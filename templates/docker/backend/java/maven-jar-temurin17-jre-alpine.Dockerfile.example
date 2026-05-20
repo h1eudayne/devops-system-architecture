@@ -1,0 +1,20 @@
+## build stage ##
+FROM maven:3.8.3-openjdk-17 AS build
+
+WORKDIR ./src
+COPY . .
+
+RUN mvn install -DskipTests=true
+
+## run stage ##
+FROM eclipse-temurin:17-jre-alpine
+
+# Set timezone ve Asia/Ho_Chi_Minh
+RUN rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+
+# Doi ten JAR cho dung voi artifact thuc te cua du an.
+COPY --from=build src/target/spring-boot-ecommerce-0.0.1-SNAPSHOT.jar /run/spring-boot-ecommerce-0.0.1-SNAPSHOT.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/run/spring-boot-ecommerce-0.0.1-SNAPSHOT.jar"]
