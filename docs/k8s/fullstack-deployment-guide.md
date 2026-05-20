@@ -24,7 +24,7 @@ Trien khai tren Kubernetes (Rancher) voi Docker image duoc build thu cong va pus
 
 ## I. Setup Database (MariaDB)
 
-> Tai lieu tham khao: [`shared/mysql/install/ubuntu/README.md`](../templates/shared/mysql/install/ubuntu/README.md)
+> Tai lieu tham khao: [`shared/mysql/install/ubuntu/README.md`](../../templates/shared/mysql/install/ubuntu/README.md)
 
 ### 1. Tao server database
 
@@ -94,7 +94,7 @@ unzip <ten-file>.zip
 
 ### 4. Cai Docker
 
-> Tai lieu tham khao: [`shared/docker/install/ubuntu/README.md`](../templates/shared/docker/install/ubuntu/README.md)
+> Tai lieu tham khao: [`shared/docker/install/ubuntu/README.md`](../../templates/shared/docker/install/ubuntu/README.md)
 
 ```bash
 apt install docker.io -y
@@ -105,14 +105,14 @@ apt install docker.io -y
 ## III. Build Docker Frontend
 
 > Tai lieu tham khao:
-> - Dockerfile: [`docker/frontend/angular/README.md`](../templates/docker/frontend/angular/README.md)
-> - Nginx config: [`docker/frontend/angular/nginx.conf.example`](../templates/docker/frontend/angular/nginx.conf.example)
+> - Dockerfile: [`docker/frontend/angular/README.md`](../../templates/docker/frontend/angular/README.md)
+> - Nginx config: [`docker/frontend/angular/nginx.conf.example`](../../templates/docker/frontend/angular/nginx.conf.example)
 
 ### 1. Chuan bi file
 
 Trong thu muc du an frontend, can co 2 file:
-- `Dockerfile` (copy tu [`npm-dist-nginx-alpine.Dockerfile.example`](../templates/docker/frontend/angular/npm-dist-nginx-alpine.Dockerfile.example))
-- `nginx.conf` (copy tu [`nginx.conf.example`](../templates/docker/frontend/angular/nginx.conf.example))
+- `Dockerfile` (copy tu [`npm-dist-nginx-alpine.Dockerfile.example`](../../templates/docker/frontend/angular/npm-dist-nginx-alpine.Dockerfile.example))
+- `nginx.conf` (copy tu [`nginx.conf.example`](../../templates/docker/frontend/angular/nginx.conf.example))
 
 **Noi dung file `Dockerfile`:**
 
@@ -223,7 +223,7 @@ SHOW TABLES;
 ## V. Build Docker Backend
 
 > Tai lieu tham khao:
-> - Dockerfile: [`docker/backend/java/README.md`](../templates/docker/backend/java/README.md)
+> - Dockerfile: [`docker/backend/java/README.md`](../../templates/docker/backend/java/README.md)
 
 ### 1. Kiem tra cau hinh ket noi database
 
@@ -241,7 +241,7 @@ spring.datasource.password=<DB_PASSWORD>
 
 ### 2. Chuan bi file Dockerfile
 
-Copy tu [`maven-jar-temurin17-jre-alpine.Dockerfile.example`](../templates/docker/backend/java/maven-jar-temurin17-jre-alpine.Dockerfile.example) (Java 17) hoac [`maven-jar-openjdk8-jre-alpine.Dockerfile.example`](../templates/docker/backend/java/maven-jar-openjdk8-jre-alpine.Dockerfile.example) (Java 8).
+Copy tu [`maven-jar-temurin17-jre-alpine.Dockerfile.example`](../../templates/docker/backend/java/maven-jar-temurin17-jre-alpine.Dockerfile.example) (Java 17) hoac [`maven-jar-openjdk8-jre-alpine.Dockerfile.example`](../../templates/docker/backend/java/maven-jar-openjdk8-jre-alpine.Dockerfile.example) (Java 8).
 
 **Noi dung file `Dockerfile` (Java 17):**
 
@@ -302,7 +302,7 @@ sudo ufw allow 3306
 
 ### 2. Cau hinh Nginx cho Frontend (Angular)
 
-> Tai lieu tham khao: [`docker/frontend/angular/README.md` > Nginx config](../templates/docker/frontend/angular/README.md)
+> Tai lieu tham khao: [`docker/frontend/angular/README.md` > Nginx config](../../templates/docker/frontend/angular/README.md)
 
 File `nginx.conf` nam chung thu muc voi `Dockerfile`:
 
@@ -330,9 +330,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 ## VII. Deploy len Kubernetes (Rancher)
 
 > Tai lieu tham khao:
-> - Rancher: [`shared/rancher/README.md`](../templates/shared/rancher/README.md)
-> - K8s Fullstack YAML: [`kubernetes/full-stack/README.md`](../templates/kubernetes/full-stack/README.md)
-> - Ingress: [`kubernetes/ingress/README.md`](../templates/kubernetes/ingress/README.md)
+> - Rancher: [`shared/rancher/README.md`](../../templates/shared/rancher/README.md)
+> - K8s Fullstack YAML: [`kubernetes/full-stack/README.md`](../../templates/kubernetes/full-stack/README.md)
+> - Ingress: [`kubernetes/ingress/README.md`](../../templates/kubernetes/ingress/README.md)
 
 ### 1. Tao Project chung tren Rancher
 
@@ -344,7 +344,7 @@ Tao namespace cho du an (vd: `ecommerce`).
 
 ### 3. Apply file YAML fullstack
 
-Su dung template [`fullstack-rolling-clusterip-ingress.yml.example`](../templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example).
+Su dung template [`fullstack-rolling-clusterip-ingress.yml.example`](../../templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example).
 
 Thay the cac placeholder va apply. Lam rieng cho **frontend** va **backend** (2 file YAML rieng).
 
@@ -537,14 +537,14 @@ Truy cap domain tren trinh duyet de kiem tra.
 
 | Buoc | Template | Duong dan |
 |------|----------|-----------|
-| Cai MariaDB | MySQL install scripts | [`shared/mysql/install/ubuntu/`](../templates/shared/mysql/install/ubuntu/README.md) |
-| Cai Docker | Docker install scripts | [`shared/docker/install/ubuntu/`](../templates/shared/docker/install/ubuntu/README.md) |
-| Dockerfile Frontend | Angular Dockerfile | [`docker/frontend/angular/`](../templates/docker/frontend/angular/README.md) |
-| Nginx config | Angular nginx.conf | [`docker/frontend/angular/nginx.conf.example`](../templates/docker/frontend/angular/nginx.conf.example) |
-| Dockerfile Backend | Java Dockerfile | [`docker/backend/java/`](../templates/docker/backend/java/README.md) |
-| K8s Fullstack YAML | Deployment + Service + Ingress | [`kubernetes/full-stack/`](../templates/kubernetes/full-stack/README.md) |
-| Rancher | Cai dat Rancher Server | [`shared/rancher/`](../templates/shared/rancher/README.md) |
-| Ingress Nginx | Cai Ingress Controller | [`shared/ingress-nginx/install/ubuntu/`](../templates/shared/ingress-nginx/install/ubuntu/README.md) |
+| Cai MariaDB | MySQL install scripts | [`shared/mysql/install/ubuntu/`](../../templates/shared/mysql/install/ubuntu/README.md) |
+| Cai Docker | Docker install scripts | [`shared/docker/install/ubuntu/`](../../templates/shared/docker/install/ubuntu/README.md) |
+| Dockerfile Frontend | Angular Dockerfile | [`docker/frontend/angular/`](../../templates/docker/frontend/angular/README.md) |
+| Nginx config | Angular nginx.conf | [`docker/frontend/angular/nginx.conf.example`](../../templates/docker/frontend/angular/nginx.conf.example) |
+| Dockerfile Backend | Java Dockerfile | [`docker/backend/java/`](../../templates/docker/backend/java/README.md) |
+| K8s Fullstack YAML | Deployment + Service + Ingress | [`kubernetes/full-stack/`](../../templates/kubernetes/full-stack/README.md) |
+| Rancher | Cai dat Rancher Server | [`shared/rancher/`](../../templates/shared/rancher/README.md) |
+| Ingress Nginx | Cai Ingress Controller | [`shared/ingress-nginx/install/ubuntu/`](../../templates/shared/ingress-nginx/install/ubuntu/README.md) |
 
 ---
 
