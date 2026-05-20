@@ -1,0 +1,11 @@
+server {
+    listen 80;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+
+        # Bat buoc cho Angular: Neu khong tim thay file, tra ve index.html
+        try_files $uri $uri/ /index.html;
+    }
+}
