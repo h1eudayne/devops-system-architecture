@@ -347,29 +347,13 @@ Vao **Dashboard → Projects/Namespaces → Create Project**.
 
 Tao namespace cho du an (vd: `ecommerce`).
 
-### 3. Tao ConfigMap cho Backend
-
-Tao ConfigMap chua `application.properties` de backend doc cau hinh tu K8s thay vi hardcode trong image:
-
-```bash
-kubectl create configmap ecommerce-backend-config \
-  --from-file=application.properties=./src/main/resources/application.properties \
-  -n ecommerce
-```
-
-Kiem tra:
-
-```bash
-kubectl get configmap ecommerce-backend-config -n ecommerce -o yaml
-```
-
-### 4. Apply file YAML fullstack
+### 3. Apply file YAML fullstack
 
 Su dung template [`fullstack-rolling-clusterip-ingress.yml.example`](../../templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example).
 
 Thay the cac placeholder va apply. Lam rieng cho **frontend** va **backend** (2 file YAML rieng).
 
-**Vi du file YAML cho Backend (voi ConfigMap):**
+**Vi du file YAML cho Backend:**
 
 ```yaml
 apiVersion: apps/v1
@@ -404,13 +388,6 @@ spec:
             - containerPort: 8080
               name: tcp
               protocol: TCP
-          volumeMounts:
-            - name: app-config
-              mountPath: /config
-      volumes:
-        - name: app-config
-          configMap:
-            name: ecommerce-backend-config
 ---
 apiVersion: v1
 kind: Service
@@ -542,7 +519,7 @@ Apply:
 kubectl apply -f ecommerce-frontend.yml
 ```
 
-### 5. Add host tren may client (neu chua co DNS)
+### 4. Add host tren may client (neu chua co DNS)
 
 ```bash
 # Tren may can truy cap, them vao /etc/hosts (Linux) hoac C:\Windows\System32\drivers\etc\hosts (Windows)
@@ -550,12 +527,11 @@ kubectl apply -f ecommerce-frontend.yml
 <ip-loadbalancer> <domain-backend>
 ```
 
-### 6. Kiem tra
+### 5. Kiem tra
 
 ```bash
 kubectl get all -n <namespace>
 kubectl get ingress -n <namespace>
-kubectl get configmap -n <namespace>
 ```
 
 Truy cap domain tren trinh duyet de kiem tra.
@@ -580,8 +556,7 @@ Truy cap domain tren trinh duyet de kiem tra.
 ## Luu y chung
 
 - Luon kiem tra `application.properties` cua backend truoc khi build image de dam bao ket noi database dung.
-- Khong commit mat khau database vao repo. Dung bien moi truong, ConfigMap, hoac Secret.
-- Khi dung ConfigMap, chi can cap nhat ConfigMap va restart pod thay vi rebuild image moi khi doi cau hinh.
+- Khong commit mat khau database vao repo. Dung bien moi truong hoac secret management.
 - Nen test image chay local bang `docker run` truoc khi push va deploy len Kubernetes.
 - Sau khi deploy, kiem tra log pod de xac nhan ung dung khoi dong thanh cong:
 
