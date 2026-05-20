@@ -432,6 +432,88 @@ kubectl apply -f ecommerce-backend.yml
 
 > Nho chon dung namespace khi apply.
 
+**Vi du file YAML cho Frontend:**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ecommerce-frontend
+  name: ecommerce-frontend-deployment
+  namespace: ecommerce
+spec:
+  replicas: 1
+  revisionHistoryLimit: 11
+  selector:
+    matchLabels:
+      app: ecommerce-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: ecommerce-frontend
+      namespace: ecommerce
+    spec:
+      containers:
+        - image: voduchieu1/ecommerce-frontend:v1
+          imagePullPolicy: Always
+          name: ecommerce-frontend
+          ports:
+            - containerPort: 80
+              name: tcp
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-frontend-service
+  namespace: ecommerce
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: tcp
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: ecommerce-frontend
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce-frontend-ingress
+  namespace: ecommerce
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ecommerce.h1eudayne.tech
+      http:
+        paths:
+          - backend:
+              service:
+                name: ecommerce-frontend-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+```
+
+Apply:
+
+```bash
+kubectl apply -f ecommerce-frontend.yml
+```
+
 ### 4. Add host tren may client (neu chua co DNS)
 
 ```bash
