@@ -20,6 +20,25 @@ rancher/
 | Phu hop khi            | Muon quan ly nhieu service cung luc      | Chi cai moi Rancher, don gian nhanh    |
 | Yeu cau them           | Docker Compose plugin                    | Chi can Docker                         |
 
+## Luu y ve lenh Docker Compose
+
+Co 2 bien the lenh Docker Compose, chon phu hop voi phien ban da cai:
+
+| Bien the               | Lenh                    | Khi nao dung                                              |
+|------------------------|-------------------------|-----------------------------------------------------------|
+| Plugin (Docker >= 20)  | `docker compose up -d`  | Docker Desktop hoac cai Docker Engine >= 20 + Compose V2  |
+| Standalone binary      | `docker-compose up -d`  | Server cai `docker-compose` rieng (goi apt/yum)           |
+
+Kiem tra bien the dang co:
+
+```bash
+# Kiem tra plugin (Compose V2)
+docker compose version
+
+# Kiem tra standalone binary (Compose V1)
+docker-compose version
+```
+
 ---
 
 ## Cach 1: Docker Compose
@@ -37,13 +56,28 @@ cp docker-compose/docker-compose.yml.example docker-compose.yml
 
 # Tao thu muc data
 sudo mkdir -p /data/rancher
+```
 
+**Neu dung Docker Compose plugin (V2 - Docker >= 20):**
+
+```bash
 # Chay Rancher
 docker compose up -d
 
-# Kiem tra
+# Kiem tra trang thai
 docker compose ps
-docker logs rancher-server
+docker compose logs -f rancher-server
+```
+
+**Neu dung Docker Compose standalone binary (V1):**
+
+```bash
+# Chay Rancher
+docker-compose up -d
+
+# Kiem tra trang thai
+docker-compose ps
+docker-compose logs -f rancher-server
 ```
 
 ### Noi dung template
@@ -139,6 +173,40 @@ docker logs rancher-server 2>&1 | grep "Bootstrap Password:"
 - Neu muon nang cap Rancher, chi can doi tag image (vd: `v2.9.3`) va chay lai container.
 
 ## Cac lenh quan ly thuong dung
+
+**Dung Docker Compose plugin (V2):**
+
+```bash
+# Xem log
+docker compose logs -f rancher-server
+
+# Dung Rancher
+docker compose down
+
+# Khoi dong lai
+docker compose restart
+
+# Chay lai sau khi chinh sua docker-compose.yml
+docker compose up -d
+```
+
+**Dung Docker Compose standalone binary (V1):**
+
+```bash
+# Xem log
+docker-compose logs -f rancher-server
+
+# Dung Rancher
+docker-compose down
+
+# Khoi dong lai
+docker-compose restart
+
+# Chay lai sau khi chinh sua docker-compose.yml
+docker-compose up -d
+```
+
+**Hoac quan ly truc tiep bang Docker:**
 
 ```bash
 # Xem log
