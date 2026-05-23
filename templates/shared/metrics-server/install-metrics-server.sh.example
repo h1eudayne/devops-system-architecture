@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# ==============================================================================
+# Script cài đặt Metrics Server cho Kubernetes sử dụng Helm
+# ==============================================================================
+
+set -euo pipefail
+
+# 1. Thêm và cập nhật Helm repository
+echo ">>> Thêm Helm repository cho metrics-server..."
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm repo update
+
+# 2. Tiến hành cài đặt/nâng cấp Metrics Server
+# Thêm cờ --kubelet-insecure-tls để tương thích với chứng chỉ tự ký của Kubelet trên các cụm On-Premise/Lab
+echo ">>> Đang cài đặt Metrics Server vào namespace: kube-system..."
+helm upgrade --install metrics-server metrics-server/metrics-server \
+  --namespace kube-system \
+  --create-namespace \
+  --set args={--kubelet-insecure-tls}
+
+echo ""
+echo "==========================================================================="
+echo "  CÀI ĐẶT THÀNH CÔNG METRICS SERVER!"
+echo ""
+echo "  Kiểm tra trạng thái Pod:"
+echo "    kubectl get pods -n kube-system -l app.kubernetes.io/name=metrics-server"
+echo ""
+echo "  Kiểm tra xem Metrics API hoạt động chưa (chờ khoảng 1 phút để scrape dữ liệu):"
+echo "    kubectl top nodes"
+echo "    kubectl top pods -A"
+echo "==========================================================================="

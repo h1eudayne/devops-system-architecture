@@ -1,0 +1,51 @@
+# =============================================================================
+# Template: Kubernetes HorizontalPodAutoscaler (HPA) - autoscaling/v2
+# -----------------------------------------------------------------------------
+# Tự động tăng/giảm số lượng Pod theo mức tiêu thụ CPU và Memory thực tế.
+#
+# Yêu cầu bắt buộc:
+#   1. Cụm Kubernetes đã cài đặt Metrics Server.
+#   2. Pod trong Deployment phải định nghĩa resource requests (CPU/Memory).
+#
+# Cách sử dụng:
+#   1. Đổi tên file bỏ đuôi .example
+#   2. Thay thế các placeholder:
+#      - <APP_NAME>  : Tên ứng dụng của bạn (ví dụ: car-serv)
+#      - <NAMESPACE> : Namespace ứng dụng đang chạy (ví dụ: default)
+#   3. Apply cấu hình:
+#      kubectl apply -f hpa.yml
+# =============================================================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: <APP_NAME>-hpa
+  namespace: <NAMESPACE>
+spec:
+  # Deployment hoặc StatefulSet mục tiêu cần scale
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: <APP_NAME>-deployment
+  
+  # Giới hạn số lượng Pod
+  minReplicas: 2
+  maxReplicas: 10
+  
+  # Chỉ số kích hoạt scale pod
+  metrics:
+    # 1. Tự động scale theo mức sử dụng CPU
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80 # Scale-up khi CPU trung bình vượt quá 80%
+          
+    # 2. Tự động scale theo mức sử dụng Memory (RAM)
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80 # Scale-up khi RAM trung bình vượt quá 80%

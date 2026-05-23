@@ -102,6 +102,24 @@ shared:
     notes: >
       Reset cum K8s de cai lai tu dau: kubeadm reset, xoa etcd va manifests.
 
+  - id: shared-k8s-metrics-server
+    category: kubernetes
+    platform: ubuntu
+    file: templates/shared/metrics-server/install-metrics-server.sh.example
+    maturity: draft
+    notes: >
+      Bash script cai dat Metrics Server cho Kubernetes su dung Helm,
+      ho tro cau hinh bo qua xac thuc TLS doi voi certificate tu ky.
+
+  - id: shared-k8s-hpa-setup-guide
+    category: kubernetes
+    platform: ubuntu
+    file: setup/setup-hpa-guide.md
+    maturity: draft
+    notes: >
+      Huong dan chi tiet cach cai dat Metrics Server, fix loi tren Rancher
+      va cau hinh HPA cho cum Kubernetes.
+
 kubernetes:
   - id: k8s-namespace-template
     kind: Namespace
@@ -127,4 +145,13 @@ kubernetes:
       Ingress (Nginx) trong 1 file. Thay <APP_NAME>, <NAMESPACE>, <DOCKER_IMAGE>,
       <CONTAINER_PORT>, <REPLICAS>, <DOMAIN> bang gia tri thuc te.
       Co san phan resource limits, health check, TLS de bat khi can.
+
+  - id: k8s-hpa-template
+    kind: HorizontalPodAutoscaler
+    file: templates/kubernetes/hpa/hpa.yml.example
+    maturity: draft
+    notes: >
+      Template cau hinh HorizontalPodAutoscaler (HPA) theo API autoscaling/v2,
+      tu dong co gian so pod dua tren nguong tai nguyen CPU va Memory.
+
 
