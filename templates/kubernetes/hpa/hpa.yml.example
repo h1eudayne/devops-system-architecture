@@ -1,0 +1,87 @@
+# =============================================================================
+# Template: Kubernetes HorizontalPodAutoscaler (HPA) - autoscaling/v2
+# -----------------------------------------------------------------------------
+# HPA giup tu dong tang/giam so luong Pod dua tren tai nguyen tieu thu thực te
+# (CPU, Memory,...) cua ung dung.
+#
+# Yeu cau truoc khi dung:
+#   1. Cum Kubernetes phai da cai dat Metrics Server.
+#   2. Cac Pod phai cau hinh resource limits va dac biet la resource requests
+#      (Metrics Server chi tinh duoc phan tram (%) neu co request value).
+#
+# Huong dan:
+#   1. Copy file nay va doi ten bo .example
+#   2. Thay cac placeholder:
+#      - <APP_NAME>               : ten ung dung (vd: car-serv, api-gateway)
+#      - <NAMESPACE>              : namespace da tao (vd: car-serv)
+#      - <MIN_REPLICAS>           : so pod toi thieu (vd: 2)
+#      - <MAX_REPLICAS>           : so pod toi da (vd: 10)
+#      - <CPU_TARGET_PERCENT>     : % CPU trung binh kích hoat scale (vd: 70 hoac 80)
+#      - <MEMORY_TARGET_PERCENT>  : % Memory trung binh kích hoat scale (vd: 70 hoac 80)
+#   3. Apply:
+#      kubectl apply -f hpa.yml
+#   4. Kiem tra:
+#      kubectl get hpa -n <NAMESPACE>
+#      kubectl describe hpa <APP_NAME>-hpa -n <NAMESPACE>
+# =============================================================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: <APP_NAME>-hpa
+  namespace: <NAMESPACE>
+  labels:
+    app: <APP_NAME>
+spec:
+  # Chi ra target doi tuong can scale (Deployment hoac StatefulSet)
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: <APP_NAME>-deployment
+  
+  # Gioi han replicas
+  minReplicas: <MIN_REPLICAS>
+  maxReplicas: <MAX_REPLICAS>
+  
+  # Luat/Chi so de kích hoat auto-scale
+  metrics:
+    # 1. Kich hoat dua tren CPU Utilization
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: <CPU_TARGET_PERCENT>
+          
+    # 2. Kich hoat dua tren Memory Utilization
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: <MEMORY_TARGET_PERCENT>
+
+  # Tuy chon cau hinh nang cao ve toc do ScaleUp va ScaleDown (Behavior)
+  # giup cum hoat dong on dinh hon, tranh hieu ung flapping (pod tang giam lien tuc)
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300   # Cho 5 phut truoc khi quyet dinh giam pod (tranh tat gap)
+      policies:
+        - type: Percent
+          value: 10                     # Chi giam toi da 10% so pod hien tai moi phut
+          periodSeconds: 60
+        - type: Pods
+          value: 1                      # Hoac giam toi da 1 pod moi phut
+          periodSeconds: 60
+      selectPolicy: Min                 # Chon cach an toan nhat (giam it pod nhat)
+      
+    scaleUp:
+      stabilizationWindowSeconds: 0     # ScaleUp ngay lap tuc khi tai tang cao
+      policies:
+        - type: Percent
+          value: 100                    # Co the double so luong pod hien tai moi 15s neu can
+          periodSeconds: 15
+        - type: Pods
+          value: 4                      # Hoac tang 4 pod moi 15s
+          periodSeconds: 15
+      selectPolicy: Max                 # Uu tien scale up nhanh nhat de chiu tai

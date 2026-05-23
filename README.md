@@ -104,6 +104,9 @@ Repository nay dung de luu va tai su dung cac file CI/CD da duoc chuan hoa cho n
 |       |-- ingress/
 |       |   |-- README.md
 |       |   `-- ingress-car-serv.yml.example
+|       |-- hpa/
+|       |   |-- README.md
+|       |   `-- hpa.yml.example
 |       |-- full-stack/
 |       |   |-- README.md
 |       |   `-- fullstack-rolling-clusterip-ingress.yml.example
@@ -185,6 +188,7 @@ Tai nguyen dung chung nhu config Nginx, Dockerfile mau, shell snippet, hoac file
 | Nginx | Load Balancer | Nginx config phan phoi traffic den cac K8s node qua NodePort 30080 (dung cho on-premise) | `templates/kubernetes/load-balancer/nginx/k8s-loadbalancer.conf` |
 | Kubernetes | Ingress | Cau hinh Ingress Nginx cho du an car-serv (on-premise, domain h1eudayne.tech) | `templates/kubernetes/ingress/ingress-car-serv.yml.example` |
 | Kubernetes | Full-Stack | Template gom Deployment (RollingUpdate) + Service (ClusterIP) + Ingress (Nginx) trong 1 file, deploy nhanh ung dung web hoan chinh | `templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example` |
+| Kubernetes | HPA | Template HorizontalPodAutoscaler (HPA) autoscaling/v2 tu dong co gian pod theo CPU va Memory | `templates/kubernetes/hpa/hpa.yml.example` |
 
 ## Goi y mo rong tiep theo
 

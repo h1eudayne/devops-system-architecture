@@ -137,3 +137,12 @@ kubernetes:
       <CONTAINER_PORT>, <REPLICAS>, <DOMAIN> bang gia tri thuc te.
       Co san phan resource limits, health check, TLS de bat khi can.
 
+  - id: k8s-hpa-template
+    kind: HorizontalPodAutoscaler
+    file: templates/kubernetes/hpa/hpa.yml.example
+    maturity: draft
+    notes: >
+      Template cau hinh HorizontalPodAutoscaler (HPA) theo API autoscaling/v2,
+      tu dong co gian so pod dua tren nguong tai nguyen CPU va Memory.
+
+
