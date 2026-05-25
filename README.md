@@ -179,6 +179,8 @@ Tai nguyen dung chung nhu config Nginx, Dockerfile mau, shell snippet, hoac file
 | Docker | Registry | Huong dan tao private registry voi TLS self-signed certificate va Docker Compose | `templates/shared/docker/registry/private-registry-tls/docker-compose.yml.example` |
 | Docker | VueJS | Multi-stage npm build, copy `dist` sang Nginx runtime va phuc vu static file | `templates/shared/docker/vuejs/npm-dist-nginx-alpine.Dockerfile.example` |
 | MySQL | Ubuntu | Huong dan cai `mysql-server`, chay `mysql_secure_installation`, tao database va user ung dung | `templates/shared/mysql/install/ubuntu/README.md` |
+| NFS Server | Ubuntu | Huong dan chi tiet cai dat, cau hinh va mo port cho NFS Server tren Ubuntu | `templates/shared/nfs-server/install/ubuntu/README.md` |
+| NFS Server | Ubuntu | Bash script tu dong hoa cai dat nfs-kernel-server va tao thu muc chia se tren Ubuntu | `templates/shared/nfs-server/install/ubuntu/install-nfs-server.sh.example` |
 | Nginx | React SPA | Nginx config mau cho React SPA chay tren port 3000 | `templates/shared/nginx/react-spa-port-3000.conf.example` |
 | Kubernetes | Ubuntu | Bash script chuan bi tat ca node K8s: hosts, swap, kernel module, containerd, kubeadm v1.30 | `templates/shared/kubernetes/install/ubuntu/01-prepare-all-nodes.sh.example` |
 | Kubernetes | Ubuntu | Khoi tao cum K8s mo hinh 1 master + 2 worker voi Calico CNI | `templates/shared/kubernetes/install/ubuntu/02-init-single-master.sh.example` |

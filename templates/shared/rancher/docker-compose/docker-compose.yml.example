@@ -2,7 +2,7 @@ version: '3'
 
 services:
   rancher-server:
-    image: rancher/rancher:v2.9.2
+    image: rancher/rancher:v2.14.1
     container_name: rancher-server
     restart: unless-stopped
     ports:

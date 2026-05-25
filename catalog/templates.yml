@@ -120,6 +120,24 @@ shared:
       Huong dan chi tiet cach cai dat Metrics Server, fix loi tren Rancher
       va cau hinh HPA cho cum Kubernetes.
 
+  - id: shared-nfs-server-readme
+    category: storage
+    platform: ubuntu
+    file: templates/shared/nfs-server/install/ubuntu/README.md
+    maturity: draft
+    notes: >
+      Huong dan chi tiet cach cai dat, cau hinh va bao mat NFS Server
+      tren Ubuntu (database-server).
+
+  - id: shared-nfs-server-install
+    category: storage
+    platform: ubuntu
+    file: templates/shared/nfs-server/install/ubuntu/install-nfs-server.sh.example
+    maturity: draft
+    notes: >
+      Bash script tu dong cai dat nfs-kernel-server, khoi tao thu muc chia se
+      va cau hinh firewall UFW tren Ubuntu.
+
 kubernetes:
   - id: k8s-namespace-template
     kind: Namespace

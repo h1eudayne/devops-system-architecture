@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# ==============================================================================
+# install-nfs-server.sh
+# Tự động cài đặt và cấu hình NFS Server trên Ubuntu (database-server)
+#
+# Cách dùng:
+#   1. Nhân bản file mẫu: cp install-nfs-server.sh.example install-nfs-server.sh
+#   2. Cấp quyền chạy: chmod +x install-nfs-server.sh
+#   3. Chạy với sudo: sudo ./install-nfs-server.sh
+# ==============================================================================
+
+set -euo pipefail
+
+# ------------------------------------------------------------------------------
+# Biến cấu hình (Tùy chỉnh theo nhu cầu)
+# ------------------------------------------------------------------------------
+SHARED_DIR="/data"          # Thư mục chia sẻ
+ALLOWED_CLIENTS="*"         # Dải IP được phép truy cập (* cho tất cả, vd: 10.0.0.0/24)
+FIREWALL_SETUP="true"       # Tự động cấu hình tường lửa UFW nếu đang bật
+
+# ==============================================================================
+# 1. Cập nhật và cài đặt gói NFS Server
+# ==============================================================================
+echo ">>> [1/5] Cập nhật danh sách gói và cài đặt NFS Kernel Server ..."
+sudo apt-get update -y
+sudo apt-get install -y nfs-kernel-server
+
+# ==============================================================================
+# 2. Tạo và phân quyền thư mục chia sẻ
+# ==============================================================================
+echo ">>> [2/5] Tạo thư mục ${SHARED_DIR} và thiết lập phân quyền ..."
+sudo mkdir -p "${SHARED_DIR}"
+sudo chown -R nobody:nogroup "${SHARED_DIR}"
+sudo chmod -R 777 "${SHARED_DIR}"
+
+# ==============================================================================
+# 3. Cấu hình tệp xuất bản /etc/exports
+# ==============================================================================
+echo ">>> [3/5] Thêm cấu hình xuất bản vào /etc/exports ..."
+EXPORT_LINE="${SHARED_DIR} ${ALLOWED_CLIENTS}(rw,sync,no_subtree_check,no_root_squash)"
+
+if grep -qF "${SHARED_DIR} " /etc/exports || grep -qF "${SHARED_DIR}	" /etc/exports; then
+    echo "  LƯU Ý: Thư mục ${SHARED_DIR} đã tồn tại trong /etc/exports, bỏ qua."
+else
+    echo "${EXPORT_LINE}" | sudo tee -a /etc/exports
+    echo "  Đã cấu hình: ${EXPORT_LINE}"
+fi
+
+# ==============================================================================
+# 4. Áp dụng cấu hình và Khởi chạy dịch vụ
+# ==============================================================================
+echo ">>> [4/5] Áp dụng cấu hình và khởi động lại dịch vụ NFS ..."
+sudo exportfs -rav
+sudo systemctl restart nfs-kernel-server
+sudo systemctl enable nfs-kernel-server
+
+# ==============================================================================
+# 5. Cấu hình Tường lửa (Firewall UFW)
+# ==============================================================================
+if [ "${FIREWALL_SETUP}" = "true" ] && sudo ufw status | grep -q "active"; then
+    echo ">>> [5/5] Phát hiện tường lửa UFW đang hoạt động, tiến hành mở cổng 2049 ..."
+    if [ "${ALLOWED_CLIENTS}" = "*" ]; then
+        sudo ufw allow 2049/tcp
+        sudo ufw allow 2049/udp
+    else
+        sudo ufw allow from "${ALLOWED_CLIENTS}" to any port 2049 proto tcp
+        sudo ufw allow from "${ALLOWED_CLIENTS}" to any port 2049 proto udp
+    fi
+    sudo ufw reload
+else
+    echo ">>> [5/5] Bỏ qua cấu hình tường lửa UFW (không hoạt động hoặc đã tắt)."
+fi
+
+echo ""
+echo "==========================================================================="
+echo "  HOÀN THÀNH CÀI ĐẶT NFS SERVER"
+echo "==========================================================================="
+echo "  - Thư mục chia sẻ: ${SHARED_DIR}"
+echo "  - Quyền truy cập:  ${ALLOWED_CLIENTS}"
+echo "  - Trạng thái dịch vụ:"
+sudo systemctl is-active nfs-kernel-server || echo "Lỗi: Dịch vụ chưa chạy!"
+echo ""
+echo "  - Danh sách xuất bản thực tế:"
+sudo exportfs -v
+echo "==========================================================================="

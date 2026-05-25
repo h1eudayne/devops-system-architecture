@@ -7,11 +7,11 @@
 # Volume: /data/rancher luu tren o cung rieng
 # ============================================================
 
-# docker run --name rancher-server -d --restart=unless-stopped -p 80:80 -p 443:443 -v /data/rancher:/var/lib/rancher --privileged rancher/rancher:v2.9.2
+# docker run --name rancher-server -d --restart=unless-stopped -p 80:80 -p 443:443 -v /data/rancher:/var/lib/rancher --privileged rancher/rancher:v2.14.1
 
 set -e
 
-RANCHER_VERSION="v2.9.2"
+RANCHER_VERSION="v2.14.1"
 RANCHER_CONTAINER_NAME="rancher-server"
 RANCHER_DATA_DIR="/data/rancher"
 
