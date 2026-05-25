@@ -23,7 +23,8 @@ Repository nay dung de luu va tai su dung cac file CI/CD da duoc chuan hoa cho n
 |   |-- setup-hpa-guide.md
 |   `-- setup-nfs-guide.md
 |-- workflow/
-|   `-- k8s-mariadb-nfs-import.md
+|   `-- kubernetes/
+|       `-- k8s-mariadb-nfs-import.md
 |-- templates/
 |   |-- github-actions/
 |   |   |-- README.md
@@ -201,7 +202,7 @@ Tai nguyen dung chung nhu config Nginx, Dockerfile mau, shell snippet, hoac file
 | Kubernetes | HPA Setup | Huong dan chi tiet cai dat Metrics Server, cach sua loi tren Rancher va cau hinh HPA | `setup/setup-hpa-guide.md` |
 | Kubernetes | NFS Setup | Huong dan toan dien ve kien truc, luu do hoat dong va cac buoc trien khai NFS tren K8s | `setup/setup-nfs-guide.md` |
 | Kubernetes | DB NFS Setup | Huong dan tung buoc trien khai database MariaDB tren K8s qua StatefulSet va NFS | `setup/setup-db-nfs-guide.md` |
-| Kubernetes | DB NFS Workflow | Quy trinh nap du lieu SQL qua NFS va ket noi Backend qua ClusterIP (Phuong phap toi uu) | `workflow/k8s-mariadb-nfs-import.md` |
+| Kubernetes | DB NFS Workflow | Quy trinh nap du lieu SQL qua NFS va ket noi Backend qua ClusterIP (Phuong phap toi uu) | `workflow/kubernetes/k8s-mariadb-nfs-import.md` |
 | Nginx | Load Balancer | Nginx config phan phoi traffic den cac K8s node qua NodePort 30080 (dung cho on-premise) | `templates/kubernetes/load-balancer/nginx/k8s-loadbalancer.conf` |
 | Kubernetes | Ingress | Cau hinh Ingress Nginx cho du an car-serv (on-premise, domain h1eudayne.tech) | `templates/kubernetes/ingress/ingress-car-serv.yml.example` |
 | Kubernetes | Full-Stack | Template gom Deployment (RollingUpdate) + Service (ClusterIP) + Ingress (Nginx) trong 1 file, deploy nhanh ung dung web hoan chinh | `templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example` |

@@ -177,7 +177,7 @@ shared:
   - id: shared-k8s-db-nfs-workflow
     category: kubernetes
     platform: ubuntu
-    file: workflow/k8s-mariadb-nfs-import.md
+    file: workflow/kubernetes/k8s-mariadb-nfs-import.md
     maturity: draft
     notes: >
       Quy trinh nap du lieu SQL qua NFS va ket noi Backend qua ClusterIP (Phuong phap toi uu).
