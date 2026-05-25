@@ -160,7 +160,39 @@ Hệ thống hoạt động dựa trên các thành phần đã thiết lập tr
                                       [Backend App / Web Pod]                       [Navicat / DBeaver / DevOps]
 ```
 
-## 4. Các lệnh kiểm tra vận hành nhanh
+---
+
+## 4. Quy trình Nạp dữ liệu qua NFS & Kết nối Backend qua ClusterIP (Phương pháp Tối ưu)
+
+Thay vì kết nối và nạp dữ liệu từ bên ngoài hoặc chạy Pod phụ tạm thời, ta có một quy trình khép kín, bảo mật và cực kỳ nhanh chóng dựa trên hạ tầng lưu trữ NFS và DNS nội bộ:
+
+### Bước 1: Khởi tạo MariaDB dưới dạng StatefulSet và thiết lập Service là ClusterIP
+- Đảm bảo StatefulSet MariaDB hoạt động ổn định và mount vào PVC `nfs-pvc`.
+- Cấu hình Service kiểu `ClusterIP` để đảm bảo cổng `3306` chỉ truy cập được nội bộ, bảo mật an toàn cho dữ liệu (xem chi tiết ở Bước 2 & Bước 3 - Cách 1).
+
+### Bước 2: Nạp dữ liệu qua NFS (Không cần mở cổng hay cài Client bên ngoài)
+1. **Trên máy chủ chứa file SQL (NFS Server):**
+   Sao chép trực tiếp các tệp `.sql` của dự án vào thư mục mà NFS Server đang quản lý (đã mount vật lý tới cụm K8s):
+   ```bash
+   cp *.sql /data/
+   ```
+2. **Trên máy K8s Master Node:**
+   Chạy lệnh điều khiển Pod MariaDB tự động quét và nạp các tệp `.sql` (hiện đã xuất hiện trực tiếp trong thư mục làm việc của MySQL `/var/lib/mysql` nhờ cơ chế NFS mount) vào cơ sở dữ liệu:
+   ```bash
+   kubectl exec -i mariadb-0 -n ecommerce -- bash -c 'cd /var/lib/mysql && for f in *.sql; do echo "Importing: $f"; mariadb -uroot -pdevopseduvn < "$f"; done'
+   ```
+
+### Bước 3: Cấu hình Backend kết nối qua K8s Internal DNS
+Để ứng dụng Backend (chạy trong cùng cụm K8s) gọi tới database, ta thay đổi cấu hình kết nối thay vì dùng IP tĩnh:
+- Mở tệp YAML cấu hình ConfigMap hoặc Secret của Backend (Ví dụ: `templates/kubernetes/configmap/configmap-spring-properties.yml.example`).
+- Cấu hình URL kết nối Database, trỏ trực tiếp tới tên dịch vụ (DNS nội bộ) của MariaDB Service:
+  ```properties
+  spring.datasource.url=jdbc:mysql://mariadb-service.ecommerce.svc.cluster.local:3306/full-stack-ecommerce
+  ```
+
+---
+
+## 5. Các lệnh kiểm tra vận hành nhanh
 
 ### 1. Kiểm tra trạng thái triển khai cơ sở dữ liệu:
 ```bash

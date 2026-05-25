@@ -20,9 +20,13 @@ metadata:
   name: <CONFIGMAP_NAME>
   namespace: <NAMESPACE>
 data:
-  # Luu y: ten key (application.properties) phai trung voi ten file
   # da setup trong Dockerfile (spring.config.location)
   application.properties: |
+    # CÁCH KẾT NỐI DATABASE:
+    # Cách 1 (DB bên ngoài K8s): Sử dụng IP vật lý của Database Server (ví dụ: 192.168.1.115)
+    #   spring.datasource.url=jdbc:mysql://<DB_IP>:3306/<DB_NAME>
+    # Cách 2 (DB chạy StatefulSet nội bộ K8s): Sử dụng DNS nội bộ của Service (ví dụ: mariadb-service trong namespace ecommerce)
+    #   spring.datasource.url=jdbc:mysql://mariadb-service.ecommerce.svc.cluster.local:3306/full-stack-ecommerce
     spring.datasource.url=jdbc:mysql://<DB_IP>:3306/<DB_NAME>
     spring.datasource.username=<DB_USER>
     spring.datasource.password=<DB_PASSWORD>
