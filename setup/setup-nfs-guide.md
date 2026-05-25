@@ -1,4 +1,4 @@
-# Hướng dẫn Toàn diện về Kiến trúc và Triển khai NFS Storage trong Kubernetes
+# Hướng dẫn Toàn diện về Kiến trúc và Triển khai NFS Storage trong cụm Kubernetes
 
 Tài liệu này tổng hợp toàn bộ kiến thức, quy trình thiết lập và các mẫu cấu hình cần thiết để xây dựng hệ thống lưu trữ chia sẻ (Shared Storage) sử dụng **NFS (Network File System)** trong cụm Kubernetes (môi trường On-Premise).
 
@@ -38,12 +38,12 @@ Quy trình thiết lập hệ thống tuân theo 6 bước logic dưới đây:
 
 | Bước | Thành phần | Vai trò chính | Vị trí thực hiện | Tài liệu tham chiếu |
 | :--- | :--- | :--- | :--- | :--- |
-| **1** | **StorageClass** | Khai báo loại lưu trữ thủ công (`no-provisioner`) và cơ chế liên kết trì hoãn (`WaitForFirstConsumer`). | K8s Master Node | [storageclass.yml.example](storageclass.yml.example) |
-| **2** | **NFS Server** | Thiết lập máy chủ trung tâm (`database-server`) chia sẻ thư mục lưu trữ (`/data`) ra mạng. | Database Server | [NFS Server Guide](../../../shared/nfs-server/install/ubuntu/README.md) |
-| **3** | **NFS Client** | Cài đặt thư viện `nfs-common` để các node K8s có thể đọc/ghi dữ liệu từ NFS Server. | Tất cả K8s Nodes | [NFS Client Guide](../../../shared/nfs-client/install/ubuntu/README.md) |
-| **4** | **PersistentVolume (PV)**| Khai báo tài nguyên lưu trữ vật lý sẵn có trỏ về IP của NFS Server. | K8s Master Node | [pv.yml.example](pv.yml.example) |
-| **5** | **PersistentVolumeClaim (PVC)**| Yêu cầu cấp phát một phần dung lượng từ PV cho ứng dụng trong Namespace. | K8s Master Node | [pvc.yml.example](pvc.yml.example) |
-| **6** | **Pod / Deployment** | Gắn kết (Mount) PVC vào container để ứng dụng ghi/đọc dữ liệu thực tế. | K8s Master Node | [pod-nfs.yml.example](../pod-nfs.yml.example) |
+| **1** | **StorageClass** | Khai báo loại lưu trữ thủ công (`no-provisioner`) và cơ chế liên kết trì hoãn (`WaitForFirstConsumer`). | K8s Master Node | [storageclass.yml.example](../templates/kubernetes/storage/storageclass.yml.example) |
+| **2** | **NFS Server** | Thiết lập máy chủ trung tâm (`database-server`) chia sẻ thư mục lưu trữ (`/data`) ra mạng. | Database Server | [NFS Server Guide](../templates/shared/nfs-server/install/ubuntu/README.md) |
+| **3** | **NFS Client** | Cài đặt thư viện `nfs-common` để các node K8s có thể đọc/ghi dữ liệu từ NFS Server. | Tất cả K8s Nodes | [NFS Client Guide](../templates/shared/nfs-client/install/ubuntu/README.md) |
+| **4** | **PersistentVolume (PV)**| Khai báo tài nguyên lưu trữ vật lý sẵn có trỏ về IP của NFS Server. | K8s Master Node | [pv.yml.example](../templates/kubernetes/storage/pv.yml.example) |
+| **5** | **PersistentVolumeClaim (PVC)**| Yêu cầu cấp phát một phần dung lượng từ PV cho ứng dụng trong Namespace. | K8s Master Node | [pvc.yml.example](../templates/kubernetes/storage/pvc.yml.example) |
+| **6** | **Pod / Deployment** | Gắn kết (Mount) PVC vào container để ứng dụng ghi/đọc dữ liệu thực tế. | K8s Master Node | [pod-nfs.yml.example](../templates/kubernetes/pod-nfs.yml.example) |
 
 ---
 
@@ -52,7 +52,7 @@ Quy trình thiết lập hệ thống tuân theo 6 bước logic dưới đây:
 ### Bước 1: Khai báo lớp lưu trữ StorageClass
 StorageClass đóng vai trò là "bản đồ" chỉ hướng cho Kubernetes biết cách quản lý volume này. Với môi trường tự vận hành (On-Premise), ta sử dụng `no-provisioner`:
 
-- **Tệp tin:** [storageclass.yml.example](storageclass.yml.example)
+- **Tệp tin mẫu:** [storageclass.yml.example](../templates/kubernetes/storage/storageclass.yml.example)
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -65,7 +65,7 @@ volumeBindingMode: WaitForFirstConsumer
 ### Bước 2: Cài đặt và cấu hình NFS Server
 Thực hiện trên máy chủ cơ sở dữ liệu (`database-server`) để chia sẻ tài nguyên:
 
-- **Script tự động:** [install-nfs-server.sh.example](../../../shared/nfs-server/install/ubuntu/install-nfs-server.sh.example)
+- **Script mẫu:** [install-nfs-server.sh.example](../templates/shared/nfs-server/install/ubuntu/install-nfs-server.sh.example)
 - **Các lệnh cốt lõi:**
   ```bash
   # 1. Cài đặt dịch vụ NFS Kernel
@@ -89,16 +89,16 @@ Thực hiện trên máy chủ cơ sở dữ liệu (`database-server`) để ch
 > [!WARNING]
 > **Bắt buộc:** Phải thực hiện trên **tất cả** các node muốn kết nối đến NFS Server (`k8s-master-1`, `k8s-master-2`, `k8s-master-3` và các node worker).
 
-- **Script tự động:** [install-nfs-client.sh.example](../../../shared/nfs-client/install/ubuntu/install-nfs-client.sh.example)
+- **Script mẫu:** [install-nfs-client.sh.example](../templates/shared/nfs-client/install/ubuntu/install-nfs-client.sh.example)
 - **Lệnh thực hiện:**
   ```bash
   sudo apt update && sudo apt install -y nfs-common
   ```
 
 ### Bước 4: Tạo PersistentVolume (PV) trên Kubernetes
-Khai báo tài nguyên lưu trữ vật lý của NFS Server vào trong K8s. Đây là tài nguyên dùng chung toàn cluster:
+Khai báo tài nguyên lưu trữ vật lý của NFS Server vào trong K8s. Đây là tài nguyên dùng chung toàn cụm:
 
-- **Tệp tin:** [pv.yml.example](pv.yml.example)
+- **Tệp tin mẫu:** [pv.yml.example](../templates/kubernetes/storage/pv.yml.example)
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -120,7 +120,7 @@ spec:
 ### Bước 5: Tạo PersistentVolumeClaim (PVC)
 Tài nguyên yêu cầu cấp phát dung lượng cho từng ứng dụng cụ thể trong một Namespace xác định:
 
-- **Tệp tin:** [pvc.yml.example](pvc.yml.example)
+- **Tệp tin mẫu:** [pvc.yml.example](../templates/kubernetes/storage/pvc.yml.example)
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -139,7 +139,7 @@ spec:
 ### Bước 6: Gắn kết (Mount) PVC vào Pod Nginx
 Ứng dụng sẽ sử dụng không gian lưu trữ đã yêu cầu từ PVC và ghi đè dữ liệu trực tiếp lên thư mục `/data` của NFS Server:
 
-- **Tệp tin:** [pod-nfs.yml.example](../pod-nfs.yml.example)
+- **Tệp tin mẫu:** [pod-nfs.yml.example](../templates/kubernetes/pod-nfs.yml.example)
 ```yaml
 apiVersion: v1
 kind: Pod
