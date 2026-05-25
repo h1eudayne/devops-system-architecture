@@ -222,5 +222,13 @@ kubernetes:
       Template cau hinh PersistentVolumeClaim (PVC) su dung NFS Storage
       cho cac ung dung trong namespace.
 
+  - id: k8s-nfs-architecture-guide
+    kind: Documentation
+    file: templates/kubernetes/storage/NFS-GUIDE.md
+    maturity: draft
+    notes: >
+      Huong dan toan dien ve kien truc, luu do hoat dong va cac buoc trien khai
+      NFS Server, Client, PV, PVC va Pod Mount tren Kubernetes.
+
 
 
