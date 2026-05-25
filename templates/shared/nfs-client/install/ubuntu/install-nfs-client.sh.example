@@ -4,6 +4,9 @@
 # install-nfs-client.sh
 # Tự động cài đặt và kiểm tra NFS Client trên các Node Kubernetes
 #
+# LƯU Ý QUAN TRỌNG:
+#   - Cài đặt và cấu hình NFS Client trên tất cả server muốn kết nối đến NFS Server.
+#
 # Cách dùng:
 #   1. Nhân bản file mẫu: cp install-nfs-client.sh.example install-nfs-client.sh
 #   2. Cập nhật IP của NFS Server vào biến NFS_SERVER_IP bên dưới.

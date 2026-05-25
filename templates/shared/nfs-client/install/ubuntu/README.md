@@ -3,9 +3,9 @@
 Hướng dẫn này giúp bạn cài đặt và cấu hình NFS (Network File System) Client trên các máy chủ Linux (ví dụ: `k8s-master-1`, `k8s-master-2`, `k8s-master-3` và các worker nodes).
 
 > [!IMPORTANT]
-> **Vai trò của NFS Client trong cụm Kubernetes:**
-> - Để Kubernetes có thể mount thành công các tệp lưu trữ từ NFS Server vào trong Pod, tất cả các node trong cụm (cả Master và Worker) **bắt buộc** phải cài đặt gói dịch vụ `nfs-common`.
-> - Nếu thiếu gói này, Kubelet sẽ không thể thực hiện lệnh mount và Pod sẽ bị kẹt ở trạng thái `ContainerCreating` hoặc gặp lỗi `MountVolume.SetUp failed`.
+> **Lưu ý quan trọng:**
+> - **Cài đặt và cấu hình NFS Client trên tất cả server muốn kết nối đến NFS Server.**
+> - Trong môi trường Kubernetes, để cụm có thể mount thành công các tệp lưu trữ từ NFS Server vào trong Pod, tất cả các node trong cụm (cả Master và Worker) **bắt buộc** phải cài đặt gói dịch vụ `nfs-common`. Nếu thiếu gói này, Kubelet sẽ không thể thực hiện lệnh mount và Pod sẽ bị kẹt ở trạng thái `ContainerCreating` hoặc gặp lỗi `MountVolume.SetUp failed`.
 
 ---
 
