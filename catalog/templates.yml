@@ -172,7 +172,7 @@ shared:
     maturity: draft
     notes: >
       Huong dan tung buoc trien khai database MariaDB tren K8s, bao gom
-      cau hinh NFS Server, StatefulSet va Service NodePort.
+      cau hinh NFS Server, StatefulSet va Service (ClusterIP & NodePort).
 
 kubernetes:
   - id: k8s-namespace-template
@@ -211,8 +211,8 @@ kubernetes:
     file: templates/kubernetes/service/mariadb-service.yml.example
     maturity: draft
     notes: >
-      Template tao Service NodePort cho MariaDB de expose cong 3306
-      ra cong vat ly 31306 tren cac node.
+      Template tao Service cho MariaDB ho tro ca 2 cach cau hinh:
+      ClusterIP (truy cap noi bo) va NodePort (expose cong 31306).
 
   - id: k8s-fullstack-rolling-clusterip-ingress
     kind: Deployment+Service+Ingress
