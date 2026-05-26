@@ -11,7 +11,7 @@
 #   2. Sao chép file này và đổi tên bỏ đuôi .example:
 #        cp values.yml.example values.yaml
 #   3. Triển khai bằng Helm:
-#        helm install redis bitnami/redis -f values.yaml -n architecture
+#        helm install redis-sentinel bitnami/redis --values values.yaml --namespace architecture
 # =============================================================================
 
 architecture: replication

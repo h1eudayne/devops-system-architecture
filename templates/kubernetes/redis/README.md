@@ -77,12 +77,12 @@ Quá trình này có thể được thực hiện trực tiếp trên máy chủ
 Thực hiện lệnh cài đặt với tệp cấu hình `values.yaml` trong namespace `architecture`:
 
 ```bash
-helm install redis bitnami/redis -f values.yaml -n architecture
+helm install redis-sentinel bitnami/redis --values values.yaml --namespace architecture
 ```
 
 > [!NOTE]
 > Nếu bạn muốn nâng cấp cấu hình trong tương lai, chỉ cần chỉnh sửa `values.yaml` và chạy lệnh:
-> `helm upgrade redis bitnami/redis -f values.yaml -n architecture`
+> `helm upgrade redis-sentinel bitnami/redis --values values.yaml --namespace architecture`
 
 ---
 
@@ -98,22 +98,22 @@ kubectl get pods -n architecture -w
 # Kiểm tra danh sách Services
 kubectl get svc -n architecture
 ```
-*Bạn sẽ thấy các Pod: `redis-node-0`, `redis-node-1`... chạy đồng thời cả container Redis và Sentinel.*
+*Bạn sẽ thấy các Pod: `redis-sentinel-node-0`, `redis-sentinel-node-1`... chạy đồng thời cả container Redis và Sentinel.*
 
 ### 2. Kiểm tra log của Sentinel để xác nhận cụm đã nhận dạng đúng Master
 ```bash
-kubectl logs statefulset/redis-node -n architecture -c sentinel --tail=100
+kubectl logs statefulset/redis-sentinel-node -n architecture -c sentinel --tail=100
 ```
 *Log hợp lệ sẽ hiển thị dòng nhận diện Master mới và giám sát các Replicas.*
 
 ### 3. Kiểm tra tính năng Failover (Kiểm thử HA)
 Để test tính năng tự động chuyển vùng khi Master gặp sự cố:
 ```bash
-# Giả lập crash bằng cách xóa Pod Master hiện tại
-kubectl delete pod redis-node-0 -n architecture
+# Giả lập crash bằng cách xóa Pod Master hiện tại (ví dụ redis-sentinel-node-0)
+kubectl delete pod redis-sentinel-node-0 -n architecture
 
 # Ngay lập tức theo dõi log Sentinel để xem quá trình bầu chọn Master mới
-kubectl logs statefulset/redis-node -n architecture -c sentinel -f
+kubectl logs statefulset/redis-sentinel-node -n architecture -c sentinel -f
 ```
 
 ---
@@ -133,7 +133,7 @@ kubectl logs statefulset/redis-node -n architecture -c sentinel -f
    redis-cli -h redis-sentinel -p 26379 -a devopseduvn
 
    # Hoặc kết nối trực tiếp tới Redis Node (Cổng 6379)
-   redis-cli -h redis -p 6379 -a devopseduvn
+   redis-cli -h redis-sentinel-headless -p 6379 -a devopseduvn
    ```
 
 3. **Kiểm tra trạng thái Replication bằng lệnh Redis**:
