@@ -4,7 +4,7 @@ templates:
     delivery_model: continuous-deployment
     language: java
     scenario: maven-jar-server-tag
-    file: templates/gitlab-ci/continuous-deployment/java/maven-jar-server-tag.yml
+    file: pipelines/gitlab-ci/continuous-deployment/java/maven-jar-server-tag.yml
     trigger: tags
     deployment_target: linux-server
     maturity: adapted
@@ -17,7 +17,7 @@ templates:
     delivery_model: continuous-deployment
     language: react
     scenario: npm-static-server-tag
-    file: templates/gitlab-ci/continuous-deployment/react/npm-static-server-tag.yml
+    file: pipelines/gitlab-ci/continuous-deployment/react/npm-static-server-tag.yml
     trigger: tags
     deployment_target: linux-server
     maturity: draft
@@ -30,7 +30,7 @@ templates:
     delivery_model: continuous-delivery
     language: react
     scenario: npm-static-server-tag-manual
-    file: templates/gitlab-ci/continuous-delivery/react/npm-static-server-tag-manual.yml
+    file: pipelines/gitlab-ci/continuous-delivery/react/npm-static-server-tag-manual.yml
     trigger: tags
     deployment_target: linux-server
     maturity: draft
@@ -43,7 +43,7 @@ templates:
     delivery_model: continuous-delivery
     language: docker
     scenario: docker-image-server-tag-manual
-    file: templates/gitlab-ci/continuous-delivery/docker/docker-image-server-tag-manual.yml
+    file: pipelines/gitlab-ci/continuous-delivery/docker/docker-image-server-tag-manual.yml
     trigger: tags
     deployment_target: docker-host
     maturity: adapted
@@ -55,7 +55,7 @@ shared:
   - id: shared-k8s-prepare-all-nodes
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/kubernetes/install/ubuntu/01-prepare-all-nodes.sh.example
+    file: on-premise/scripts/kubernetes/01-prepare-all-nodes.sh.example
     maturity: draft
     notes: >
       Bash script chuan bi tat ca node cho cum K8s on-premise: cau hinh hosts,
@@ -64,7 +64,7 @@ shared:
   - id: shared-k8s-init-single-master
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/kubernetes/install/ubuntu/02-init-single-master.sh.example
+    file: on-premise/scripts/kubernetes/02-init-single-master.sh.example
     maturity: draft
     notes: >
       Khoi tao cum K8s mo hinh 1 master + 2 worker voi Calico CNI.
@@ -72,7 +72,7 @@ shared:
   - id: shared-k8s-init-ha-master
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/kubernetes/install/ubuntu/03-init-ha-master.sh.example
+    file: on-premise/scripts/kubernetes/03-init-ha-master.sh.example
     maturity: draft
     notes: >
       Khoi tao cum K8s mo hinh 3 master HA voi control-plane-endpoint
@@ -81,7 +81,7 @@ shared:
   - id: shared-k8s-join-worker
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/kubernetes/install/ubuntu/04-join-worker.sh.example
+    file: on-premise/scripts/kubernetes/04-join-worker.sh.example
     maturity: draft
     notes: >
       Join worker node vao cum K8s (mo hinh 1 master + 2 worker).
@@ -89,7 +89,7 @@ shared:
   - id: shared-k8s-join-control-plane
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/kubernetes/install/ubuntu/05-join-control-plane.sh.example
+    file: on-premise/scripts/kubernetes/05-join-control-plane.sh.example
     maturity: draft
     notes: >
       Join control-plane node bo sung vao cum K8s HA (mo hinh 3 master).
@@ -97,7 +97,7 @@ shared:
   - id: shared-k8s-reset-cluster
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/kubernetes/install/ubuntu/06-reset-cluster.sh.example
+    file: on-premise/scripts/kubernetes/06-reset-cluster.sh.example
     maturity: draft
     notes: >
       Reset cum K8s de cai lai tu dau: kubeadm reset, xoa etcd va manifests.
@@ -105,7 +105,7 @@ shared:
   - id: shared-k8s-metrics-server
     category: kubernetes
     platform: ubuntu
-    file: templates/shared/metrics-server/install-metrics-server.sh.example
+    file: on-premise/scripts/metrics-server/install-metrics-server.sh.example
     maturity: draft
     notes: >
       Bash script cai dat Metrics Server cho Kubernetes su dung Helm,
@@ -114,7 +114,7 @@ shared:
   - id: shared-k8s-hpa-setup-guide
     category: kubernetes
     platform: ubuntu
-    file: setup/setup-hpa-guide.md
+    file: on-premise/setup/kubernetes/setup-hpa-guide.md
     maturity: draft
     notes: >
       Huong dan chi tiet cach cai dat Metrics Server, fix loi tren Rancher
@@ -123,7 +123,7 @@ shared:
   - id: shared-nfs-server-readme
     category: storage
     platform: ubuntu
-    file: templates/shared/nfs-server/install/ubuntu/README.md
+    file: on-premise/setup/nfs/nfs-server-guide.md
     maturity: draft
     notes: >
       Huong dan chi tiet cach cai dat, cau hinh va bao mat NFS Server
@@ -132,7 +132,7 @@ shared:
   - id: shared-nfs-server-install
     category: storage
     platform: ubuntu
-    file: templates/shared/nfs-server/install/ubuntu/install-nfs-server.sh.example
+    file: on-premise/scripts/nfs/install-nfs-server.sh.example
     maturity: draft
     notes: >
       Bash script tu dong cai dat nfs-kernel-server, khoi tao thu muc chia se
@@ -141,7 +141,7 @@ shared:
   - id: shared-nfs-client-readme
     category: storage
     platform: ubuntu
-    file: templates/shared/nfs-client/install/ubuntu/README.md
+    file: on-premise/setup/nfs/nfs-client-guide.md
     maturity: draft
     notes: >
       Huong dan chi tiet cach cai dat va kiem tra ket noi NFS Client
@@ -150,7 +150,7 @@ shared:
   - id: shared-nfs-client-install
     category: storage
     platform: ubuntu
-    file: templates/shared/nfs-client/install/ubuntu/install-nfs-client.sh.example
+    file: on-premise/scripts/nfs/install-nfs-client.sh.example
     maturity: draft
     notes: >
       Bash script tu dong cai dat nfs-common, kiem tra cong ket noi 2049
@@ -159,7 +159,7 @@ shared:
   - id: shared-k8s-nfs-setup-guide
     category: kubernetes
     platform: ubuntu
-    file: setup/setup-nfs-guide.md
+    file: on-premise/setup/kubernetes/setup-nfs-guide.md
     maturity: draft
     notes: >
       Huong dan toan dien ve kien truc, luu do hoat dong va cac buoc trien khai
@@ -168,7 +168,7 @@ shared:
   - id: shared-k8s-db-nfs-setup-guide
     category: kubernetes
     platform: ubuntu
-    file: setup/setup-db-nfs-guide.md
+    file: on-premise/setup/kubernetes/setup-db-nfs-guide.md
     maturity: draft
     notes: >
       Huong dan tung buoc trien khai database MariaDB tren K8s, bao gom
@@ -177,7 +177,7 @@ shared:
   - id: shared-k8s-db-nfs-workflow
     category: kubernetes
     platform: ubuntu
-    file: workflow/kubernetes/k8s-mariadb-nfs-import.md
+    file: on-premise/workflow/kubernetes/k8s-mariadb-nfs-import.md
     maturity: draft
     notes: >
       Quy trinh nap du lieu SQL qua NFS va ket noi Backend qua ClusterIP (Phuong phap toi uu).
@@ -185,7 +185,7 @@ shared:
   - id: shared-k8s-redis-sentinel-setup-guide
     category: kubernetes
     platform: ubuntu
-    file: setup/setup-redis-sentinel-guide.md
+    file: on-premise/setup/kubernetes/setup-redis-sentinel-guide.md
     maturity: draft
     notes: >
       Huong dan tung buoc trien khai Redis Sentinel HA tren K8s, bao gom
@@ -194,14 +194,14 @@ shared:
 kubernetes:
   - id: k8s-namespace-template
     kind: Namespace
-    file: templates/kubernetes/namespace.yml.example
+    file: on-premise/kubernetes/namespace.yml.example
     maturity: draft
     notes: >
       Template tao Namespace cho ung dung. Thay <APP_NAME> bang ten thuc te.
 
   - id: k8s-pod-template
     kind: Pod
-    file: templates/kubernetes/pod.yml.example
+    file: on-premise/kubernetes/pod.yml.example
     maturity: draft
     notes: >
       Template tao Pod co resource limits. Thay <APP_NAME>, <NAMESPACE>,
@@ -209,7 +209,7 @@ kubernetes:
 
   - id: k8s-pod-nfs-template
     kind: Pod
-    file: templates/kubernetes/pod-nfs.yml.example
+    file: on-premise/kubernetes/pod-nfs.yml.example
     maturity: draft
     notes: >
       Template tao Pod Nginx mount PersistentVolumeClaim (PVC)
@@ -217,7 +217,7 @@ kubernetes:
 
   - id: k8s-statefulset-mariadb-template
     kind: StatefulSet
-    file: templates/kubernetes/statefulset/mariadb-statefulset.yml.example
+    file: on-premise/kubernetes/statefulset/mariadb-statefulset.yml.example
     maturity: draft
     notes: >
       Template tao StatefulSet MariaDB mount PersistentVolumeClaim (PVC)
@@ -225,7 +225,7 @@ kubernetes:
 
   - id: k8s-service-mariadb-template
     kind: Service
-    file: templates/kubernetes/service/mariadb-service.yml.example
+    file: on-premise/kubernetes/service/mariadb-service.yml.example
     maturity: draft
     notes: >
       Template tao Service cho MariaDB ho tro ca 2 cach cau hinh:
@@ -233,7 +233,7 @@ kubernetes:
 
   - id: k8s-fullstack-rolling-clusterip-ingress
     kind: Deployment+Service+Ingress
-    file: templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example
+    file: on-premise/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example
     maturity: draft
     notes: >
       Template gom day du Deployment (RollingUpdate) + Service (ClusterIP) +
@@ -243,7 +243,7 @@ kubernetes:
 
   - id: k8s-hpa-template
     kind: HorizontalPodAutoscaler
-    file: templates/kubernetes/hpa/hpa.yml.example
+    file: on-premise/kubernetes/hpa/hpa.yml.example
     maturity: draft
     notes: >
       Template cau hinh HorizontalPodAutoscaler (HPA) theo API autoscaling/v2,
@@ -251,7 +251,7 @@ kubernetes:
 
   - id: k8s-storageclass-nfs-template
     kind: StorageClass
-    file: templates/kubernetes/storage/storageclass.yml.example
+    file: on-premise/kubernetes/storage/storageclass.yml.example
     maturity: draft
     notes: >
       Template cau hinh StorageClass su dung provisioner kubernetes.io/no-provisioner
@@ -259,7 +259,7 @@ kubernetes:
 
   - id: k8s-pv-nfs-template
     kind: PersistentVolume
-    file: templates/kubernetes/storage/pv.yml.example
+    file: on-premise/kubernetes/storage/pv.yml.example
     maturity: draft
     notes: >
       Template cau hinh PersistentVolume (PV) thu cong su dung NFS Storage
@@ -267,7 +267,7 @@ kubernetes:
 
   - id: k8s-pvc-nfs-template
     kind: PersistentVolumeClaim
-    file: templates/kubernetes/storage/pvc.yml.example
+    file: on-premise/kubernetes/storage/pvc.yml.example
     maturity: draft
     notes: >
       Template cau hinh PersistentVolumeClaim (PVC) su dung NFS Storage
@@ -275,7 +275,7 @@ kubernetes:
 
   - id: k8s-redis-pv-pvc-template
     kind: PersistentVolume+PersistentVolumeClaim
-    file: templates/kubernetes/storage/redis-pv-pvc.yml.example
+    file: on-premise/kubernetes/storage/redis-pv-pvc.yml.example
     maturity: draft
     notes: >
       Template cau hinh PersistentVolume (PV) va PersistentVolumeClaim (PVC)
@@ -283,7 +283,7 @@ kubernetes:
 
   - id: k8s-redis-helm-values-template
     kind: HelmValues
-    file: templates/kubernetes/redis/values.yml.example
+    file: on-premise/kubernetes/redis/values.yml.example
     maturity: draft
     notes: >
       Template cau hinh values.yaml de cai dat Redis Replication + Sentinel
