@@ -1,234 +1,286 @@
-# CI/CD Template Library
+# DevOps CI/CD Templates & On-Premise Infrastructure
 
-Repository nay dung de luu va tai su dung cac file CI/CD da duoc chuan hoa cho nhieu nen tang, nhieu ngon ngu va nhieu delivery model.
+Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duoc chuan hoa: pipeline CI/CD, Kubernetes manifest, Dockerfile, Docker Compose stack, bash script cai dat, huong dan setup ha tang on-premise va cau hinh Nginx.
 
 ## Muc tieu
 
-- Gom template theo `provider -> delivery model -> language -> scenario`.
-- De tim, de copy, de mo rong.
-- Tach ro `continuous integration`, `continuous delivery` va `continuous deployment`.
-- Tach phan mo ta, quy uoc va template thuc te de repo khong bi roi.
+- **To chuc ro rang**: tach biet `on-premise` (ha tang tu quan), `cloud` (nha cung cap), `pipelines` (CI/CD) va `dockerfiles` (image build).
+- **De tim, de copy, de mo rong**: moi tai nguyen dat dung vi tri theo chuc nang va nen tang.
+- **Tach ro CI / CD / CD**: `continuous integration`, `continuous delivery` va `continuous deployment` duoc phan loai rieng biet.
+- **Chuan hoa ten file**: tat ca template deu tuan theo quy tac dat ten thong nhat.
+- **San sang cho cloud**: cau truc `cloud/` san sang mo rong khi can trien khai tren AWS, GCP, Azure.
 
-## Cau truc de xuat
+## Cau truc tong quan
 
 ```text
 .
-|-- catalog/
-|   `-- templates.yml
-|-- docs/
-|   |-- REPO-STRUCTURE.md
-|   `-- TEMPLATE-GUIDELINES.md
-|-- setup/
-|   |-- setup-db-nfs-guide.md
-|   |-- setup-hpa-guide.md
-|   |-- setup-nfs-guide.md
-|   `-- setup-redis-sentinel-guide.md
-|-- workflow/
-|   `-- kubernetes/
-|       `-- k8s-mariadb-nfs-import.md
-|-- templates/
-|   |-- github-actions/
-|   |   |-- README.md
-|   |   |-- continuous-integration/
-|   |   |   `-- README.md
-|   |   |-- continuous-delivery/
-|   |   |   `-- README.md
-|   |   `-- continuous-deployment/
-|   |       `-- README.md
-|   |-- gitlab-ci/
-|   |   |-- README.md
-|   |   |-- continuous-integration/
-|   |   |   `-- README.md
-|   |   |-- continuous-delivery/
-|   |   |   `-- README.md
-|   |   `-- continuous-deployment/
-|   |       |-- README.md
-|   |       `-- java/
-|   |           |-- README.md
-|   |           `-- maven-jar-server-tag.yml
-|   |-- shared/
-|   |   |-- docker/
-|   |   |   |-- install/
-|   |   |   |   `-- ubuntu/
-|   |   |   |       |-- README.md
-|   |   |   |       |-- install-docker-and-compose.sh.example
-|   |   |   |       `-- install-jenkins.sh.example
-|   |   |   |-- compose/
-|   |   |   |   `-- backend-mariadb/
-|   |   |   |       |-- README.md
-|   |   |   |       `-- docker-compose.yml.example
-|   |   |   |-- java/
-|   |   |   |   |-- README.md
-|   |   |   |   `-- maven-jar-openjdk8-jre-alpine.Dockerfile.example
-|   |   |   |-- registry/
-|   |   |   |   |-- harbor/
-|   |   |   |   |   |-- README.md
-|   |   |   |   |   `-- install-harbor.sh.example
-|   |   |   |   `-- private-registry-tls/
-|   |   |   |       |-- README.md
-|   |   |   |       `-- docker-compose.yml.example
-|   |   |   `-- vuejs/
-|   |   |       |-- README.md
-|   |   |       `-- npm-dist-nginx-alpine.Dockerfile.example
-|   |   |-- mysql/
-|   |   |   `-- install/
-|   |   |       `-- ubuntu/
-|   |   |           `-- README.md
-|   |   |-- kubernetes/
-|   |   |   `-- install/
-|   |   |       `-- ubuntu/
-|   |   |           |-- README.md
-|   |   |           |-- 01-prepare-all-nodes.sh.example
-|   |   |           |-- 02-init-single-master.sh.example
-|   |   |           |-- 03-init-ha-master.sh.example
-|   |   |           |-- 04-join-worker.sh.example
-|   |   |           |-- 05-join-control-plane.sh.example
-|   |   |           `-- 06-reset-cluster.sh.example
-|   |   `-- nginx/
-|   |       `-- react-spa-port-3000.conf.example
-|   `-- jenkins/
-|       |-- README.md
-|       |-- continuous-integration/
-|       |   `-- README.md
-|       |-- continuous-delivery/
-|       |   `-- README.md
-|       |-- install/
-|       |   `-- ubuntu/
-|       |       |-- README.md
-|       |       `-- install-jenkins.sh.example
-|       |-- reverse-proxy/
-|       |   |-- README.md
-|       |   `-- nginx-jenkins-subdomain.conf.example
-|       `-- continuous-deployment/
-|           `-- README.md
-|-- templates/
-|   `-- kubernetes/
-|       |-- namespace.yml.example
-|       |-- pod.yml.example
-|       |-- deployment/
-|       |-- service/
-|       |   |-- README.md
-|       |   `-- service-nodeport.yml.example
-|       |-- ingress/
-|       |   |-- README.md
-|       |   `-- ingress-car-serv.yml.example
-|       |-- hpa/
-|       |   |-- README.md
-|       |   `-- hpa.yml.example
-|       |-- redis/
-|       |   |-- README.md
-|       |   `-- values.yml.example
-|       |-- storage/
-|       |   |-- README.md
-|       |   |-- pv.yml.example
-|       |   |-- pvc.yml.example
-|       |   |-- redis-pv-pvc.yml.example
-|       |   `-- storageclass.yml.example
-|       |-- full-stack/
-|       |   |-- README.md
-|       |   `-- fullstack-rolling-clusterip-ingress.yml.example
-|       `-- load-balancer/
-|           `-- nginx/
-|               `-- k8s-loadbalancer.conf
-`-- .gitignore
+├── on-premise/              # 🏢 Ha tang on-premise tu quan ly
+│   ├── setup/               # 📖 Huong dan cai dat tung buoc
+│   ├── workflow/            # 🔄 Quy trinh van hanh
+│   ├── scripts/             # 🛠️ Bash scripts cai dat tu dong
+│   ├── kubernetes/          # ☸️ K8s manifest templates
+│   ├── docker-compose/      # 🐳 Docker Compose stacks
+│   └── nginx/               # 🌐 Nginx config templates
+├── cloud/                   # ☁️ Cloud providers (placeholder)
+│   ├── aws/
+│   ├── gcp/
+│   └── azure/
+├── pipelines/               # 🚀 CI/CD Pipeline templates
+│   ├── gitlab-ci/
+│   ├── github-actions/
+│   └── jenkins/
+├── dockerfiles/             # 📦 Dockerfile templates
+│   ├── backend/
+│   └── frontend/
+├── docs/                    # 📚 Tai lieu bo sung
+│   ├── REPO-STRUCTURE.md
+│   ├── TEMPLATE-GUIDELINES.md
+│   └── k8s/
+├── catalog/
+│   └── templates.yml        # 📋 Danh muc template YAML
+└── .gitignore
 ```
 
-## Quy tac dat ten
+## Giai thich tung folder
+
+### Cap goc (root level)
+
+| Folder | Mo ta |
+| --- | --- |
+| `on-premise/` | 🏢 Toan bo tai nguyen lien quan ha tang on-premise: huong dan, script, manifest K8s, Docker Compose, Nginx |
+| `cloud/` | ☁️ Placeholder cho cac cloud provider (AWS, GCP, Azure) - san sang mo rong |
+| `pipelines/` | 🚀 Pipeline templates cho GitLab CI, GitHub Actions, Jenkins - phan loai theo delivery model |
+| `dockerfiles/` | 📦 Dockerfile mau cho backend (Java) va frontend (Angular, VueJS) |
+| `docs/` | 📚 Tai lieu bo sung: cau truc repo, quy tac viet template, tham khao K8s |
+| `catalog/` | 📋 File `templates.yml` liet ke danh muc tat ca template hien co |
+
+### Ben trong `on-premise/`
+
+| Folder | Mo ta |
+| --- | --- |
+| `setup/` | 📖 Huong dan cai dat chi tiet (markdown) cho Docker, K8s, Jenkins, Harbor, Rancher, MySQL, NFS |
+| `workflow/` | 🔄 Quy trinh van hanh thuc te, vi du: import du lieu SQL qua NFS tren K8s |
+| `scripts/` | 🛠️ Bash script tu dong hoa cai dat: Docker, K8s cluster, Helm, Ingress Nginx, Metrics Server, NFS, Harbor, Rancher, Jenkins, Storage |
+| `kubernetes/` | ☸️ K8s YAML manifest templates: Namespace, Pod, Deployment, Service, Ingress, ConfigMap, Secret, HPA, Storage, StatefulSet, Redis, Full-stack, Load Balancer |
+| `docker-compose/` | 🐳 Docker Compose stack mau: backend + MariaDB, private registry TLS, Rancher |
+| `nginx/` | 🌐 Nginx config: reverse proxy, SPA, load balancer |
+
+### Ben trong `pipelines/`
+
+| Folder | Mo ta |
+| --- | --- |
+| `gitlab-ci/` | Pipeline `.gitlab-ci.yml` cho GitLab, phan theo CI / CD / CD |
+| `github-actions/` | Workflow `.yml` cho GitHub Actions (placeholder) |
+| `jenkins/` | Jenkinsfile va Groovy scripts cho Jenkins pipeline |
+
+### Ben trong `dockerfiles/`
+
+| Folder | Mo ta |
+| --- | --- |
+| `backend/java/` | Dockerfile mau cho Java backend (OpenJDK 8, Temurin 17) |
+| `frontend/angular/` | Dockerfile + Nginx config cho Angular SPA |
+| `frontend/vuejs/` | Dockerfile cho VueJS SPA |
+
+## Quy tac dat ten pipeline
 
 Mau duong dan:
 
 ```text
-templates/<provider>/<delivery-model>/<language>/<scenario>.yml
+pipelines/<provider>/<delivery-model>/<language>/<scenario>.yml
 ```
 
 Vi du:
 
-- `templates/gitlab-ci/continuous-integration/java/maven-test.yml`
-- `templates/github-actions/continuous-delivery/nodejs/npm-build-release-main.yml`
-- `templates/gitlab-ci/continuous-deployment/java/maven-jar-server-tag.yml`
+- `pipelines/gitlab-ci/continuous-integration/java/maven-test.yml`
+- `pipelines/gitlab-ci/continuous-deployment/java/maven-jar-server-tag.yml`
+- `pipelines/jenkins/continuous-delivery/java/maven-jar-linux-delivery.Jenkinsfile`
 
 ## Cach phan loai pipeline
 
-- `continuous-integration`: build, test, lint, scan, package; khong thay doi moi truong dich.
-- `continuous-delivery`: tao artifact san sang phat hanh hoac deploy toi staging, UAT, hoac prod nhung con manual gate.
-- `continuous-deployment`: sau khi pipeline qua dieu kien, he thong tu dong deploy thang toi moi truong dich ma khong can approve trong pipeline.
+| Delivery Model | Mo ta |
+| --- | --- |
+| `continuous-integration` | Build, test, lint, scan, package. Khong thay doi moi truong dich. |
+| `continuous-delivery` | Tao artifact san sang deploy toi staging/UAT/prod nhung con **manual gate** (can approve thu cong). |
+| `continuous-deployment` | Sau khi pipeline qua dieu kien, he thong **tu dong deploy** thang toi moi truong dich ma khong can approve. |
 
 Phan `scenario` nen mo ta du 4 y:
 
-1. Build tool hoac artifact: `maven`, `npm`, `poetry`, `docker`
-2. Kieu package hoac deploy style: `jar`, `image`, `helm`, `static`
-3. Dich den: `server`, `k8s`, `ecs`, `ecr`, `gcr`
-4. Dieu kien kich hoat hoac bien the: `tag`, `main`, `mr`, `manual`, `blue-green`
+1. **Build tool / artifact**: `maven`, `npm`, `poetry`, `docker`
+2. **Kieu package / deploy style**: `jar`, `image`, `helm`, `static`
+3. **Dich den**: `server`, `k8s`, `ecs`, `ecr`, `gcr`
+4. **Dieu kien kich hoat / bien the**: `tag`, `main`, `mr`, `manual`, `blue-green`
+
+---
 
 ## Danh muc hien co
 
+### 🚀 Pipeline Templates
+
 | Provider | Delivery Model | Language | Scenario | File |
 | --- | --- | --- | --- | --- |
-| GitLab CI | Continuous Deployment | Java | Maven build + direct server deploy on tag | `templates/gitlab-ci/continuous-deployment/java/maven-jar-server-tag.yml` |
-| GitLab CI | Continuous Deployment | React | NPM build + static deploy to server on tag | `templates/gitlab-ci/continuous-deployment/react/npm-static-server-tag.yml` |
-| GitLab CI | Continuous Delivery | React | NPM build + manual static deploy to server on tag | `templates/gitlab-ci/continuous-delivery/react/npm-static-server-tag-manual.yml` |
-| GitLab CI | Continuous Delivery | Docker | Docker build + push registry + manual container deploy on tag | `templates/gitlab-ci/continuous-delivery/docker/docker-image-server-tag-manual.yml` |
+| GitLab CI | Continuous Deployment | Java | Maven build + deploy server on tag | `pipelines/gitlab-ci/continuous-deployment/java/maven-jar-server-tag.yml` |
+| GitLab CI | Continuous Deployment | React | NPM build + static deploy server on tag | `pipelines/gitlab-ci/continuous-deployment/react/npm-static-server-tag.yml` |
+| GitLab CI | Continuous Delivery | React | NPM build + manual static deploy server on tag | `pipelines/gitlab-ci/continuous-delivery/react/npm-static-server-tag-manual.yml` |
+| GitLab CI | Continuous Delivery | Docker | Docker build + push registry + manual deploy on tag | `pipelines/gitlab-ci/continuous-delivery/docker/docker-image-server-tag-manual.yml` |
+| GitLab CI | Continuous Delivery | Java | Maven build + manual deploy server on tag | `pipelines/gitlab-ci/continuous-delivery/java/maven-jar-server-tag.yml` |
+| Jenkins | Continuous Delivery | Java | Maven JAR + Linux server delivery | `pipelines/jenkins/continuous-delivery/java/maven-jar-linux-delivery.Jenkinsfile` |
+| Jenkins | Continuous Delivery | Java | Maven JAR + Linux ops delivery | `pipelines/jenkins/continuous-delivery/java/maven-jar-linux-ops-delivery.Jenkinsfile` |
+| Jenkins | Continuous Deployment | Java | Maven JAR + Linux server deploy | `pipelines/jenkins/continuous-deployment/java/maven-jar-linux-deploy.Jenkinsfile` |
 
-## Cach them template moi
+### ☸️ Kubernetes Manifest Templates
 
-1. Chon dung provider, delivery model va language.
-2. Dat ten file theo scenario mo ta ro build, target va trigger.
-3. Them mo ta ngan vao `catalog/templates.yml`.
-4. Neu co bien bat buoc hoac buoc manual, ghi ro trong README cung cap template.
-5. Khong commit secret, token, host cu the, private key.
+> Tat ca file nam trong `on-premise/kubernetes/`
 
-Tai nguyen dung chung nhu config Nginx, Dockerfile mau, shell snippet, hoac file phu tro co the dat trong `templates/shared/`.
+| Nhom | Template | Mo ta | File |
+| --- | --- | --- | --- |
+| Namespace | namespace | Tao namespace moi | `namespace.yml.example` |
+| Pod | pod | Pod don gian | `pod.yml.example` |
+| Pod | pod-nfs | Pod voi NFS volume mount | `pod-nfs.yml.example` |
+| Deployment | deployment-recreate | Strategy Recreate (xoa het roi tao lai) | `deployment/deployment-recreate.yml.example` |
+| Deployment | deployment-rolling | Strategy RollingUpdate (cap nhat lan luot) | `deployment/deployment-rolling.yml.example` |
+| Deployment | ecommerce-backend | Deployment mau cho ecommerce backend | `deployment/ecommerce-backend-deployment.yml.example` |
+| Service | service-nodeport | Service kieu NodePort | `service/service-nodeport.yml.example` |
+| Service | mariadb-service | Service cho MariaDB | `service/mariadb-service.yml.example` |
+| Ingress | ingress-car-serv | Ingress Nginx cho du an car-serv (domain h1eudayne.tech) | `ingress/ingress-car-serv.yml.example` |
+| ConfigMap | configmap-spring | ConfigMap cho Spring Boot properties | `configmap/configmap-spring-properties.yml.example` |
+| Secret | database | Secret cho database connection | `secret/database/ecommerce-backend-database-connection.yml` |
+| Secret | harbor | Secret cho Harbor registry auth | `secret/harbor/harbor-registry-auth.yml.example` |
+| HPA | hpa | HorizontalPodAutoscaler autoscaling/v2 theo CPU va Memory | `hpa/hpa.yml.example` |
+| Storage | storageclass | StorageClass NFS voi no-provisioner | `storage/storageclass.yml.example` |
+| Storage | pv | PersistentVolume NFS thu cong | `storage/pv.yml.example` |
+| Storage | pvc | PersistentVolumeClaim NFS | `storage/pvc.yml.example` |
+| Storage | redis-pv-pvc | PV va PVC NFS cho Redis | `storage/redis-pv-pvc.yml.example` |
+| StatefulSet | mariadb | MariaDB StatefulSet | `statefulset/mariadb-statefulset.yml.example` |
+| Resource Limit | deployment-limit | Deployment voi resource request va limit | `resource-limit/deployment-with-resource-limit.yml.example` |
+| Redis | values | Helm values.yaml cho Redis Replication + Sentinel | `redis/values.yml.example` |
+| Full-Stack | fullstack | Deployment (RollingUpdate) + Service (ClusterIP) + Ingress trong 1 file | `full-stack/fullstack-rolling-clusterip-ingress.yml.example` |
+| Load Balancer | nginx-lb | Nginx config phan phoi traffic den K8s node qua NodePort 30080 | `load-balancer/nginx/k8s-loadbalancer.conf` |
 
-## Tai nguyen dung chung hien co
+### 📖 On-Premise Setup Guides
+
+> Tat ca file nam trong `on-premise/setup/`
+
+| Nhom | Mo ta | File |
+| --- | --- | --- |
+| Docker | Huong dan cai dat Docker Engine va Docker Compose | `docker/install-docker-guide.md` |
+| Kubernetes | Huong dan dung cum K8s (master + worker) | `kubernetes/setup-cluster-guide.md` |
+| Kubernetes | Huong dan cai dat va cau hinh HPA (Metrics Server, Rancher fix) | `kubernetes/setup-hpa-guide.md` |
+| Kubernetes | Huong dan trien khai NFS tren K8s (kien truc, luu do, buoc thuc hien) | `kubernetes/setup-nfs-guide.md` |
+| Kubernetes | Huong dan trien khai database MariaDB tren K8s qua StatefulSet + NFS | `kubernetes/setup-db-nfs-guide.md` |
+| Kubernetes | Huong dan trien khai Redis Sentinel HA tren K8s (NFS, PV/PVC, Helm) | `kubernetes/setup-redis-sentinel-guide.md` |
+| Kubernetes | Huong dan cai dat Metrics Server tren K8s | `kubernetes/metrics-server-guide.md` |
+| Kubernetes | Huong dan cai dat Helm (K8s Package Manager) | `kubernetes/install-helm-guide.md` |
+| Kubernetes | Huong dan cai dat Ingress Nginx Controller | `kubernetes/install-ingress-nginx-guide.md` |
+| Jenkins | Huong dan cai dat Jenkins tren Ubuntu | `jenkins/install-jenkins-guide.md` |
+| Jenkins | Huong dan cau hinh Nginx reverse proxy cho Jenkins | `jenkins/reverse-proxy-guide.md` |
+| Harbor | Huong dan cai dat Harbor (container registry) | `harbor/install-harbor-guide.md` |
+| Rancher | Huong dan cai dat Rancher (K8s management UI) | `rancher/install-rancher-guide.md` |
+| MySQL | Huong dan cai dat MySQL Server, tao database va user | `mysql/install-mysql-guide.md` |
+| NFS | Huong dan cai dat va cau hinh NFS Server | `nfs/nfs-server-guide.md` |
+| NFS | Huong dan cai dat NFS Client va kiem tra ket noi | `nfs/nfs-client-guide.md` |
+
+### 🛠️ On-Premise Scripts
+
+> Tat ca file nam trong `on-premise/scripts/`
+
+| Nhom | Mo ta | File |
+| --- | --- | --- |
+| Docker | Cai Docker Engine + standalone Docker Compose | `docker/install-docker-and-compose.sh.example` |
+| Docker | Cai Jenkins bang apt repository + Java 21 | `docker/install-jenkins.sh.example` |
+| Kubernetes | Chuan bi tat ca node: hosts, swap, kernel module, containerd, kubeadm v1.30 | `kubernetes/01-prepare-all-nodes.sh.example` |
+| Kubernetes | Khoi tao cum 1 master + 2 worker voi Calico CNI | `kubernetes/02-init-single-master.sh.example` |
+| Kubernetes | Khoi tao cum 3 master HA voi control-plane-endpoint | `kubernetes/03-init-ha-master.sh.example` |
+| Kubernetes | Join worker node vao cum K8s | `kubernetes/04-join-worker.sh.example` |
+| Kubernetes | Join control-plane bo sung vao cum HA | `kubernetes/05-join-control-plane.sh.example` |
+| Kubernetes | Reset cum K8s de cai lai tu dau | `kubernetes/06-reset-cluster.sh.example` |
+| Helm | Cai dat Helm v3.16.2 | `helm/01-install-helm.sh.example` |
+| Ingress Nginx | Tai chart, chinh values.yaml sang NodePort 30080/30443 | `ingress-nginx/01-prepare-ingress-nginx.sh.example` |
+| Ingress Nginx | Tao namespace va deploy Ingress Nginx Controller qua Helm | `ingress-nginx/02-deploy-ingress-nginx.sh.example` |
+| Metrics Server | Cai dat Metrics Server bang Helm (ho tro bo qua TLS tu ky) | `metrics-server/install-metrics-server.sh.example` |
+| NFS | Cai dat nfs-kernel-server va tao thu muc chia se | `nfs/install-nfs-server.sh.example` |
+| NFS | Cai dat nfs-common va kiem tra ket noi cong 2049 | `nfs/install-nfs-client.sh.example` |
+| Harbor | Cai Harbor offline, xin TLS bang Certbot, chay prepare/install | `harbor/install-harbor.sh.example` |
+| Rancher | Cai dat Rancher (K8s management) | `rancher/install-rancher.sh.example` |
+| Jenkins | Cai dat Jenkins server | `jenkins/install-jenkins.sh.example` |
+| Jenkins | Systemd service file cho Jenkins Agent | `jenkins/jenkins-agent.service.example` |
+| Storage | Mount disk vao he thong | `storage/mount-disk.sh.example` |
+
+### 📦 Dockerfile Templates
+
+> Tat ca file nam trong `dockerfiles/`
 
 | Nhom | Ngon ngu | Mo ta | File |
 | --- | --- | --- | --- |
-| Docker | Compose | Docker Compose stack mau cho backend image + MariaDB voi bien moi truong de doi theo tung project | `templates/shared/docker/compose/backend-mariadb/docker-compose.yml.example` |
-| Docker | Ubuntu | Bash script cai Docker Engine va standalone Docker Compose tren Ubuntu | `templates/shared/docker/install/ubuntu/install-docker-and-compose.sh.example` |
-| Docker | Ubuntu | Bash script cai Jenkins tren Ubuntu bang Jenkins apt repository va Java 21 | `templates/shared/docker/install/ubuntu/install-jenkins.sh.example` |
-| Docker | Java | Multi-stage Maven build, copy JAR sang Alpine runtime va chay bang Java 8 | `templates/shared/docker/java/maven-jar-openjdk8-jre-alpine.Dockerfile.example` |
-| Docker | Registry | Script mau cai Harbor offline, xin TLS bang Certbot va chay prepare/install sau khi review harbor.yml | `templates/shared/docker/registry/harbor/install-harbor.sh.example` |
-| Docker | Registry | Huong dan tao private registry voi TLS self-signed certificate va Docker Compose | `templates/shared/docker/registry/private-registry-tls/docker-compose.yml.example` |
-| Docker | VueJS | Multi-stage npm build, copy `dist` sang Nginx runtime va phuc vu static file | `templates/shared/docker/vuejs/npm-dist-nginx-alpine.Dockerfile.example` |
-| MySQL | Ubuntu | Huong dan cai `mysql-server`, chay `mysql_secure_installation`, tao database va user ung dung | `templates/shared/mysql/install/ubuntu/README.md` |
-| NFS Server | Ubuntu | Huong dan chi tiet cai dat, cau hinh va mo port cho NFS Server tren Ubuntu | `templates/shared/nfs-server/install/ubuntu/README.md` |
-| NFS Server | Ubuntu | Bash script tu dong hoa cai dat nfs-kernel-server va tao thu muc chia se tren Ubuntu | `templates/shared/nfs-server/install/ubuntu/install-nfs-server.sh.example` |
-| NFS Client | Ubuntu | Huong dan chi tiet cai dat nfs-common va kiem tra ket noi den NFS Server | `templates/shared/nfs-client/install/ubuntu/README.md` |
-| NFS Client | Ubuntu | Bash script tu dong hoa cai dat nfs-common va kiem tra ket noi cong 2049 tren client nodes | `templates/shared/nfs-client/install/ubuntu/install-nfs-client.sh.example` |
-| Nginx | React SPA | Nginx config mau cho React SPA chay tren port 3000 | `templates/shared/nginx/react-spa-port-3000.conf.example` |
-| Kubernetes | Ubuntu | Bash script chuan bi tat ca node K8s: hosts, swap, kernel module, containerd, kubeadm v1.30 | `templates/shared/kubernetes/install/ubuntu/01-prepare-all-nodes.sh.example` |
-| Kubernetes | Ubuntu | Khoi tao cum K8s mo hinh 1 master + 2 worker voi Calico CNI | `templates/shared/kubernetes/install/ubuntu/02-init-single-master.sh.example` |
-| Kubernetes | Ubuntu | Khoi tao cum K8s mo hinh 3 master HA voi control-plane-endpoint | `templates/shared/kubernetes/install/ubuntu/03-init-ha-master.sh.example` |
-| Kubernetes | Ubuntu | Join worker node vao cum K8s (mo hinh 1 master + 2 worker) | `templates/shared/kubernetes/install/ubuntu/04-join-worker.sh.example` |
-| Kubernetes | Ubuntu | Join control-plane node bo sung vao cum K8s HA (mo hinh 3 master) | `templates/shared/kubernetes/install/ubuntu/05-join-control-plane.sh.example` |
-| Kubernetes | Ubuntu | Reset cum K8s de cai lai tu dau | `templates/shared/kubernetes/install/ubuntu/06-reset-cluster.sh.example` |
-| Helm | Ubuntu | Bash script cai dat Helm v3.16.2 (Kubernetes Package Manager) tren Ubuntu | `templates/shared/helm/install/ubuntu/01-install-helm.sh.example` |
-| Ingress Nginx | Ubuntu | Bash script (root) tai chart Ingress Nginx, chinh sua values.yaml sang NodePort 30080/30443 | `templates/shared/ingress-nginx/install/ubuntu/01-prepare-ingress-nginx.sh.example` |
-| Ingress Nginx | Ubuntu | Bash script (devops) tao namespace va cai dat Ingress Nginx Controller qua Helm | `templates/shared/ingress-nginx/install/ubuntu/02-deploy-ingress-nginx.sh.example` |
-| Metrics Server | Kubernetes | Huong dan va bash script (Helm) cai dat Metrics Server, ho tro cau hinh bo qua TLS tu ky | `templates/shared/metrics-server/README.md` |
-| Kubernetes | HPA Setup | Huong dan chi tiet cai dat Metrics Server, cach sua loi tren Rancher va cau hinh HPA | `setup/setup-hpa-guide.md` |
-| Kubernetes | NFS Setup | Huong dan toan dien ve kien truc, luu do hoat dong va cac buoc trien khai NFS tren K8s | `setup/setup-nfs-guide.md` |
-| Kubernetes | DB NFS Setup | Huong dan tung buoc trien khai database MariaDB tren K8s qua StatefulSet va NFS | `setup/setup-db-nfs-guide.md` |
-| Kubernetes | Redis Sentinel Setup | Huong dan tung buoc trien khai Redis Sentinel HA tren K8s, bao gom NFS, PV/PVC va Helm values | `setup/setup-redis-sentinel-guide.md` |
-| Kubernetes | DB NFS Workflow | Quy trinh nap du lieu SQL qua NFS va ket noi Backend qua ClusterIP (Phuong phap toi uu) | `workflow/kubernetes/k8s-mariadb-nfs-import.md` |
-| Nginx | Load Balancer | Nginx config phan phoi traffic den cac K8s node qua NodePort 30080 (dung cho on-premise) | `templates/kubernetes/load-balancer/nginx/k8s-loadbalancer.conf` |
-| Kubernetes | Ingress | Cau hinh Ingress Nginx cho du an car-serv (on-premise, domain h1eudayne.tech) | `templates/kubernetes/ingress/ingress-car-serv.yml.example` |
-| Kubernetes | Full-Stack | Template gom Deployment (RollingUpdate) + Service (ClusterIP) + Ingress (Nginx) trong 1 file, deploy nhanh ung dung web hoan chinh | `templates/kubernetes/full-stack/fullstack-rolling-clusterip-ingress.yml.example` |
-| Kubernetes | HPA | Template HorizontalPodAutoscaler (HPA) autoscaling/v2 tu dong co gian pod theo CPU va Memory | `templates/kubernetes/hpa/hpa.yml.example` |
-| Kubernetes | Storage | Template StorageClass (nfs-storage) su dung no-provisioner va volumeBindingMode WaitForFirstConsumer | `templates/kubernetes/storage/storageclass.yml.example` |
-| Kubernetes | Storage | Template PersistentVolume (PV) thu cong su dung NFS Storage cho moi truong on-premise | `templates/kubernetes/storage/pv.yml.example` |
-| Kubernetes | Storage | Template PersistentVolumeClaim (PVC) su dung NFS Storage cho cac ung dung | `templates/kubernetes/storage/pvc.yml.example` |
-| Kubernetes | Storage | Template PV va PVC su dung NFS Storage cho Redis trong namespace architecture | `templates/kubernetes/storage/redis-pv-pvc.yml.example` |
-| Kubernetes | Redis | Template values.yaml de cai dat Redis Replication + Sentinel bang Helm | `templates/kubernetes/redis/values.yml.example` |
-| Kubernetes | Redis | Huong dan trien khai Redis Cluster (Replication + Sentinel) bang Helm | `templates/kubernetes/redis/README.md` |
+| Backend | Java | Dockerfile mau co ban | `backend/java/Dockerfile.example` |
+| Backend | Java | Multi-stage Maven build, JAR + OpenJDK 8 Alpine runtime | `backend/java/maven-jar-openjdk8-jre-alpine.Dockerfile.example` |
+| Backend | Java | Multi-stage Maven build, JAR + Eclipse Temurin 17 Alpine runtime | `backend/java/maven-jar-temurin17-jre-alpine.Dockerfile.example` |
+| Frontend | Angular | Multi-stage npm build, copy dist sang Nginx Alpine | `frontend/angular/npm-dist-nginx-alpine.Dockerfile.example` |
+| Frontend | Angular | Dockerfile shared variant (nhieu app dung chung) | `frontend/angular/npm-dist-nginx-alpine-shared.Dockerfile.example` |
+| Frontend | Angular | Nginx config tuong ung cho Angular SPA | `frontend/angular/nginx.conf.example` |
+| Frontend | VueJS | Multi-stage npm build, copy dist sang Nginx Alpine | `frontend/vuejs/npm-dist-nginx-alpine.Dockerfile.example` |
 
+### 🐳 Docker Compose Templates
 
-## Goi y mo rong tiep theo
+> Tat ca file nam trong `on-premise/docker-compose/`
 
-- Them `templates/github-actions/continuous-integration/nodejs/`
-- Them `templates/github-actions/continuous-delivery/python/`
-- Them `templates/gitlab-ci/continuous-integration/nodejs/`
-- Them `templates/gitlab-ci/continuous-deployment/python/`
-- Them `templates/jenkins/continuous-delivery/java/`
-- Them `examples/` neu muon minh hoa cach inject variable cho tung project
+| Nhom | Mo ta | File |
+| --- | --- | --- |
+| Backend + MariaDB | Docker Compose stack cho backend image + MariaDB voi bien moi truong | `backend-mariadb/docker-compose.yml.example` |
+| Private Registry | Private registry voi TLS self-signed certificate | `private-registry-tls/docker-compose.yml.example` |
+| Rancher | Docker Compose stack cho Rancher | `rancher/docker-compose.yml.example` |
 
+### 🌐 Nginx Config Templates
+
+> Tat ca file nam trong `on-premise/nginx/`
+
+| Template | Mo ta | File |
+| --- | --- | --- |
+| React SPA | Nginx config cho React SPA chay tren port 3000 | `react-spa-port-3000.conf` |
+| Jenkins Subdomain | Nginx reverse proxy cho Jenkins subdomain | `jenkins-subdomain.conf.example` |
+
+### 🔄 Workflow
+
+> Tat ca file nam trong `on-premise/workflow/`
+
+| Nhom | Mo ta | File |
+| --- | --- | --- |
+| Kubernetes | Quy trinh nap du lieu SQL qua NFS va ket noi Backend qua ClusterIP | `kubernetes/k8s-mariadb-nfs-import.md` |
+
+---
+
+## Cach them template moi
+
+1. **Xac dinh vi tri**: chon dung folder goc (`pipelines/`, `dockerfiles/`, `on-premise/`) theo loai tai nguyen.
+2. **Dat ten theo quy tac**: tuan theo mau `<build-tool>-<package>-<target>-<trigger>` cho pipeline, hoac ten mo ta ro chuc nang cho manifest/script.
+3. **Them vao catalog**: cap nhat mo ta ngan vao `catalog/templates.yml`.
+4. **Viet README**: tao file `README.md` trong cung thu muc neu template can giai thich them.
+5. **Bao mat**: **KHONG** commit secret, token, host cu the, private key. Dung file `.example` va huong dan nguoi dung tu dien.
+
+## Goi y mo rong
+
+### Pipelines
+
+- Them `pipelines/github-actions/continuous-integration/nodejs/`
+- Them `pipelines/github-actions/continuous-delivery/python/`
+- Them `pipelines/gitlab-ci/continuous-integration/nodejs/`
+- Them `pipelines/gitlab-ci/continuous-deployment/python/`
+- Them `pipelines/jenkins/continuous-integration/java/`
+
+### Cloud
+
+- Them `cloud/aws/eks/` - huong dan va script trien khai EKS
+- Them `cloud/aws/ecr/` - pipeline push image len ECR
+- Them `cloud/gcp/gke/` - huong dan va script trien khai GKE
+- Them `cloud/azure/aks/` - huong dan va script trien khai AKS
+
+### On-Premise
+
+- Them `on-premise/setup/monitoring/` - Prometheus, Grafana, Alertmanager
+- Them `on-premise/setup/logging/` - EFK/ELK stack
+- Them `on-premise/kubernetes/cronjob/` - CronJob templates
+- Them `on-premise/kubernetes/network-policy/` - NetworkPolicy templates
+
+### Dockerfiles
+
+- Them `dockerfiles/backend/python/` - Dockerfile cho Python (Flask, Django, FastAPI)
+- Them `dockerfiles/backend/nodejs/` - Dockerfile cho Node.js (Express, NestJS)
