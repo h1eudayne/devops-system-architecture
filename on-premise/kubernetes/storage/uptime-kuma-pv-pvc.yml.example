@@ -1,0 +1,50 @@
+# =============================================================================
+# Template: Kubernetes PV & PVC configuration for Uptime Kuma (NFS Storage)
+# -----------------------------------------------------------------------------
+# Lưu ý quan trọng:
+#   - PersistentVolume (PV) là TÀI NGUYÊN TOÀN CỤC (Cluster-scoped resource),
+#     không thuộc về bất kỳ namespace nào (không cấu hình metadata.namespace).
+#   - PersistentVolumeClaim (PVC) là TÀI NGUYÊN CỤC BỘ (Namespace-scoped resource).
+#     Nó bắt buộc phải nằm chung namespace với Pod sử dụng nó (ở đây là namespace: monitoring).
+#   - Đây là giải pháp cho môi trường ON-PREMISE sử dụng cơ chế thủ công:
+#     Bạn bắt buộc phải tạo thư mục vật lý '/data/monitoring' trên NFS Server và cấp quyền ghi
+#     cho user (no_root_squash, chmod 777) trước khi deploy.
+#
+# Hướng dẫn sử dụng:
+#   1. Sao chép file này và đổi tên bỏ đuôi .example:
+#        cp uptime-kuma-pv-pvc.yml.example uptime-kuma-pv-pvc.yml
+#   2. Cập nhật địa chỉ IP của NFS Server tại trường spec.nfs.server (mặc định: 192.168.1.115).
+#   3. Áp dụng cấu hình:
+#        kubectl apply -f uptime-kuma-pv-pvc.yml
+#   4. Kiểm tra trạng thái:
+#        kubectl get pv uptime-kuma-pv
+#        kubectl get pvc uptime-kuma-pvc -n monitoring
+# =============================================================================
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: uptime-kuma-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /data/monitoring
+    server: 192.168.1.115 # Chú ý thay địa chỉ IP tương ứng của bạn
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-storage
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-kuma-pvc
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: nfs-storage

@@ -150,6 +150,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Storage | pv | PersistentVolume NFS thu cong | `storage/pv.yml.example` |
 | Storage | pvc | PersistentVolumeClaim NFS | `storage/pvc.yml.example` |
 | Storage | redis-pv-pvc | PV va PVC NFS cho Redis | `storage/redis-pv-pvc.yml.example` |
+| Storage | uptime-kuma-pv-pvc | PV va PVC NFS cho Uptime Kuma | `storage/uptime-kuma-pv-pvc.yml.example` |
 | StatefulSet | mariadb | MariaDB StatefulSet | `statefulset/mariadb-statefulset.yml.example` |
 | Resource Limit | deployment-limit | Deployment voi resource request va limit | `resource-limit/deployment-with-resource-limit.yml.example` |
 | Redis | values | Helm values.yaml cho Redis Replication + Sentinel | `redis/values.yml.example` |

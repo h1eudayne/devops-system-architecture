@@ -281,6 +281,14 @@ kubernetes:
       Template cau hinh PersistentVolume (PV) va PersistentVolumeClaim (PVC)
       su dung NFS Storage cho ung dung Redis trong namespace architecture.
 
+  - id: k8s-uptime-kuma-pv-pvc-template
+    kind: PersistentVolume+PersistentVolumeClaim
+    file: on-premise/kubernetes/storage/uptime-kuma-pv-pvc.yml.example
+    maturity: draft
+    notes: >
+      Template cau hinh PersistentVolume (PV) va PersistentVolumeClaim (PVC)
+      su dung NFS Storage cho ung dung Uptime Kuma trong namespace monitoring.
+
   - id: k8s-redis-helm-values-template
     kind: HelmValues
     file: on-premise/kubernetes/redis/values.yml.example
@@ -288,6 +296,7 @@ kubernetes:
     notes: >
       Template cau hinh values.yaml de cai dat Redis Replication + Sentinel
       su dung Helm Chart Bitnami tren Kubernetes.
+
 
 
 
