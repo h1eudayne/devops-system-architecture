@@ -8,22 +8,37 @@ Thu muc nay mo ta cac dich vu AWS thuong duoc su dung trong quy trinh DevOps va 
 
 | # | Dich vu | Mo ta ngan |
 |---|---------|------------|
-| 1 | [EKS](#1-eks---elastic-kubernetes-service) | Managed Kubernetes |
-| 2 | [ECS](#2-ecs---elastic-container-service) | Container orchestration |
-| 3 | [ECR](#3-ecr---elastic-container-registry) | Docker image registry |
-| 4 | [RDS](#4-rds---relational-database-service) | Managed database |
-| 5 | [S3](#5-s3---simple-storage-service) | Object storage |
-| 6 | [VPC](#6-vpc---virtual-private-cloud) | Virtual network |
-| 7 | [IAM](#7-iam---identity--access-management) | Identity & access management |
-| 8 | [CodePipeline / CodeBuild / CodeDeploy](#8-codepipeline--codebuild--codedeploy) | CI/CD native AWS |
-| 9 | [Route 53](#9-route-53) | DNS |
-| 10 | [CloudFront](#10-cloudfront) | CDN |
-| 11 | [ACM](#11-acm---certificate-manager) | TLS certificates |
-| 12 | [EFS](#12-efs---elastic-file-system) | Shared file storage |
+| 1 | [EC2 (Amazon Elastic Compute Cloud)](ec2.md) | Virtual server (May chu ao) |
+| 2 | [EKS](#2-eks---elastic-kubernetes-service) | Managed Kubernetes |
+| 3 | [ECS](#3-ecs---elastic-container-service) | Container orchestration |
+| 4 | [ECR](#4-ecr---elastic-container-registry) | Docker image registry |
+| 5 | [RDS](#5-rds---relational-database-service) | Managed database |
+| 6 | [S3](#5-s3---simple-storage-service) | Object storage |
+| 7 | [VPC](#6-vpc---virtual-private-cloud) | Virtual network |
+| 8 | [IAM](#7-iam---identity--access-management) | Identity & access management |
+| 9 | [CodePipeline / CodeBuild / CodeDeploy](#8-codepipeline--codebuild--codedeploy) | CI/CD native AWS |
+| 10 | [Route 53](#9-route-53) | DNS |
+| 11 | [CloudFront](#10-cloudfront) | CDN |
+| 12 | [ACM](#11-acm---certificate-manager) | TLS certificates |
+| 13 | [EFS](#12-efs---elastic-file-system) | Shared file storage |
 
 ---
 
-## 1. EKS - Elastic Kubernetes Service
+## 1. EC2 - Elastic Compute Cloud
+
+**Xem chi tiet huong dan hoc tap va so sanh tai day:** [Amazon EC2 Service Document](ec2.md)
+
+**No la gi:**
+EC2 la dich vu cung cap server ao (Virtual Machine) theo yeu cau tren ha tang dam may cua AWS. Ban co thay doi linh hoat RAM, CPU, GPU, o cung và he dieu hanh tuy y trong vai phut.
+
+**Khi nao su dung:**
+- Khi can mot server Linux/Windows doc lap de tu cai dat web server, database, app server.
+- Lam node cho cum Kubernetes tu quan ly.
+- Chay cac service backend truyen thong hoac background jobs.
+
+---
+
+## 2. EKS - Elastic Kubernetes Service
 
 **No la gi:**
 EKS la dich vu Kubernetes duoc quan ly boi AWS. AWS se lo phan control plane (API server, etcd, scheduler), ban chi can quan ly worker node hoac su dung Fargate de chay pod serverless. EKS tuong thich hoan toan voi Kubernetes open-source nen co the su dung kubectl, Helm, va cac tool K8s thong thuong.
@@ -42,7 +57,7 @@ EKS la dich vu Kubernetes duoc quan ly boi AWS. AWS se lo phan control plane (AP
 
 ---
 
-## 2. ECS - Elastic Container Service
+## 3. ECS - Elastic Container Service
 
 **No la gi:**
 ECS la dich vu container orchestration cua AWS, cho phep chay Docker container ma khong can tu quan ly Kubernetes. ECS ho tro hai launch type: EC2 (tu quan ly instance) va Fargate (serverless, AWS quan ly infra). ECS tich hop chat voi ALB, IAM, CloudWatch va cac dich vu AWS khac.
@@ -61,7 +76,7 @@ ECS la dich vu container orchestration cua AWS, cho phep chay Docker container m
 
 ---
 
-## 3. ECR - Elastic Container Registry
+## 4. ECR - Elastic Container Registry
 
 **No la gi:**
 ECR la dich vu Docker container registry duoc quan ly boi AWS. No cho phep luu tru, quan ly va deploy Docker image mot cach an toan. ECR ho tro image scanning de phat hien lo hong bao mat, lifecycle policy de tu dong don dep image cu, va tich hop truc tiep voi EKS, ECS.
@@ -80,7 +95,7 @@ ECR la dich vu Docker container registry duoc quan ly boi AWS. No cho phep luu t
 
 ---
 
-## 4. RDS - Relational Database Service
+## 5. RDS - Relational Database Service
 
 **No la gi:**
 RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreSQL, MariaDB, Oracle, SQL Server va Amazon Aurora. AWS lo cac cong viec nhu patching, backup, replication, failover. RDS cho phep tao read replica, Multi-AZ deployment de dam bao high availability.
@@ -99,7 +114,7 @@ RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreS
 
 ---
 
-## 5. S3 - Simple Storage Service
+## 6. S3 - Simple Storage Service
 
 **No la gi:**
 S3 la dich vu object storage cua AWS voi do ben (durability) 99.999999999%. S3 cho phep luu tru bat ky loai file nao voi dung luong khong gioi han. No duoc su dung rong rai de luu artifact, backup, static website hosting, log storage va lam backend cho Terraform state.
@@ -118,7 +133,7 @@ S3 la dich vu object storage cua AWS voi do ben (durability) 99.999999999%. S3 c
 
 ---
 
-## 6. VPC - Virtual Private Cloud
+## 7. VPC - Virtual Private Cloud
 
 **No la gi:**
 VPC la mang ao rieng tren AWS, cho phep ban dinh nghia dai IP, subnet, route table, va kiem soat luu luong mang. Moi tai nguyen AWS (EC2, EKS, RDS) deu chay trong mot VPC. VPC la nen tang networking cho toan bo ha tang tren AWS.
@@ -137,7 +152,7 @@ VPC la mang ao rieng tren AWS, cho phep ban dinh nghia dai IP, subnet, route tab
 
 ---
 
-## 7. IAM - Identity & Access Management
+## 8. IAM - Identity & Access Management
 
 **No la gi:**
 IAM la dich vu quan ly quyen truy cap tren AWS. IAM cho phep tao user, group, role va policy de kiem soat ai duoc phep lam gi voi tai nguyen AWS. Trong DevOps, IAM role duoc su dung cho EC2 instance, EKS pod (IRSA), Lambda function va CI/CD pipeline.
@@ -156,7 +171,7 @@ IAM la dich vu quan ly quyen truy cap tren AWS. IAM cho phep tao user, group, ro
 
 ---
 
-## 8. CodePipeline / CodeBuild / CodeDeploy
+## 9. CodePipeline / CodeBuild / CodeDeploy
 
 **No la gi:**
 Day la bo ba dich vu CI/CD native cua AWS. **CodePipeline** la orchestrator dieu phoi toan bo pipeline. **CodeBuild** la dich vu build serverless, chay cac buoc build/test dua tren `buildspec.yml`. **CodeDeploy** tu dong hoa viec deploy len EC2, ECS, Lambda voi cac chien luoc nhu rolling, blue/green.
@@ -175,7 +190,7 @@ Day la bo ba dich vu CI/CD native cua AWS. **CodePipeline** la orchestrator dieu
 
 ---
 
-## 9. Route 53
+## 10. Route 53
 
 **No la gi:**
 Route 53 la dich vu DNS cua AWS, ho tro dang ky domain, quan ly DNS record va health check. Route 53 ho tro nhieu routing policy nhu simple, weighted, latency-based, geolocation va failover. No tich hop voi cac dich vu AWS khac nhu ALB, CloudFront, S3 de tao alias record.
@@ -194,7 +209,7 @@ Route 53 la dich vu DNS cua AWS, ho tro dang ky domain, quan ly DNS record va he
 
 ---
 
-## 10. CloudFront
+## 11. CloudFront
 
 **No la gi:**
 CloudFront la dich vu CDN (Content Delivery Network) cua AWS, phan phoi noi dung tu cac edge location tren toan cau. CloudFront giup giam latency, tang toc do tai trang va giam tai cho origin server. No ho tro cache static content, dynamic content, video streaming va WebSocket.
@@ -213,7 +228,7 @@ CloudFront la dich vu CDN (Content Delivery Network) cua AWS, phan phoi noi dung
 
 ---
 
-## 11. ACM - Certificate Manager
+## 12. ACM - Certificate Manager
 
 **No la gi:**
 ACM la dich vu quan ly TLS/SSL certificate mien phi cua AWS. ACM tu dong cap, gia han certificate cho cac domain cua ban. Certificate tu ACM co the gan vao ALB, CloudFront, API Gateway ma khong can tu quan ly file cert/key.
@@ -232,7 +247,7 @@ ACM la dich vu quan ly TLS/SSL certificate mien phi cua AWS. ACM tu dong cap, gi
 
 ---
 
-## 12. EFS - Elastic File System
+## 13. EFS - Elastic File System
 
 **No la gi:**
 EFS la dich vu shared file storage (NFS) cua AWS. EFS cho phep nhieu EC2 instance hoac EKS pod mount cung mot file system dong thoi. No tu dong scale dung luong theo nhu cau, khong can provision truoc. EFS phu hop cho cac workload can shared storage nhu CMS, media processing, machine learning.
