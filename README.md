@@ -207,6 +207,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Jenkins | Cai dat Jenkins server | `jenkins/install-jenkins.sh.example` |
 | Jenkins | Systemd service file cho Jenkins Agent | `jenkins/jenkins-agent.service.example` |
 | Storage | Mount disk vao he thong | `storage/mount-disk.sh.example` |
+| Uptime Kuma | Script tu dong cai dat Uptime Kuma (Namespace, PV, PVC, Helm, Ingress) | `kubernetes/uptime-kuma/setup-uptime-kuma.sh.example` |
 
 ### 📦 Dockerfile Templates
 

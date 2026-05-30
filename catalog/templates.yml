@@ -191,6 +191,15 @@ shared:
       Huong dan tung buoc trien khai Redis Sentinel HA tren K8s, bao gom
       cau hinh NFS Server, PV/PVC, Helm values va kiem tra ket noi qua ClusterIP.
 
+  - id: shared-k8s-uptime-kuma-setup-script
+    category: kubernetes
+    platform: ubuntu
+    file: on-premise/kubernetes/uptime-kuma/setup-uptime-kuma.sh.example
+    maturity: draft
+    notes: >
+      Bash script tu dong trien khai Uptime Kuma tren Kubernetes tu Namespace,
+      PV/PVC, Helm values va Ingress.
+
 kubernetes:
   - id: k8s-namespace-template
     kind: Namespace
