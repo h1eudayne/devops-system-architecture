@@ -8,7 +8,7 @@ Thu muc nay mo ta cac dich vu AWS thuong duoc su dung trong quy trinh DevOps va 
 
 | # | Dich vu | Mo ta ngan |
 |---|---------|------------|
-| 1 | [EC2 (Amazon Elastic Compute Cloud)](ec2.md) | Virtual server (May chu ao) |
+| 1 | [EC2 (Amazon Elastic Compute Cloud)](1. EC2/README.md) | Virtual server (May chu ao) |
 | 2 | [EKS](#2-eks---elastic-kubernetes-service) | Managed Kubernetes |
 | 3 | [ECS](#3-ecs---elastic-container-service) | Container orchestration |
 | 4 | [ECR](#4-ecr---elastic-container-registry) | Docker image registry |
@@ -26,7 +26,7 @@ Thu muc nay mo ta cac dich vu AWS thuong duoc su dung trong quy trinh DevOps va 
 
 ## 1. EC2 - Elastic Compute Cloud
 
-**Xem chi tiet huong dan hoc tap va so sanh tai day:** [Amazon EC2 Service Document](ec2.md)
+**Xem chi tiet huong dan hoc tap va so sanh tai day:** [Amazon EC2 Service Document](1. EC2/README.md)
 
 **No la gi:**
 EC2 la dich vu cung cap server ao (Virtual Machine) theo yeu cau tren ha tang dam may cua AWS. Ban co thay doi linh hoat RAM, CPU, GPU, o cung và he dieu hanh tuy y trong vai phut.
