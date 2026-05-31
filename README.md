@@ -14,30 +14,30 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 
 ```text
 .
-├── on-premise/              # 🏢 Ha tang on-premise tu quan ly
-│   ├── setup/               # 📖 Huong dan cai dat tung buoc
-│   ├── workflow/            # 🔄 Quy trinh van hanh
-│   ├── scripts/             # 🛠️ Bash scripts cai dat tu dong
-│   ├── kubernetes/          # ☸️ K8s manifest templates
-│   ├── docker-compose/      # 🐳 Docker Compose stacks
-│   └── nginx/               # 🌐 Nginx config templates
-├── cloud/                   # ☁️ Cloud providers (placeholder)
+├── on-premise/              # Ha tang on-premise tu quan ly
+│   ├── setup/               # Huong dan cai dat tung buoc
+│   ├── workflow/            # Quy trinh van hanh
+│   ├── scripts/             # Bash scripts cai dat tu dong
+│   ├── kubernetes/          # K8s manifest templates
+│   ├── docker-compose/      # Docker Compose stacks
+│   └── nginx/               # Nginx config templates
+├── cloud/                   # Cloud providers (placeholder)
 │   ├── aws/
 │   ├── gcp/
 │   └── azure/
-├── pipelines/               # 🚀 CI/CD Pipeline templates
+├── pipelines/               # CI/CD Pipeline templates
 │   ├── gitlab-ci/
 │   ├── github-actions/
 │   └── jenkins/
-├── dockerfiles/             # 📦 Dockerfile templates
+├── dockerfiles/             # Dockerfile templates
 │   ├── backend/
 │   └── frontend/
-├── docs/                    # 📚 Tai lieu bo sung
+├── docs/                    # Tai lieu bo sung
 │   ├── REPO-STRUCTURE.md
 │   ├── TEMPLATE-GUIDELINES.md
 │   └── k8s/
 ├── catalog/
-│   └── templates.yml        # 📋 Danh muc template YAML
+│   └── templates.yml        # Danh muc template YAML
 └── .gitignore
 ```
 
@@ -47,23 +47,23 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 
 | Folder | Mo ta |
 | --- | --- |
-| `on-premise/` | 🏢 Toan bo tai nguyen lien quan ha tang on-premise: huong dan, script, manifest K8s, Docker Compose, Nginx |
-| `cloud/` | ☁️ Placeholder cho cac cloud provider (AWS, GCP, Azure) - san sang mo rong |
-| `pipelines/` | 🚀 Pipeline templates cho GitLab CI, GitHub Actions, Jenkins - phan loai theo delivery model |
-| `dockerfiles/` | 📦 Dockerfile mau cho backend (Java) va frontend (Angular, VueJS) |
-| `docs/` | 📚 Tai lieu bo sung: cau truc repo, quy tac viet template, tham khao K8s |
-| `catalog/` | 📋 File `templates.yml` liet ke danh muc tat ca template hien co |
+| `on-premise/` |  Toan bo tai nguyen lien quan ha tang on-premise: huong dan, script, manifest K8s, Docker Compose, Nginx |
+| `cloud/` |  Placeholder cho cac cloud provider (AWS, GCP, Azure) - san sang mo rong |
+| `pipelines/` |  Pipeline templates cho GitLab CI, GitHub Actions, Jenkins - phan loai theo delivery model |
+| `dockerfiles/` |  Dockerfile mau cho backend (Java) va frontend (Angular, VueJS) |
+| `docs/` |  Tai lieu bo sung: cau truc repo, quy tac viet template, tham khao K8s |
+| `catalog/` |  File `templates.yml` liet ke danh muc tat ca template hien co |
 
 ### Ben trong `on-premise/`
 
 | Folder | Mo ta |
 | --- | --- |
-| `setup/` | 📖 Huong dan cai dat chi tiet (markdown) cho Docker, K8s, Jenkins, Harbor, Rancher, MySQL, NFS |
-| `workflow/` | 🔄 Quy trinh van hanh thuc te, vi du: import du lieu SQL qua NFS tren K8s |
-| `scripts/` | 🛠️ Bash script tu dong hoa cai dat: Docker, K8s cluster, Helm, Ingress Nginx, Metrics Server, NFS, Harbor, Rancher, Jenkins, Storage |
-| `kubernetes/` | ☸️ K8s YAML manifest templates: Namespace, Pod, Deployment, Service, Ingress, ConfigMap, Secret, HPA, Storage, StatefulSet, Redis, Full-stack, Load Balancer |
-| `docker-compose/` | 🐳 Docker Compose stack mau: backend + MariaDB, private registry TLS, Rancher |
-| `nginx/` | 🌐 Nginx config: reverse proxy, SPA, load balancer |
+| `setup/` |  Huong dan cai dat chi tiet (markdown) cho Docker, K8s, Jenkins, Harbor, Rancher, MySQL, NFS |
+| `workflow/` |  Quy trinh van hanh thuc te, vi du: import du lieu SQL qua NFS tren K8s |
+| `scripts/` |  Bash script tu dong hoa cai dat: Docker, K8s cluster, Helm, Ingress Nginx, Metrics Server, NFS, Harbor, Rancher, Jenkins, Storage |
+| `kubernetes/` |  K8s YAML manifest templates: Namespace, Pod, Deployment, Service, Ingress, ConfigMap, Secret, HPA, Storage, StatefulSet, Redis, Full-stack, Load Balancer |
+| `docker-compose/` |  Docker Compose stack mau: backend + MariaDB, private registry TLS, Rancher |
+| `nginx/` |  Nginx config: reverse proxy, SPA, load balancer |
 
 ### Ben trong `pipelines/`
 
@@ -114,7 +114,7 @@ Phan `scenario` nen mo ta du 4 y:
 
 ## Danh muc hien co
 
-### 🚀 Pipeline Templates
+### Pipeline Templates
 
 | Provider | Delivery Model | Language | Scenario | File |
 | --- | --- | --- | --- | --- |
@@ -127,7 +127,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Jenkins | Continuous Delivery | Java | Maven JAR + Linux ops delivery | `pipelines/jenkins/continuous-delivery/java/maven-jar-linux-ops-delivery.Jenkinsfile` |
 | Jenkins | Continuous Deployment | Java | Maven JAR + Linux server deploy | `pipelines/jenkins/continuous-deployment/java/maven-jar-linux-deploy.Jenkinsfile` |
 
-### ☸️ Kubernetes Manifest Templates
+### Kubernetes Manifest Templates
 
 > Tat ca file nam trong `on-premise/kubernetes/`
 
@@ -159,7 +159,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Full-Stack | fullstack | Deployment (RollingUpdate) + Service (ClusterIP) + Ingress trong 1 file | `full-stack/fullstack-rolling-clusterip-ingress.yml.example` |
 | Load Balancer | nginx-lb | Nginx config phan phoi traffic den K8s node qua NodePort 30080 | `load-balancer/nginx/k8s-loadbalancer.conf` |
 
-### 📖 On-Premise Setup Guides
+### On-Premise Setup Guides
 
 > Tat ca file nam trong `on-premise/setup/`
 
@@ -184,7 +184,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Monitoring | Huong dan trien khai Uptime Kuma (PV/PVC, Helm, Ingress, HostAlias) | `monitoring/setup-uptime-kuma-guide.md` |
 | Monitoring | Huong dan trien khai Kube Prometheus Stack (Prometheus + Grafana) | `monitoring/setup-kube-prometheus-guide.md` |
 
-### 🛠️ On-Premise Scripts
+### On-Premise Scripts
 
 > Tat ca file nam trong `on-premise/scripts/`
 
@@ -211,7 +211,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Storage | Mount disk vao he thong | `storage/mount-disk.sh.example` |
 | Uptime Kuma | Script tu dong cai dat Uptime Kuma (Namespace, PV, PVC, Helm, Ingress) | `kubernetes/uptime-kuma/setup-uptime-kuma.sh.example` |
 
-### 📦 Dockerfile Templates
+### Dockerfile Templates
 
 > Tat ca file nam trong `dockerfiles/`
 
@@ -225,7 +225,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Frontend | Angular | Nginx config tuong ung cho Angular SPA | `frontend/angular/nginx.conf.example` |
 | Frontend | VueJS | Multi-stage npm build, copy dist sang Nginx Alpine | `frontend/vuejs/npm-dist-nginx-alpine.Dockerfile.example` |
 
-### 🐳 Docker Compose Templates
+### Docker Compose Templates
 
 > Tat ca file nam trong `on-premise/docker-compose/`
 
@@ -235,7 +235,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Private Registry | Private registry voi TLS self-signed certificate | `private-registry-tls/docker-compose.yml.example` |
 | Rancher | Docker Compose stack cho Rancher | `rancher/docker-compose.yml.example` |
 
-### 🌐 Nginx Config Templates
+### Nginx Config Templates
 
 > Tat ca file nam trong `on-premise/nginx/`
 
@@ -244,7 +244,7 @@ Phan `scenario` nen mo ta du 4 y:
 | React SPA | Nginx config cho React SPA chay tren port 3000 | `react-spa-port-3000.conf` |
 | Jenkins Subdomain | Nginx reverse proxy cho Jenkins subdomain | `jenkins-subdomain.conf.example` |
 
-### 🔄 Workflow
+### Workflow
 
 > Tat ca file nam trong `on-premise/workflow/`
 

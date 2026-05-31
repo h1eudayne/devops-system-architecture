@@ -6,9 +6,9 @@ Thu muc nay chua cac tai nguyen lien quan den Microsoft Azure cho DevOps.
 
 ```text
 azure/
-├── services/        # 📖 Gioi thieu cac dich vu Azure + huong dan su dung
+├── services/        # Gioi thieu cac dich vu Azure + huong dan su dung
 │   └── README.md
-├── deploy/          # 🚀 Cau hinh deploy len Azure
+├── deploy/          # Cau hinh deploy len Azure
 │   └── README.md
 └── README.md        # (file nay)
 ```

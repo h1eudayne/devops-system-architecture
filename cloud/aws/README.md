@@ -6,9 +6,9 @@ Thu muc nay chua cac tai nguyen lien quan den Amazon Web Services (AWS) cho DevO
 
 ```text
 aws/
-├── services/        # 📖 Gioi thieu cac dich vu AWS + huong dan su dung
+├── services/        # Gioi thieu cac dich vu AWS + huong dan su dung
 │   └── README.md
-├── deploy/          # 🚀 Cau hinh deploy len AWS
+├── deploy/          # Cau hinh deploy len AWS
 │   └── README.md
 └── README.md        # (file nay)
 ```

@@ -97,9 +97,9 @@ helm pull ingress-nginx/ingress-nginx
 tar -xzf ingress-nginx-4.11.3.tgz
 
 # Chinh sua values.yaml:
-#   type: LoadBalancer  =>  type: NodePort
-#   nodePort http:  ""  =>  http: "30080"
-#   nodePort https: ""  =>  https: "30443"
+#  type: LoadBalancer  =>  type: NodePort
+#  nodePort http:  ""  =>  http: "30080"
+#  nodePort https: ""  =>  https: "30443"
 vi ingress-nginx/values.yaml
 
 cp -rf ingress-nginx /home/devops/
@@ -131,11 +131,11 @@ Xem template: [`load-balancer/nginx/k8s-loadbalancer.conf`](../load-balancer/ngi
 apt install nginx -y
 
 # 2. Doi port mac dinh de tranh xung dot port 80 voi config moi
-#    Sua "listen 80" -> "listen 9999" (hoac port bat ky khac)
+#   Sua "listen 80" -> "listen 9999" (hoac port bat ky khac)
 vi /etc/nginx/sites-available/default
 
 # 3. Tao file config load balancer
-#    Doi ten file theo domain cua ban (vd: h1eudayne.tech.conf)
+#   Doi ten file theo domain cua ban (vd: h1eudayne.tech.conf)
 vi /etc/nginx/conf.d/h1eudayne.tech.conf
 ```
 
