@@ -175,6 +175,7 @@ Phan `scenario` nen mo ta du 4 y:
 | Kubernetes | Huong dan cai dat Helm (K8s Package Manager) | `kubernetes/install-helm-guide.md` |
 | Kubernetes | Huong dan cai dat Ingress Nginx Controller | `kubernetes/install-ingress-nginx-guide.md` |
 | Kubernetes | Huong dan cai dat Velero CLI Client | `kubernetes/install-velero-client-guide.md` |
+| Kubernetes | Huong dan cau hinh Velero sao luu k8s ket hop MinIO | `kubernetes/setup-velero-minio-backup.md` |
 | Jenkins | Huong dan cai dat Jenkins tren Ubuntu | `jenkins/install-jenkins-guide.md` |
 | Jenkins | Huong dan cau hinh Nginx reverse proxy cho Jenkins | `jenkins/reverse-proxy-guide.md` |
 | Harbor | Huong dan cai dat Harbor (container registry) | `harbor/install-harbor-guide.md` |
