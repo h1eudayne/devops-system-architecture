@@ -6,7 +6,7 @@ Tài liệu này tổng hợp toàn bộ lộ trình học tập Kubernetes từ
 
 ## 🗺️ Bản Đồ Lộ Trình Học Tập
 
-| Bài | Tiêu Đề Bài Học | Tài Nguyên & Tệp Thực Hành |
+| STT | Tiêu Đề Bài Học | Tài Nguyên & Tệp Thực Hành |
 | :---: | :--- | :--- |
 | **1** | Kubernetes là gì? Kubernetes để làm gì? | *Lý thuyết cơ bản* |
 | **2** | Khi nào nên sử dụng Kubernetes? | *Lý thuyết quyết định hệ thống* |
