@@ -69,6 +69,14 @@ Cac huong dan thuc hanh deploy ung dung va cau hinh ha tang EC2 tung buoc (step-
 | [5. Amazon EC2 Hands-on Lab(Linux Volume)](5.%20Amazon%20EC2%20Hands-on%20Lab%28Linux%20Volume%29.md) | EBS volume, fdisk partition, XFS format, /etc/fstab auto-mount, extend online | EBS, fdisk, XFS, growpart |
 | [6. Amazon EC2 Hands-on Lab(Add Member SSH)](6.%20Amazon%20EC2%20Hands-on%20Lab%28Add%20Member%20SSH%29.md) | Tao user dev01, cau hinh chmod .ssh (700) va authorized_keys (600) | SSH, Linux Security |
 
+### 5. Huong dan thuc hanh IAM (IAM Hands-on Labs)
+
+Cac huong dan thuc hanh quan ly nguoi dung, nhom va phan quyen tren AWS IAM:
+
+| File | Mo ta | Cong nghe |
+|------|-------|-----------|
+| [7. Amazon IAM Hands-on Lab(User, Group and Policy)](7.%20Amazon%20IAM%20Hands-on%20Lab%28User%2C%20Group%20and%20Policy%29.md) | Tao group AdministratorAccess, tao user, add vao group, tai csv credentials va login console | AWS IAM, AWS Console |
+
 ---
 
 ## Cau truc khuyen nghi
@@ -94,6 +102,7 @@ cloud/aws/deploy/
   4. Amazon EC2 Hands-on Lab(Windows Volume).md
   5. Amazon EC2 Hands-on Lab(Linux Volume).md
   6. Amazon EC2 Hands-on Lab(Add Member SSH).md
+  7. Amazon IAM Hands-on Lab(User, Group and Policy).md
   README.md
 ```
 

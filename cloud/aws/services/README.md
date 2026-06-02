@@ -180,6 +180,9 @@ VPC la mang ao rieng tren AWS, cho phep ban dinh nghia dai IP, subnet, route tab
 - [5. Amazon IAM Role](2. IAM/5. Amazon IAM Role.md): Vai trò phân quyền, so sánh khái niệm, ứng dụng gắn vào EC2/Lambda, cross-account assume-role và tầm quan trọng trong troubleshooting.
 - [6. Amazon IAM Group](2. IAM/6. Amazon IAM Group.md): Nhóm người dùng, phân chia quyền theo phòng ban/vai trò, cơ chế kế thừa quyền và các quy tắc xung đột, lồng nhau.
 
+### Huong dan thuc hanh (Hands-on Labs)
+- [7. Amazon IAM Hands-on Lab(User, Group and Policy)](2. IAM/7. Amazon IAM Hands-on Lab(User, Group and Policy).md) (Lien ket den thuc hanh deploy): Thực hành tạo nhóm người dùng có quyền quản trị, thêm người dùng mới, tải csv credentials và đăng nhập console để kiểm nghiệm.
+
 **No la gi:**
 IAM la dich vu quan ly quyen truy cap tren AWS. IAM cho phep tao user, group, role va policy de kiem soat ai duoc phep lam gi voi tai nguyen AWS. Trong DevOps, IAM role duoc su dung cho EC2 instance, EKS pod (IRSA), Lambda function va CI/CD pipeline.
 
