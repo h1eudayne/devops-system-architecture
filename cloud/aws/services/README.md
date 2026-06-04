@@ -183,7 +183,7 @@ VPC la mang ao rieng tren AWS, cho phep ban dinh nghia dai IP, subnet, route tab
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [8. Amazon IAM Hands-on Lab(User, Group and Policy)](2. IAM/8. Amazon IAM Hands-on Lab(User, Group and Policy).md) (Lien ket den thuc hanh deploy): Thực hành tạo nhóm người dùng có quyền quản trị, thêm người dùng mới, tải csv credentials và đăng nhập console để kiểm nghiệm.
-- [9. Amazon IAM Hands-on Lab(AWS CLI and MFA)](2. IAM/9. Amazon IAM Hands-on Lab(AWS CLI and MFA).md) (Lien ket den thuc hanh deploy): Thực hành cài đặt AWS CLI, cấu hình thông tin xác thực qua Access Key / Secret Key, các câu lệnh S3 cơ bản và thiết lập policy bắt buộc xác thực MFA.
+- [9. Amazon IAM Hands-on Lab(AWS CLI and MFA)](2. IAM/9. Amazon IAM Hands-on Lab(AWS CLI and MFA).md) (Lien ket den thuc hanh deploy): Thực hành cài đặt AWS CLI, cấu hình thông tin xác thực qua Access Key / Secret Key, các câu lệnh S3 cơ bản, thiết lập policy bắt buộc xác thực MFA và kiểm nghiệm lỗi AccessDenied trên CLI.
 
 **No la gi:**
 IAM la dich vu quan ly quyen truy cap tren AWS. IAM cho phep tao user, group, role va policy de kiem soat ai duoc phep lam gi voi tai nguyen AWS. Trong DevOps, IAM role duoc su dung cho EC2 instance, EKS pod (IRSA), Lambda function va CI/CD pipeline.

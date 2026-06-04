@@ -76,7 +76,7 @@ Cac huong dan thuc hanh quan ly nguoi dung, nhom va phan quyen tren AWS IAM:
 | File | Mo ta | Cong nghe |
 |------|-------|-----------|
 | [1. Amazon IAM Hands-on Lab(User, Group and Policy)](2.%20IAM/1.%20Amazon%20IAM%20Hands-on%20Lab%28User%2C%20Group%20and%20Policy%29.md) | Tao group AdministratorAccess, tao user, add vao group, tai csv credentials va login console | AWS IAM, AWS Console |
-| [2. Amazon IAM Hands-on Lab(AWS CLI and MFA)](2.%20IAM/2.%20Amazon%20IAM%20Hands-on%20Lab%28AWS%20CLI%20and%20MFA%29.md) | Cai dat AWS CLI, phat hanh credentials, cau hinh AWS CLI, cac lenh S3 va tao policy enforce-mfa | AWS IAM, AWS CLI |
+| [2. Amazon IAM Hands-on Lab(AWS CLI and MFA)](2.%20IAM/2.%20Amazon%20IAM%20Hands-on%20Lab%28AWS%20CLI%20and%20MFA%29.md) | Cai dat AWS CLI, phat hanh credentials, cau hinh AWS CLI, cac lenh S3, policy enforce-mfa va kiem tra loi AccessDenied | AWS IAM, AWS CLI |
 
 ---
 
