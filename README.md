@@ -1,4 +1,4 @@
-# DevOps CI/CD Templates & On-Premise Infrastructure 1
+# DevOps CI/CD Templates & On-Premise Infrastructure
 
 Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duoc chuan hoa: pipeline CI/CD, Kubernetes manifest, Dockerfile, Docker Compose stack, bash script cai dat, huong dan setup ha tang on-premise va cau hinh Nginx.
 
@@ -14,6 +14,7 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 
 ```text
 .
+├── system-design/           # Tai lieu & Kien truc System Design (Architect)
 ├── on-premise/              # Ha tang on-premise tu quan ly
 │   ├── setup/               # Huong dan cai dat tung buoc
 │   ├── workflow/            # Quy trinh van hanh
@@ -47,6 +48,7 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 
 | Folder | Mo ta |
 | --- | --- |
+| `system-design/` | Tai lieu, so do kien truc va ly thuyet System Design (danh cho System Architect) |
 | `on-premise/` |  Toan bo tai nguyen lien quan ha tang on-premise: huong dan, script, manifest K8s, Docker Compose, Nginx |
 | `cloud/` |  Placeholder cho cac cloud provider (AWS, GCP, Azure) - san sang mo rong |
 | `pipelines/` |  Pipeline templates cho GitLab CI, GitHub Actions, Jenkins - phan loai theo delivery model |
@@ -130,7 +132,7 @@ Phan `scenario` nen mo ta du 4 y:
 ### Kubernetes Manifest Templates
 
 > Tat ca file nam trong `on-premise/kubernetes/`
-> 🗺️ **Lộ trình học tập**: Bạn có thể xem lộ trình học tập Kubernetes 43 bài chi tiết kèm tài nguyên liên kết tại [Lộ Trình Học Tập Kubernetes](on-premise/kubernetes/roadmap/README.md).
+> **Lo trinh hoc tap**: Ban co the xem lo trinh hoc tap Kubernetes 43 bai chi tiet kem tai nguyen lien ket tai [Lo Trinh Hoc Tap Kubernetes](on-premise/kubernetes/roadmap/README.md).
 
 | Nhom | Template | Mo ta | File |
 | --- | --- | --- | --- |
@@ -288,9 +290,15 @@ Phan `scenario` nen mo ta du 4 y:
 4. **Viet README**: tao file `README.md` trong cung thu muc neu template can giai thich them.
 5. **Bao mat**: **KHONG** commit secret, token, host cu the, private key. Dung file `.example` va huong dan nguoi dung tu dien.
 
-## Goi y mo rong
+## Cac noi dung se cap nhat trong tuong lai (Roadmap)
 
-### Pipelines
+### System Design (Kien truc he thong)
+
+- Bo sung thiet ke chi tiet va Case Study cho kien truc E-Commerce scale lon (giai quyet bai toan san sale, concurrency control va dong bo inventory).
+- Thiet ke he thong Microservices su dung Message Queue (Kafka/RabbitMQ) ket hop API Gateway de decouple services.
+- Thiet ke mang bao mat phan vung Multi-region VPC tren Cloud AWS/GCP (VPC Peering, VPN Site-to-Site, Bastion Host).
+
+### Pipelines (CI/CD)
 
 - Them `pipelines/github-actions/continuous-integration/nodejs/`
 - Them `pipelines/github-actions/continuous-delivery/python/`
@@ -298,21 +306,21 @@ Phan `scenario` nen mo ta du 4 y:
 - Them `pipelines/gitlab-ci/continuous-deployment/python/`
 - Them `pipelines/jenkins/continuous-integration/java/`
 
-### Cloud
+### Cloud (Dien toan dam may)
 
 - Them `cloud/aws/eks/` - huong dan va script trien khai EKS
 - Them `cloud/aws/ecr/` - pipeline push image len ECR
 - Them `cloud/gcp/gke/` - huong dan va script trien khai GKE
 - Them `cloud/azure/aks/` - huong dan va script trien khai AKS
 
-### On-Premise
+### On-Premise (Ha tang tu van hanh)
 
 - Them `on-premise/setup/monitoring/` - Prometheus, Grafana, Alertmanager
 - Them `on-premise/setup/logging/` - EFK/ELK stack
 - Them `on-premise/kubernetes/cronjob/` - CronJob templates
 - Them `on-premise/kubernetes/network-policy/` - NetworkPolicy templates
 
-### Dockerfiles
+### Dockerfiles (Containerization)
 
 - Them `dockerfiles/backend/python/` - Dockerfile cho Python (Flask, Django, FastAPI)
 - Them `dockerfiles/backend/nodejs/` - Dockerfile cho Node.js (Express, NestJS)

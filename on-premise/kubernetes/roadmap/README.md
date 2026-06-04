@@ -1,51 +1,50 @@
-# Lộ Trình Học Tập Kubernetes (Kubernetes Roadmap)
+# Lo Trinh Hoc Tap Kubernetes (Kubernetes Roadmap)
 
-Tài liệu này tổng hợp toàn bộ lộ trình học tập Kubernetes từ cơ bản đến nâng cao theo giáo trình học tập của bạn (gồm 43 bài học). Đối với mỗi bài học có tệp tin hoặc thư mục cấu hình mẫu (manifest) trong dự án, bạn có thể bấm trực tiếp vào liên kết để thực hành.
+Tai lieu nay tong hop toan bo lo trinh hoc tap Kubernetes tu co ban den nang cao theo giao trinh hoc tap cua ban (gom 43 bai hoc). Doi voi moi bai hoc co tep tin hoac thu muc cau hinh mau (manifest) trong du an, ban co the bam truc tiep vao lien ket de thuc hanh.
 
 ---
 
-## 🗺️ Bản Đồ Lộ Trình Học Tập
+## Ban Do Lo Trinh Hoc Tap
 
-| Bài Học | Tiêu Đề Bài Học | Tài Nguyên & Tệp Thực Hành |
-| :--- | :--- | :--- |
-| **Bài 1** | Kubernetes là gì? Kubernetes để làm gì? | *Lý thuyết cơ bản* |
-| **Bài 2** | Khi nào nên sử dụng Kubernetes? | *Lý thuyết quyết định hệ thống* |
-| **Bài 3** | Hạ tầng Kubernetes | 📖 [Hướng dẫn cài đặt Cluster](../../setup/kubernetes/setup-cluster-guide.md) |
-| **Bài 7** | Mô hình triển khai dự án trên Kubernetes | *Mô hình tổng quan (Database, Backend, Frontend)* |
-| **Bài 8** | File yaml cấu hình trong Kubernetes | *Cấu trúc file YAML cơ bản* |
-| **Bài 9** | Namespace trong Kubernetes | 📄 [`namespace.yml.example`](../namespace.yml.example) |
-| **Bài 10** | Phương pháp triển khai dự án trên Kubernetes hiệu quả | *Phương pháp tối ưu vận hành* |
-| **Bài 11** | Các công cụ quản lý Kubernetes | *Giới thiệu kubectl, k9s, dashboard...* |
-| **Bài 12** | Cài đặt Rancher và quản lý Kubernetes | 📖 [Hướng dẫn cài đặt Rancher](../../setup/rancher/install-rancher-guide.md) |
-| **Bài 13** | Cài đặt Rancher trên Cloud (GCP) | *Triển khai thực tế trên GCP* |
-| **Bài 14** | Pod Kubernetes | 📄 [`pod.yml.example`](../pod.yml.example) |
-| **Bài 15** | Deployment Kubernetes | 📁 [Thư mục Deployment](../deployment/) |
-| **Bài 16** | Các command hay dùng Deployment | *Lệnh kubectl rollout, scale, describe...* |
-| **Bài 17** | Các chiến lược triển khai Deployment | 📄 [Rolling Update](../deployment/deployment-rolling.yml.example)<br>📄 [Recreate](../deployment/deployment-recreate.yml.example) |
-| **Bài 18** | Các loại services | 📁 [Thư mục Service](../service/) |
-| **Bài 19** | NodePort Kubernetes | 📄 [NodePort Service](../service/service-nodeport.yml.example)<br>⚙️ [Nginx Load Balancer Config](../load-balancer/nginx/k8s-loadbalancer.conf) |
-| **Bài 20** | NodePort Kuberneres Cloud | *Triển khai NodePort trên đám mây* |
-| **Bài 21** | ClusterIP Kubernetes | 📄 [ClusterIP Service](../service/mariadb-service.yml.example) |
-| **Bài 22** | Ingress Kubernetes | 📁 [Thư mục Ingress](../ingress/) |
-| **Bài 23** | Ingress Kubernetes Cloud | *Thực hành Ingress trên môi trường Cloud* |
-| **Bài 24** | Template yaml Kubernetes | *Tổng hợp các mẫu thiết kế YAML* |
-| **Bài 25** | Triển khai dự án Fullstack | 📁 [Thư mục Fullstack](../full-stack/) |
-| **Bài 26** | Configmap Kubernetes | 📁 [Thư mục ConfigMap](../configmap/) |
-| **Bài 27** | Secret Kubernetes | 📁 [Thư mục Secret](../secret/) |
-| **Bài 28** | Request và Limit | 📁 [Thư mục Resource Limit](../resource-limit/) |
-| **Bài 29** | HPA | 📁 [Thư mục HPA](../hpa/)<br>📖 [Hướng dẫn thiết lập HPA](../../setup/kubernetes/setup-hpa-guide.md) |
-| **Bài 30** | Sử dụng Rancher | *Vận hành Rancher UI* |
-| **Bài 31** | Sử dụng RBAC Rancher | *Phân quyền chi tiết trên Rancher* |
-| **Bài 32** | Triển khai công cụ | *Triển khai các công cụ hỗ trợ vận hành* |
-| **Bài 33** | Storage class | 📄 [StorageClass template](../storage/storageclass.yml.example)<br>📖 [Hướng dẫn thiết lập NFS](../../setup/kubernetes/setup-nfs-guide.md) |
-| **Bài 34** | PV và PVC | 📄 [PV template](../storage/pv.yml.example)<br>📄 [PVC template](../storage/pvc.yml.example)<br>📄 [NFS Pod template](../pod-nfs.yml.example)<br>📖 [Hướng dẫn thiết lập NFS](../../setup/kubernetes/setup-nfs-guide.md) |
-| **Bài 35** | Triển khai database MariaDB | 📁 [Thư mục StatefulSet](../statefulset/)<br>📖 [Hướng dẫn cài đặt DB qua Statefulset](../../setup/kubernetes/setup-db-nfs-guide.md) |
-| **Bài 36** | Triển khai Redis với chart | 📁 [Thư mục Redis](../redis/)<br>📖 [Hướng dẫn triển khai Redis Sentinel](../../setup/kubernetes/setup-redis-sentinel-guide.md) |
-| **Bài 37** | Giám sát và quản trị | *Lý thuyết cơ bản về monitoring* |
-| **Bài 38** | DaemonSet | *Mẫu chạy pod thu thập log/metric trên mọi node* |
-| **Bài 39** | Triển khai Kube prometheus stack | 📖 [Hướng dẫn cài đặt Kube Prometheus](../../setup/monitoring/setup-kube-prometheus-guide.md) |
-| **Bài 40** | Một số dashboard Grafana | *Cấu hình trực quan hóa số liệu hệ thống* |
-| **Bài 41** | Uptime kuma với chart | 📁 [Thư mục Uptime Kuma](../uptime-kuma/)<br>📖 [Hướng dẫn thiết lập Uptime Kuma](../../setup/monitoring/setup-uptime-kuma-guide.md) |
-| **Bài 42** | Backup gì trên Kubernetes? | *Chiến lược sao lưu dữ liệu cụm K8s* |
-| **Bài 43** | Backup và Restore K8s cluster với Velero | 📖 [Hướng dẫn cài đặt Velero CLI](../../setup/kubernetes/install-velero-client-guide.md)<br>📖 [Hướng dẫn backup qua Velero & MinIO](../../setup/kubernetes/setup-velero-minio-backup.md) |
-
+| STT | Tieu De Bai Hoc | Tai Nguyen va Tep Thuc Hanh |
+| :---: | :--- | :--- |
+| **1** | Kubernetes la gi? Kubernetes de lam gi? | *Ly thuyet co ban* |
+| **2** | Khi nao nen su dung Kubernetes? | *Ly thuyet quyet dinh he thong* |
+| **3** | Ha tang Kubernetes | [Huong dan cai dat Cluster](../../setup/kubernetes/setup-cluster-guide.md) |
+| **7** | Mo hinh trien khai du an tren Kubernetes | *Mo hinh tong quan (Database, Backend, Frontend)* |
+| **8** | File yaml cau hinh trong Kubernetes | *Cau truc file YAML co ban* |
+| **9** | Namespace trong Kubernetes | [`namespace.yml.example`](../namespace.yml.example) |
+| **10** | Phuong phap trien khai du an tren Kubernetes hieu qua | *Phuong phap toi uu van hanh* |
+| **11** | Cac cong cu quan ly Kubernetes | *Gioi thieu kubectl, k9s, dashboard...* |
+| **12** | Cai dat Rancher va quan ly Kubernetes | [Huong dan cai dat Rancher](../../setup/rancher/install-rancher-guide.md) |
+| **13** | Cai dat Rancher tren Cloud (GCP) | *Trien khai thuc te tren GCP* |
+| **14** | Pod Kubernetes | [`pod.yml.example`](../pod.yml.example) |
+| **15** | Deployment Kubernetes | [Thu muc Deployment](../deployment/) |
+| **16** | Cac command hay dung Deployment | *Lenh kubectl rollout, scale, describe...* |
+| **17** | Cac chien luoc trien khai Deployment | [Rolling Update](../deployment/deployment-rolling.yml.example)<br>[Recreate](../deployment/deployment-recreate.yml.example) |
+| **18** | Cac loai services | [Thu muc Service](../service/) |
+| **19** | NodePort Kubernetes | [NodePort Service](../service/service-nodeport.yml.example)<br>[Nginx Load Balancer Config](../load-balancer/nginx/k8s-loadbalancer.conf) |
+| **20** | NodePort Kuberneres Cloud | *Trien khai NodePort tren dam may* |
+| **21** | ClusterIP Kubernetes | [ClusterIP Service](../service/mariadb-service.yml.example) |
+| **22** | Ingress Kubernetes | [Thu muc Ingress](../ingress/) |
+| **23** | Ingress Kubernetes Cloud | *Thuc hanh Ingress tren moi truong Cloud* |
+| **24** | Template yaml Kubernetes | *Tong hop cac mau thiet ke YAML* |
+| **25** | Trien khai du an Fullstack | [Thu muc Fullstack](../full-stack/) |
+| **26** | Configmap Kubernetes | [Thu muc ConfigMap](../configmap/) |
+| **27** | Secret Kubernetes | [Thu muc Secret](../secret/) |
+| **28** | Request va Limit | [Thu muc Resource Limit](../resource-limit/) |
+| **29** | HPA | [Thu muc HPA](../hpa/)<br>[Huong dan thiet lap HPA](../../setup/kubernetes/setup-hpa-guide.md) |
+| **30** | Su dung Rancher | *Van hanh Rancher UI* |
+| **31** | Su dung RBAC Rancher | *Phan quyen chi tiet tren Rancher* |
+| **32** | Trien khai cong cu | *Trien khai cac cong cu ho tro van hanh* |
+| **33** | Storage class | [StorageClass template](../storage/storageclass.yml.example)<br>[Huong dan thiet lap NFS](../../setup/kubernetes/setup-nfs-guide.md) |
+| **34** | PV va PVC | [PV template](../storage/pv.yml.example)<br>[PVC template](../storage/pvc.yml.example)<br>[NFS Pod template](../pod-nfs.yml.example)<br>[Huong dan thiet lap NFS](../../setup/kubernetes/setup-nfs-guide.md) |
+| **35** | Trien khai database MariaDB | [Thu muc StatefulSet](../statefulset/)<br>[Huong dan cai dat DB qua Statefulset](../../setup/kubernetes/setup-db-nfs-guide.md) |
+| **36** | Trien khai Redis voi chart | [Thu muc Redis](../redis/)<br>[Huong dan trien khai Redis Sentinel](../../setup/kubernetes/setup-redis-sentinel-guide.md) |
+| **37** | Giam sat va quan tri | *Ly thuyet co ban ve monitoring* |
+| **38** | DaemonSet | *Mau chay pod thu thap log/metric tren moi node* |
+| **39** | Trien khai Kube prometheus stack | [Huong dan cai dat Kube Prometheus](../../setup/monitoring/setup-kube-prometheus-guide.md) |
+| **40** | Mot so dashboard Grafana | *Cau hinh truc quan hoa so lieu he thong* |
+| **41** | Uptime kuma voi chart | [Thu muc Uptime Kuma](../uptime-kuma/)<br>[Huong dan thiet lap Uptime Kuma](../../setup/monitoring/setup-uptime-kuma-guide.md) |
+| **42** | Backup gi tren Kubernetes? | *Chien luoc sao luu du lieu cum K8s* |
+| **43** | Backup va Restore K8s cluster voi Velero | [Huong dan cai dat Velero CLI](../../setup/kubernetes/install-velero-client-guide.md)<br>[Huong dan backup qua Velero va MinIO](../../setup/kubernetes/setup-velero-minio-backup.md) |
