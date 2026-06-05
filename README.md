@@ -16,7 +16,6 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 .
 ├── system-design/           # Tai lieu & Kien truc System Design (Architect)
 ├── roadmap/                 # Lo trinh hoc tap DevOps (Fresher, Advanced & K8s)
-├── advanced/                # Tai nguyen & Cau hinh khoa hoc DevOps Nang cao
 ├── on-premise/              # Ha tang on-premise tu quan ly
 │   ├── network/             # So do va kien truc mang noi bo
 │   ├── setup/               # Huong dan cai dat theo hoc trinh & cong cu
@@ -52,7 +51,6 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 | Folder | Mo ta |
 | --- | --- |
 | `system-design/` | Tai lieu, so do kien truc va ly thuyet System Design (danh cho System Architect) |
-| `advanced/` | Tai nguyen, file cau hinh va huong dan lien quan den khoa hoc DevOps Nang cao |
 | `on-premise/` |  Toan bo tai nguyen lien quan ha tang on-premise: huong dan, script, manifest K8s, Docker Compose, Nginx |
 | `cloud/` |  Placeholder cho cac cloud provider (AWS, GCP, Azure) - san sang mo rong |
 | `pipelines/` |  Pipeline templates cho GitLab CI, GitHub Actions, Jenkins - phan loai theo delivery model |

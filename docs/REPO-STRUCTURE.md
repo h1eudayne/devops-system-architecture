@@ -22,9 +22,6 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 6. `catalog/`
    Chua danh muc tra cuu nhanh: template nao danh cho provider nao, ngon ngu nao, case nao.
 
-7. `advanced/`
-   Chua toan bo tai nguyen, file cau hinh va huong dan lien quan den khoa hoc DevOps Nang cao (IaC, Logging, Secrets, GitOps, Service Mesh).
-
 ## Taxonomy khuyen nghi
 
 ```text
@@ -34,8 +31,6 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 │   ├── roadmap-fresher.md          # Lo trinh DevOps Fresher (35 bai)
 │   ├── roadmap-kubernetes.md       # Lo trinh Kubernetes (43 bai)
 │   └── roadmap-advanced.md         # Lo trinh DevOps Nang cao (tung buoc cap nhat)
-├── advanced/                       # Tai nguyen & Cau hinh khoa hoc DevOps Nang cao
-│   └── README.md                   # Muc luc va gioi thieu khoa hoc
 ├── on-premise/
 │   ├── network/                        # Kien truc mang noi bo (On-premise & Cloud)
 │   │   └── README.md                   # So do va kien truc mang
