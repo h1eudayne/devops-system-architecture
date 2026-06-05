@@ -15,8 +15,9 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 ```text
 .
 ├── system-design/           # Tai lieu & Kien truc System Design (Architect)
-├── roadmap/                 # Lo trinh hoc tap DevOps (Fresher & K8s)
+├── roadmap/                 # Lo trinh hoc tap DevOps (Fresher, Advanced & K8s)
 ├── on-premise/              # Ha tang on-premise tu quan ly
+│   ├── network/             # So do va kien truc mang noi bo
 │   ├── setup/               # Huong dan cai dat theo hoc trinh & cong cu
 │   ├── workflow/            # Quy trinh van hanh
 │   ├── scripts/             # Bash scripts cai dat tu dong
@@ -61,6 +62,7 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 
 | Folder | Mo ta |
 | --- | --- |
+| `network/` | So do kien truc va mo hinh mang noi bo (on-premise) va ket noi cloud |
 | `setup/` |  Huong dan cai dat chi tiet theo hoc trinh & cong cu (Linux, Deploy, Gitlab, Docker, Jenkins, Monitoring, K8s) |
 | `workflow/` |  Quy trinh van hanh thuc te, vi du: import du lieu SQL qua NFS tren K8s |
 | `scripts/` |  Bash script tu dong hoa cai dat: Docker, K8s cluster, Helm, Ingress Nginx, Metrics Server, NFS, Harbor, Rancher, Jenkins, Storage |
@@ -133,7 +135,7 @@ Phan `scenario` nen mo ta du 4 y:
 ### Kubernetes Manifest Templates
 
 > Tat ca file nam trong `on-premise/kubernetes/`
-> **Lo trinh hoc tap**: Ban co the xem cac lo trinh hoc tap DevOps chi tiet: [Lo Trinh DevOps Fresher](roadmap/roadmap-fresher.md) va [Lo Trinh Kubernetes Chuyen Sau](roadmap/roadmap-kubernetes.md).
+> **Lo trinh hoc tap**: Ban co the xem cac lo trinh hoc tap DevOps chi tiet: [Lo Trinh DevOps Fresher](roadmap/roadmap-fresher.md), [Lo Trinh Kubernetes Chuyen Sau](roadmap/roadmap-kubernetes.md) va [Lo Trinh DevOps Nang Cao](roadmap/roadmap-advanced.md).
 
 | Nhom | Template | Mo ta | File |
 | --- | --- | --- | --- |
