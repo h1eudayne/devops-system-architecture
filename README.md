@@ -133,7 +133,7 @@ Phan `scenario` nen mo ta du 4 y:
 ### Kubernetes Manifest Templates
 
 > Tat ca file nam trong `on-premise/kubernetes/`
-> **Lo trinh hoc tap**: Ban co the xem cac lo trinh hoc tap DevOps chi tiet: [Lo Trinh DevOps Fresher](roadmap/roadmap-fresher.md) va [Lo Trinh Kubernetes Chuyen Sau](roadmap/roadmap-kubernetes.md).
+> **Lo trinh hoc tap**: Ban co the xem cac lo trinh hoc tap DevOps chi tiet: [Lo Trinh DevOps Fresher](roadmap/roadmap-fresher.md), [Lo Trinh Kubernetes Chuyen Sau](roadmap/roadmap-kubernetes.md) va [Lo Trinh DevOps Nang Cao](roadmap/roadmap-advanced.md).
 
 | Nhom | Template | Mo ta | File |
 | --- | --- | --- | --- |

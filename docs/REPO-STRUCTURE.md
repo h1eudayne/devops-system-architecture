@@ -38,6 +38,7 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 │   │   ├── 04-docker-registry/         # Bai 18-25: Docker runtime, Harbor registry
 │   │   ├── 05-jenkins/                 # Bai 27-32: Jenkins CI/CD
 │   │   ├── 06-monitoring/              # Bai 33-35: Zabbix, Kube-Prometheus, Uptime Kuma
+│   │   ├── 07-advanced/                # IaC, Logging, Secrets, GitOps, Service Mesh
 │   │   ├── kubernetes/                 # Huong dan K8s nang cao (da hoan thien)
 │   │   ├── mysql/                      # Cau hinh database
 │   │   ├── rancher/                    # Cong cu quan ly K8s
@@ -165,7 +166,7 @@ Kieu nay phu hop voi template co:
 
 Thu muc `on-premise/` chia thanh cac nhom chuc nang ro rang:
 
-- `setup/` — Tai lieu huong dan cai dat duoc danh so tu 01 den 06 bam sat lo trinh DevOps Fresher, va cac thu muc rieng cho Kubernetes, mysql, rancher, storage.
+- `setup/` — Tai lieu huong dan cai dat duoc danh so tu 01 den 07 bam sat lo trinh DevOps tu co ban den nang cao, va cac thu muc rieng cho Kubernetes, mysql, rancher, storage.
 - `workflow/` — Quy trinh van hanh, import du lieu, backup, disaster recovery.
 - `scripts/` — Bash scripts tu dong hoa (cai dat K8s, metrics-server, NFS, v.v.).
 - `kubernetes/` — K8s manifest templates (Deployment, Service, HPA, PV/PVC, v.v.).
