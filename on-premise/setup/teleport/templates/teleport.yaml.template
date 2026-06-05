@@ -1,0 +1,28 @@
+# teleport.yaml.template - Teleport Server Configuration Template
+version: v3
+teleport:
+  nodename: teleport
+  data_dir: /var/lib/teleport
+  log:
+    output: stderr
+    severity: INFO
+    format:
+      output: text
+  ca_pin: ""
+  diag_addr: ""
+
+auth_service:
+  enabled: "yes"
+  listen_addr: 0.0.0.0:3025
+  cluster_name: <YOUR_TELEPORT_DOMAIN> # e.g. teleport-onpre.h1eudayne.work
+  proxy_listener_mode: multiplex
+
+ssh_service:
+  enabled: "yes"
+
+proxy_service:
+  enabled: "yes"
+  web_listen_addr: 0.0.0.0:443
+  public_addr: <YOUR_TELEPORT_DOMAIN>:443 # e.g. teleport-onpre.h1eudayne.work:443
+  https_keypairs: []
+  https_keypairs_reload_interval: 0s

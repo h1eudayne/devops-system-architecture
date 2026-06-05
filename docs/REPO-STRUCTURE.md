@@ -55,7 +55,11 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 │   │   ├── storage/                    # Ha tang luu tru (NFS)
 │   │   └── teleport/                   # Setup cong cu quan ly server Teleport
 │   │       ├── README.md
-│   │       └── 05-deploy-server-access-management.md
+│   │       ├── 05-deploy-server-access-management.md
+│   │       └── templates/
+│   │           ├── teleport.yaml.template
+│   │           ├── teleport.service.template
+│   │           └── nginx-teleport-lb.conf.template
 
 
 
@@ -87,6 +91,9 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 │   │   └── secret/
 │   ├── docker-compose/                 # Docker Compose stacks
 │   └── nginx/                          # Nginx configs
+│       ├── jenkins-subdomain.conf.example
+│       ├── react-spa-port-3000.conf
+│       └── teleport-lb.conf.template
 ├── cloud/
 │   ├── aws/
 │   ├── gcp/
