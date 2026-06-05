@@ -55,7 +55,8 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 │   │   ├── storage/                    # Ha tang luu tru (NFS)
 │   │   └── teleport/                   # Setup cong cu quan ly server Teleport
 │   │       ├── README.md
-│   │       ├── 05-deploy-server-access-management.md
+│   │       ├── 05-deploy-server-access-management-onpremise.md
+│   │       ├── 05-deploy-server-access-management-cloud.md
 │   │       └── templates/
 │   │           ├── teleport.yaml.template
 │   │           ├── teleport.service.template
