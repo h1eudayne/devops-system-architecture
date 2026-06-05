@@ -86,6 +86,14 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 │   ├── gcp/
 │   ├── azure/
 │   └── cloudflare/                     # Dich vu Cloudflare (DNS, Tunnel, WAF)
+│       ├── README.md
+│       ├── services/
+│       │   ├── README.md
+│       │   ├── 1. DNS/
+│       │   │   └── 1. Cloudflare DNS Management.md
+│       │   └── 2. Zero Trust/
+│       │       └── 2. Cloudflare Zero Trust Tunnel.md
+│       └── deploy/
 ├── pipelines/
 │   ├── gitlab-ci/
 │   │   ├── continuous-integration/
