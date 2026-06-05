@@ -12,7 +12,8 @@ Tập trung vào hệ điều hành Linux (Ubuntu), cách sử dụng lệnh, Vi
 | STT | Bài Học | Tài Nguyên và Hướng Dẫn |
 | :---: | :--- | :--- |
 | **0** | Những điều giúp bạn thành công trong series DevOps | *Định hướng và phương pháp học tập* |
-| **1** | Tại sao sử dụng Linux? | *Lý thuyết hệ điều hành* |
+| **1** | Mô hình mạng nội bộ | [Hướng dẫn mô hình mạng](../on-premise/setup/01-linux-server/README.md#bài-1-mô-hình-mạng-nội-bộ) |
+| **1.1** | Tại sao sử dụng Linux? | *Lý thuyết hệ điều hành* |
 | **2** | Cài đặt VMware Workstation | *Chuẩn bị môi trường ảo hóa* |
 | **3** | Cài đặt Ubuntu Server (mạng Bridge) | [Thư mục setup Linux](../on-premise/setup/01-linux-server/) |
 | **3.1** | Cài đặt Ubuntu Server (mạng NAT) | [Thư mục setup Linux](../on-premise/setup/01-linux-server/) |
