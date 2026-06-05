@@ -12,7 +12,7 @@ Day la noi tong hop cac bai toan thiet ke kien truc he thong thuc te tu cac bai 
 
 2. **Thiet Ke He Thong Giam Sat Suc Khoe May Chu (Monitoring and Alerting)**:
    * **Yeu cau**: Thu thap Log, Metric tu hang nghin may chu theo thoi gian thuc, tu dong canh bao qua Slack/Telegram khi CPU > 90%.
-   * **Tai nguyen DevOps lien quan**: [Trien khai Prometheus va Grafana](../../on-premise/setup/monitoring/setup-kube-prometheus-guide.md) va [Uptime Kuma](../../on-premise/setup/monitoring/setup-uptime-kuma-guide.md).
+   * **Tai nguyen DevOps lien quan**: [Trien khai Prometheus va Grafana](../../on-premise/setup/06-monitoring/setup-kube-prometheus-guide.md) va [Uptime Kuma](../../on-premise/setup/06-monitoring/setup-uptime-kuma-guide.md).
 
 3. **Thiet Ke He Thong Chat Thoi Gian Thuc (Real-time Messaging)**:
    * **Yeu cau**: Ket noi WebSocket duy tri lien tuc giua hang trieu Client, truyen tai tin nhan do tre thap, luu tru lich su hoi thoai hieu qua.

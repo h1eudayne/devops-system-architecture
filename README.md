@@ -15,8 +15,9 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 ```text
 .
 ├── system-design/           # Tai lieu & Kien truc System Design (Architect)
+├── roadmap/                 # Lo trinh hoc tap DevOps (Fresher & K8s)
 ├── on-premise/              # Ha tang on-premise tu quan ly
-│   ├── setup/               # Huong dan cai dat tung buoc
+│   ├── setup/               # Huong dan cai dat theo hoc trinh & cong cu
 │   ├── workflow/            # Quy trinh van hanh
 │   ├── scripts/             # Bash scripts cai dat tu dong
 │   ├── kubernetes/          # K8s manifest templates
@@ -60,7 +61,7 @@ Repository nay tap trung luu tru va tai su dung toan bo tai nguyen DevOps da duo
 
 | Folder | Mo ta |
 | --- | --- |
-| `setup/` |  Huong dan cai dat chi tiet (markdown) cho Docker, K8s, Jenkins, Harbor, Rancher, MySQL, NFS |
+| `setup/` |  Huong dan cai dat chi tiet theo hoc trinh & cong cu (Linux, Deploy, Gitlab, Docker, Jenkins, Monitoring, K8s) |
 | `workflow/` |  Quy trinh van hanh thuc te, vi du: import du lieu SQL qua NFS tren K8s |
 | `scripts/` |  Bash script tu dong hoa cai dat: Docker, K8s cluster, Helm, Ingress Nginx, Metrics Server, NFS, Harbor, Rancher, Jenkins, Storage |
 | `kubernetes/` |  K8s YAML manifest templates: Namespace, Pod, Deployment, Service, Ingress, ConfigMap, Secret, HPA, Storage, StatefulSet, Redis, Full-stack, Load Balancer |
@@ -132,7 +133,7 @@ Phan `scenario` nen mo ta du 4 y:
 ### Kubernetes Manifest Templates
 
 > Tat ca file nam trong `on-premise/kubernetes/`
-> **Lo trinh hoc tap**: Ban co the xem lo trinh hoc tap Kubernetes 43 bai chi tiet kem tai nguyen lien ket tai [Lo Trinh Hoc Tap Kubernetes](on-premise/kubernetes/roadmap/README.md).
+> **Lo trinh hoc tap**: Ban co the xem cac lo trinh hoc tap DevOps chi tiet: [Lo Trinh DevOps Fresher](roadmap/roadmap-fresher.md) va [Lo Trinh Kubernetes Chuyen Sau](roadmap/roadmap-kubernetes.md).
 
 | Nhom | Template | Mo ta | File |
 | --- | --- | --- | --- |
@@ -168,7 +169,7 @@ Phan `scenario` nen mo ta du 4 y:
 
 | Nhom | Mo ta | File |
 | --- | --- | --- |
-| Docker | Huong dan cai dat Docker Engine va Docker Compose | `docker/install-docker-guide.md` |
+| Docker | Huong dan cai dat Docker Engine va Docker Compose | `04-docker-registry/install-docker-guide.md` |
 | Kubernetes | Huong dan dung cum K8s (master + worker) | `kubernetes/setup-cluster-guide.md` |
 | Kubernetes | Huong dan cai dat va cau hinh HPA (Metrics Server, Rancher fix) | `kubernetes/setup-hpa-guide.md` |
 | Kubernetes | Huong dan trien khai NFS tren K8s (kien truc, luu do, buoc thuc hien) | `kubernetes/setup-nfs-guide.md` |
@@ -179,15 +180,15 @@ Phan `scenario` nen mo ta du 4 y:
 | Kubernetes | Huong dan cai dat Ingress Nginx Controller | `kubernetes/install-ingress-nginx-guide.md` |
 | Kubernetes | Huong dan cai dat Velero CLI Client | `kubernetes/install-velero-client-guide.md` |
 | Kubernetes | Huong dan cau hinh Velero sao luu k8s ket hop MinIO | `kubernetes/setup-velero-minio-backup.md` |
-| Jenkins | Huong dan cai dat Jenkins tren Ubuntu | `jenkins/install-jenkins-guide.md` |
-| Jenkins | Huong dan cau hinh Nginx reverse proxy cho Jenkins | `jenkins/reverse-proxy-guide.md` |
-| Harbor | Huong dan cai dat Harbor (container registry) | `harbor/install-harbor-guide.md` |
+| Jenkins | Huong dan cai dat Jenkins tren Ubuntu | `05-jenkins/install-jenkins-guide.md` |
+| Jenkins | Huong dan cau hinh Nginx reverse proxy cho Jenkins | `05-jenkins/reverse-proxy-guide.md` |
+| Harbor | Huong dan cai dat Harbor (container registry) | `04-docker-registry/install-harbor-guide.md` |
 | Rancher | Huong dan cai dat Rancher (K8s management UI) | `rancher/install-rancher-guide.md` |
 | MySQL | Huong dan cai dat MySQL Server, tao database va user | `mysql/install-mysql-guide.md` |
-| NFS | Huong dan cai dat va cau hinh NFS Server | `nfs/nfs-server-guide.md` |
-| NFS | Huong dan cai dat NFS Client va kiem tra ket noi | `nfs/nfs-client-guide.md` |
-| Monitoring | Huong dan trien khai Uptime Kuma (PV/PVC, Helm, Ingress, HostAlias) | `monitoring/setup-uptime-kuma-guide.md` |
-| Monitoring | Huong dan trien khai Kube Prometheus Stack (Prometheus + Grafana) | `monitoring/setup-kube-prometheus-guide.md` |
+| NFS | Huong dan cai dat va cau hinh NFS Server | `storage/nfs-server-guide.md` |
+| NFS | Huong dan cai dat NFS Client va kiem tra ket noi | `storage/nfs-client-guide.md` |
+| Monitoring | Huong dan trien khai Uptime Kuma (PV/PVC, Helm, Ingress, HostAlias) | `06-monitoring/setup-uptime-kuma-guide.md` |
+| Monitoring | Huong dan trien khai Kube Prometheus Stack (Prometheus + Grafana) | `06-monitoring/setup-kube-prometheus-guide.md` |
 
 ### Cloud Infrastructure & Deployment Guides (AWS)
 
@@ -315,7 +316,7 @@ Phan `scenario` nen mo ta du 4 y:
 
 ### On-Premise (Ha tang tu van hanh)
 
-- Them `on-premise/setup/monitoring/` - Prometheus, Grafana, Alertmanager
+- Them `on-premise/setup/06-monitoring/` - Prometheus, Grafana, Alertmanager
 - Them `on-premise/setup/logging/` - EFK/ELK stack
 - Them `on-premise/kubernetes/cronjob/` - CronJob templates
 - Them `on-premise/kubernetes/network-policy/` - NetworkPolicy templates

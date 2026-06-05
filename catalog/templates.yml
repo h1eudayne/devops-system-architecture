@@ -123,7 +123,7 @@ shared:
   - id: shared-nfs-server-readme
     category: storage
     platform: ubuntu
-    file: on-premise/setup/nfs/nfs-server-guide.md
+    file: on-premise/setup/storage/nfs-server-guide.md
     maturity: draft
     notes: >
       Huong dan chi tiet cach cai dat, cau hinh va bao mat NFS Server
@@ -141,7 +141,7 @@ shared:
   - id: shared-nfs-client-readme
     category: storage
     platform: ubuntu
-    file: on-premise/setup/nfs/nfs-client-guide.md
+    file: on-premise/setup/storage/nfs-client-guide.md
     maturity: draft
     notes: >
       Huong dan chi tiet cach cai dat va kiem tra ket noi NFS Client
@@ -203,7 +203,7 @@ shared:
   - id: shared-k8s-uptime-kuma-setup-guide
     category: kubernetes
     platform: ubuntu
-    file: on-premise/setup/monitoring/setup-uptime-kuma-guide.md
+    file: on-premise/setup/06-monitoring/setup-uptime-kuma-guide.md
     maturity: draft
     notes: >
       Huong dan tung buoc trien khai Uptime Kuma tren K8s, bao gom
@@ -212,7 +212,7 @@ shared:
   - id: shared-k8s-kube-prometheus-setup-guide
     category: kubernetes
     platform: ubuntu
-    file: on-premise/setup/monitoring/setup-kube-prometheus-guide.md
+    file: on-premise/setup/06-monitoring/setup-kube-prometheus-guide.md
     maturity: draft
     notes: >
       Huong dan chi tiet trien khai kube-prometheus-stack tren Kubernetes su dung Helm chart.

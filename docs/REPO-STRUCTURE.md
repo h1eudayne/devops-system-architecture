@@ -26,21 +26,23 @@ Repo nay duoc to chuc theo muc dich su dung, tach biet ro rang giua cac moi truo
 
 ```text
 .
+├── roadmap/                        # Lo trinh hoc tap DevOps (Fresher & Kubernetes)
+│   ├── README.md                   # Muc luc roadmap
+│   ├── roadmap-fresher.md          # Lo trinh DevOps Fresher (35 bai)
+│   └── roadmap-kubernetes.md       # Lo trinh Kubernetes (43 bai)
 ├── on-premise/
-│   ├── setup/                          # Huong dan cai dat
-│   │   ├── kubernetes/
-│   │   │   ├── setup-hpa-guide.md
-│   │   │   ├── setup-nfs-guide.md
-│   │   │   ├── setup-db-nfs-guide.md
-│   │   │   └── setup-redis-sentinel-guide.md
-│   │   ├── nfs/
-│   │   │   ├── nfs-server-guide.md
-│   │   │   └── nfs-client-guide.md
-│   │   ├── docker/
-│   │   ├── harbor/
-│   │   ├── jenkins/
-│   │   ├── mysql/
-│   │   └── rancher/
+│   ├── setup/                          # Huong dan cai dat theo hoc trinh & cong cu
+│   │   ├── 01-linux-server/            # Bai 1-7: Ubuntu, lenh, vim, phan quyen
+│   │   ├── 02-manual-deployment/       # Bai 8-10: Trien khai thu cong FE, Java Spring
+│   │   ├── 03-gitlab/                  # Bai 11-17, 26: Gitlab server, Gitlab CI/CD
+│   │   ├── 04-docker-registry/         # Bai 18-25: Docker runtime, Harbor registry
+│   │   ├── 05-jenkins/                 # Bai 27-32: Jenkins CI/CD
+│   │   ├── 06-monitoring/              # Bai 33-35: Zabbix, Kube-Prometheus, Uptime Kuma
+│   │   ├── kubernetes/                 # Huong dan K8s nang cao (da hoan thien)
+│   │   ├── mysql/                      # Cau hinh database
+│   │   ├── rancher/                    # Cong cu quan ly K8s
+│   │   └── storage/                    # Ha tang luu tru (NFS)
+
 │   ├── workflow/                       # Quy trinh van hanh
 │   │   └── kubernetes/
 │   ├── scripts/                        # Bash scripts
@@ -163,7 +165,7 @@ Kieu nay phu hop voi template co:
 
 Thu muc `on-premise/` chia thanh cac nhom chuc nang ro rang:
 
-- `setup/` — Tai lieu huong dan cai dat, cau hinh tung buoc (markdown).
+- `setup/` — Tai lieu huong dan cai dat duoc danh so tu 01 den 06 bam sat lo trinh DevOps Fresher, va cac thu muc rieng cho Kubernetes, mysql, rancher, storage.
 - `workflow/` — Quy trinh van hanh, import du lieu, backup, disaster recovery.
 - `scripts/` — Bash scripts tu dong hoa (cai dat K8s, metrics-server, NFS, v.v.).
 - `kubernetes/` — K8s manifest templates (Deployment, Service, HPA, PV/PVC, v.v.).
