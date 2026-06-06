@@ -13,7 +13,7 @@ Thu muc nay mo ta cac dich vu AWS thuong duoc su dung trong quy trinh DevOps va 
 | 3 | [ECS](#3-ecs---elastic-container-service) | Container orchestration |
 | 4 | [ECR](#4-ecr---elastic-container-registry) | Docker image registry |
 | 5 | [RDS](#5-rds---relational-database-service) | Managed database |
-| 6 | [S3](#5-s3---simple-storage-service) | Object storage |
+| 6 | [S3 (Amazon Simple Storage Service)](3. S3/1. Amazon S3.md) | Object storage |
 | 7 | [VPC](#6-vpc---virtual-private-cloud) | Virtual network |
 | 8 | [IAM (Identity & Access Management)](2. IAM/1. Amazon IAM.md) | Identity & access management |
 | 9 | [CodePipeline / CodeBuild / CodeDeploy](#8-codepipeline--codebuild--codedeploy) | CI/CD native AWS |
@@ -131,6 +131,11 @@ RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreS
 ---
 
 ## 6. S3 - Simple Storage Service
+
+**Danh sach tai lieu hoc tap va huong dan chi tiet:**
+
+### Tai lieu ly thuyet (Theory Documents)
+- [1. Amazon S3](3. S3/1. Amazon S3.md): Định nghĩa dịch vụ, các khái niệm cốt lõi (Bucket, Object, Key), tính năng nổi bật và các trường hợp sử dụng.
 
 **No la gi:**
 S3 la dich vu object storage cua AWS voi do ben (durability) 99.999999999%. S3 cho phep luu tru bat ky loai file nao voi dung luong khong gioi han. No duoc su dung rong rai de luu artifact, backup, static website hosting, log storage va lam backend cho Terraform state.
