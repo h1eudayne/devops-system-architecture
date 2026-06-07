@@ -143,7 +143,6 @@ RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreS
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon S3 Hands-on Lab(Basic)](3. S3/4. Amazon S3 Hands-on Lab(Basic).md) (Lien ket den thuc hanh deploy): Thực hành các thao tác cơ bản bao gồm truy cập S3, tạo Bucket, tạo Folder, upload file/folder, và thực hiện Move đối tượng.
-- [7. Amazon S3 Versioning Lab](3. S3/7. Amazon S3 Versioning Lab.md) (Lien ket den thuc hanh deploy): Thực hành các bước bật cấu hình Versioning cho bucket, upload tệp tin, chỉnh sửa và upload đè để kiểm nghiệm quản lý các phiên bản, thử xóa và khôi phục với Delete Marker.
 
 
 **No la gi:**
