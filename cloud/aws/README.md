@@ -10,6 +10,7 @@ aws/
 │   └── README.md
 ├── deploy/          # Cau hinh deploy len AWS
 │   └── README.md
+├── templates/       # Mau cau hinh JSON/YAML cho cac dich vu (S3, IAM)
 └── README.md        # (file nay)
 ```
 
@@ -17,6 +18,7 @@ aws/
 | --- | --- | --- |
 | `services/` | Giai thich tung dich vu AWS la gi, khi nao dung, cach bat dau | "Toi chua biet EKS/ECS/ECR la gi" |
 | `deploy/` | Cau hinh va huong dan deploy ung dung len AWS | "Toi can file config deploy len EKS/ECR" |
+| `templates/` | Mẫu cấu hình JSON/YAML phục vụ phân quyền và quản lý tài nguyên | "Toi can tim cac file JSON mau cho S3 Bucket Policy hoac IAM Policy" |
 
 ## Cac dich vu AWS chinh
 

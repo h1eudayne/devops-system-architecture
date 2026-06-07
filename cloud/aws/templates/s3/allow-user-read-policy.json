@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowSpecificUserRead",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::<aws-account-id>:user/<iam-username>"
+        ]
+      },
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "arn:aws:s3:::<your-bucket-name>/*"
+    }
+  ]
+}

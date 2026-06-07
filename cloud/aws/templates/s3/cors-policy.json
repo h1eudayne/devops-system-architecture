@@ -1,0 +1,9 @@
+[
+  {
+    "AllowedHeaders": ["*"],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedOrigins": ["https://www.yourdomain.com"],
+    "ExposeHeaders": [],
+    "MaxAgeSeconds": 3000
+  }
+]
