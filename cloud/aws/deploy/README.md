@@ -88,6 +88,7 @@ Cac huong dan thuc hanh quan ly thung chua va doi tuong tren AWS S3:
 |------|-------|-----------|
 | [1. Amazon S3 Hands-on Lab(Basic)](3.%20S3/1.%20Amazon%20S3%20Hands-on%20Lab%28Basic%29.md) | Các thao tác cơ bản bao gồm truy cập S3 Console, khởi tạo bucket, tạo folder, tải lên tệp tin và thực hiện di chuyển (move) đối tượng giữa các thư mục | AWS S3, AWS Console |
 | [2. Amazon S3 Versioning Lab](3.%20S3/2.%20Amazon%20S3%20Versioning%20Lab.md) | Các bước thực hành bật tính năng Versioning cho bucket S3, tải lên, chỉnh sửa và ghi đè tệp tin để xem phiên bản, thực hiện xóa để kiểm nghiệm Delete Marker và hiển thị phiên bản | AWS S3, AWS Console |
+| [3. Amazon S3 Pre-signed URL Lab](3.%20S3/3.%20Amazon%20S3%20Pre-signed%20URL%20Lab.md) | Các bước thực hành kiểm tra cấu hình kết nối AWS CLI, cấu hình chặn truy cập công khai và tạo đường dẫn ký trước để cấp quyền truy cập tạm thời | AWS S3, AWS Console, AWS CLI |
 
 ---
 
@@ -122,6 +123,7 @@ cloud/aws/deploy/
   3. S3/
     1. Amazon S3 Hands-on Lab(Basic).md
     2. Amazon S3 Versioning Lab.md
+    3. Amazon S3 Pre-signed URL Lab.md
   README.md
 ```
 
