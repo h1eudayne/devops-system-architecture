@@ -326,6 +326,7 @@ EFS la dich vu shared file storage (NFS) cua AWS. EFS cho phep nhieu EC2 instanc
 
 ### Tai lieu ly thuyet (Theory Documents)
 - [1. Amazon ELB](4. ELB/1. Amazon ELB.md): Định nghĩa dịch vụ, khái niệm Single Point of Failure (SPOF), các cấp độ sự cố từ phần cứng đến trung tâm dữ liệu, và cách Load Balancer kết hợp Redundancy để giải quyết SPOF.
+- [2. Amazon ELB Component](4. ELB/2. Amazon ELB Component.md): Khái niệm các thành phần cốt lõi của Load Balancer gồm Listener (Bộ lắng nghe), Rule (Quy tắc định tuyến), và Target Group (Nhóm mục tiêu).
 
 **No la gi:**
 ELB la dich vu phan phoi tu dong luu luong truy cap den nhieu muc tieu nhu EC2 instance, container, va IP. ELB giup dam bao tinh san sang cao (High Availability) va kha nang chiu loi (Fault Tolerance) cho he thong.
