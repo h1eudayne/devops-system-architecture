@@ -145,6 +145,8 @@ RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreS
 - [10. Amazon S3 Lifecycle](3. S3/10. Amazon S3 Lifecycle.md): Cơ chế tự động quản lý vòng đời của đối tượng, phân biệt với S3 Intelligent-Tiering, các hành động chuyển đổi lớp lưu trữ (Transition) và xóa bỏ (Expiration), cùng ví dụ cấu hình log thực tế.
 - [11. Amazon S3 Static Website Hosting](3. S3/11. Amazon S3 Static Website Hosting.md): Cơ chế lưu trữ và phân phối website tĩnh từ S3, cấu hình CORS, tối ưu hóa hiệu năng/bảo mật bằng cách đặt Amazon CloudFront làm CDN phía trước, và quy trình deploy từ các framework Single Page App (React/Vue/Angular).
 - [12. Amazon S3 Event Notifications](3. S3/12. Amazon S3 Event Notifications.md): Cơ chế tự động kích hoạt sự kiện khi đối tượng thay đổi (upload/delete), các dịch vụ đích nhận sự kiện (Lambda, SNS, SQS), cùng các trường hợp kiến trúc thực tế như tự động resize ảnh, giải nén và gửi cảnh báo giám sát.
+- [13. Amazon S3 Best Practices](3. S3/13. Amazon S3 Best Practices.md): Tổng hợp các thực hành tốt nhất về tối ưu hiệu năng (chọn region, VPC endpoint), bảo mật phân quyền (Least Privilege, enforce TLS, mã hóa tĩnh/động), và quản lý bảo vệ dữ liệu tối ưu chi phí.
+
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon S3 Hands-on Lab(Basic)](3. S3/4. Amazon S3 Hands-on Lab(Basic).md) (Lien ket den thuc hanh deploy): Thực hành các thao tác cơ bản bao gồm truy cập S3, tạo Bucket, tạo Folder, upload file/folder, và thực hiện Move đối tượng.
