@@ -141,6 +141,7 @@ RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreS
 - [5. Amazon S3 Bucket Policy & ACL](3. S3/5. Amazon S3 Bucket Policy & ACL.md): Bảo mật mức tài nguyên trong S3, so sánh với IAM Policy, cấu trúc JSON chính sách bucket và vai trò của Access Control List (ACL).
 - [6. Amazon S3 Versioning](3. S3/6. Amazon S3 Versioning.md): Chi tiết về quản lý phiên bản trong S3, lợi ích bảo mật, cơ chế hoạt động (PUT/DELETE/Delete Marker), các trạng thái của Versioning và tác động chi phí.
 - [8. Amazon S3 Pre-signed URL](3. S3/8. Amazon S3 Pre-signed URL.md): Cơ chế cấp quyền truy cập tạm thời cho đối tượng riêng lẻ, các hành động download/upload, phân tích trường hợp sử dụng thực tế và so sánh bảo mật.
+- [9. Amazon S3 Storage Classes](3. S3/9. Amazon S3 Storage Classes.md): So sánh chi tiết các lớp lưu trữ của S3 (Standard, Intelligent-Tiering, Standard-IA, One Zone-IA, Glacier) về độ sẵn sàng, chi phí và trường hợp sử dụng thực tế.
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon S3 Hands-on Lab(Basic)](3. S3/4. Amazon S3 Hands-on Lab(Basic).md) (Lien ket den thuc hanh deploy): Thực hành các thao tác cơ bản bao gồm truy cập S3, tạo Bucket, tạo Folder, upload file/folder, và thực hiện Move đối tượng.
