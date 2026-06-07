@@ -142,6 +142,7 @@ RDS la dich vu database quan ly cua AWS, ho tro nhieu engine nhu MySQL, PostgreS
 - [6. Amazon S3 Versioning](3. S3/6. Amazon S3 Versioning.md): Chi tiết về quản lý phiên bản trong S3, lợi ích bảo mật, cơ chế hoạt động (PUT/DELETE/Delete Marker), các trạng thái của Versioning và tác động chi phí.
 - [8. Amazon S3 Pre-signed URL](3. S3/8. Amazon S3 Pre-signed URL.md): Cơ chế cấp quyền truy cập tạm thời cho đối tượng riêng lẻ, các hành động download/upload, phân tích trường hợp sử dụng thực tế và so sánh bảo mật.
 - [9. Amazon S3 Storage Classes](3. S3/9. Amazon S3 Storage Classes.md): So sánh chi tiết các lớp lưu trữ của S3 (Standard, Intelligent-Tiering, Standard-IA, One Zone-IA, Glacier) về độ sẵn sàng, chi phí và trường hợp sử dụng thực tế.
+- [10. Amazon S3 Lifecycle](3. S3/10. Amazon S3 Lifecycle.md): Cơ chế tự động quản lý vòng đời của đối tượng, phân biệt với S3 Intelligent-Tiering, các hành động chuyển đổi lớp lưu trữ (Transition) và xóa bỏ (Expiration), cùng ví dụ cấu hình log thực tế.
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon S3 Hands-on Lab(Basic)](3. S3/4. Amazon S3 Hands-on Lab(Basic).md) (Lien ket den thuc hanh deploy): Thực hành các thao tác cơ bản bao gồm truy cập S3, tạo Bucket, tạo Folder, upload file/folder, và thực hiện Move đối tượng.
