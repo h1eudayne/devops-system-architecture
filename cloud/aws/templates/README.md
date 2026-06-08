@@ -22,6 +22,10 @@ templates/
 │   ├── role-trust-policy-ec2.json   # Trust Policy cho phép EC2 assume role
 │   └── iam-policy-ip-restriction.json # IAM Policy giới hạn quyền truy cập theo địa chỉ IP
 │
+├── elb/                             # Các cấu hình cho dịch vụ Elastic Load Balancing
+│   ├── user-data-instance-a.sh      # Script User Data khởi tạo Instance A (giao diện màu Blue)
+│   └── user-data-instance-b.sh      # Script User Data khởi tạo Instance B (giao diện màu Green)
+│
 └── README.md                        # (file này)
 ```
 
@@ -42,3 +46,7 @@ templates/
 *   **[enforce-mfa-policy.json](iam/enforce-mfa-policy.json)**: Chính sách bảo mật bắt buộc người dùng IAM phải đăng ký và sử dụng MFA. Nếu không xác thực MFA, mọi thao tác truy cập sẽ bị chặn (Deny), ngoại trừ trang quản lý thiết bị MFA cá nhân của họ.
 *   **[role-trust-policy-ec2.json](iam/role-trust-policy-ec2.json)**: Chính sách tin cậy (Trust Policy) của IAM Role, cấp quyền cho máy chủ ảo EC2 thực hiện hành động Assume Role.
 *   **[iam-policy-ip-restriction.json](iam/iam-policy-ip-restriction.json)**: Chính sách IAM Policy áp dụng trực tiếp cho User/Group, giới hạn các thao tác với S3 chỉ được thực hiện từ IP hợp lệ.
+
+### 3. Amazon ELB Templates (`templates/elb/`)
+*   **[user-data-instance-a.sh](elb/user-data-instance-a.sh)**: Script cài đặt máy chủ web Apache và cấu hình giao diện Instance A (tiêu đề xanh dương, hiển thị IP Private/Public động qua IMDSv2).
+*   **[user-data-instance-b.sh](elb/user-data-instance-b.sh)**: Script cài đặt máy chủ web Apache và cấu hình giao diện Instance B (tiêu đề xanh lá, hiển thị IP Private/Public động qua IMDSv2).
