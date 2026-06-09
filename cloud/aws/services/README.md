@@ -329,6 +329,7 @@ EFS la dich vu shared file storage (NFS) cua AWS. EFS cho phep nhieu EC2 instanc
 - [2. Amazon ELB Component](4. ELB/2. Amazon ELB Component.md): Khái niệm các thành phần cốt lõi của Load Balancer gồm Listener (Bộ lắng nghe), Rule (Quy tắc định tuyến), và Target Group (Nhóm mục tiêu).
 - [3. Amazon ELB Types](4. ELB/3. Amazon ELB Types.md): Phân loại các dòng Elastic Load Balancer (ALB, NLB, GWLB, CLB) dựa trên mô hình mạng OSI 7 layers, bảng so sánh tính năng và sơ đồ định tuyến.
 - [4. Scaling Strategies](4. ELB/4. Scaling Strategies.md): Chiến lược co giãn hệ thống, phân biệt mở rộng theo chiều dọc (Vertical Scaling - Scale Up/Down) và mở rộng theo chiều ngang (Horizontal Scaling - Scale Out/In), ưu nhược điểm và bảng so sánh chi tiết.
+- [5. Auto Scaling Group](4. ELB/5. Amazon Auto Scaling Group.md): Định nghĩa Auto Scaling Group (ASG), mục đích sử dụng (tiết kiệm chi phí, phục hồi sự cố), Launch Template và tích hợp Amazon CloudWatch để co giãn tự động.
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon ELB Hands-on Lab](4. ELB/4. Amazon ELB Hands-on Lab.md) (Lien ket den thuc hanh deploy): Cấu hình cân bằng tải bằng Application Load Balancer (ALB) kết hợp với 2 EC2 instances chạy script User Data phân biệt.
