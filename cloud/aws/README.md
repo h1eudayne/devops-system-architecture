@@ -26,13 +26,12 @@ aws/
 | --- | --- | --- |
 | Compute | EKS | Managed Kubernetes |
 | Compute | ECS | Container orchestration |
-| Compute | Auto Scaling | Tu dong co gian he thong |
 | Registry | ECR | Docker image registry |
 | Database | RDS | Managed relational database |
 | Storage | S3 | Object storage |
 | Storage | EFS | Shared file system |
 | Network | VPC | Virtual private network |
-| Network | ELB | Elastic load balancer |
+| Network | ELB & Auto Scaling | Cân bằng tải & Co giãn tự động |
 | Security | IAM | Identity & access management |
 | TLS | ACM | Certificate manager |
 | CI/CD | CodePipeline | Native AWS CI/CD |

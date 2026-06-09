@@ -21,8 +21,7 @@ Thu muc nay mo ta cac dich vu AWS thuong duoc su dung trong quy trinh DevOps va 
 | 11 | [CloudFront](#10-cloudfront) | CDN |
 | 12 | [ACM](#11-acm---certificate-manager) | TLS certificates |
 | 13 | [EFS](#12-efs---elastic-file-system) | Shared file storage |
-| 14 | [ELB (Elastic Load Balancing)](4. ELB/1. Amazon ELB.md) | Bo can bang tai |
-| 15 | [Auto Scaling](5. Auto Scaling/1. Scaling Strategies.md) | Tự động co giãn hệ thống |
+| 14 | [ELB & Auto Scaling (Cân bằng tải & Co giãn)](4. ELB/1. Amazon ELB.md) | Bộ cân bằng tải và Co giãn tự động |
 
 ---
 
@@ -321,7 +320,7 @@ EFS la dich vu shared file storage (NFS) cua AWS. EFS cho phep nhieu EC2 instanc
 
 ---
 
-## 14. ELB - Elastic Load Balancing
+## 14. ELB & Auto Scaling - Cân bằng tải & Co giãn tự động
 
 **Danh sach tai lieu hoc tap va huong dan chi tiet:**
 
@@ -329,35 +328,19 @@ EFS la dich vu shared file storage (NFS) cua AWS. EFS cho phep nhieu EC2 instanc
 - [1. Amazon ELB](4. ELB/1. Amazon ELB.md): Định nghĩa dịch vụ, khái niệm Single Point of Failure (SPOF), các cấp độ sự cố từ phần cứng đến trung tâm dữ liệu, và cách Load Balancer kết hợp Redundancy để giải quyết SPOF.
 - [2. Amazon ELB Component](4. ELB/2. Amazon ELB Component.md): Khái niệm các thành phần cốt lõi của Load Balancer gồm Listener (Bộ lắng nghe), Rule (Quy tắc định tuyến), và Target Group (Nhóm mục tiêu).
 - [3. Amazon ELB Types](4. ELB/3. Amazon ELB Types.md): Phân loại các dòng Elastic Load Balancer (ALB, NLB, GWLB, CLB) dựa trên mô hình mạng OSI 7 layers, bảng so sánh tính năng và sơ đồ định tuyến.
+- [4. Scaling Strategies](4. ELB/4. Scaling Strategies.md): Chiến lược co giãn hệ thống, phân biệt mở rộng theo chiều dọc (Vertical Scaling - Scale Up/Down) và mở rộng theo chiều ngang (Horizontal Scaling - Scale Out/In), ưu nhược điểm và bảng so sánh chi tiết.
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon ELB Hands-on Lab](4. ELB/4. Amazon ELB Hands-on Lab.md) (Lien ket den thuc hanh deploy): Cấu hình cân bằng tải bằng Application Load Balancer (ALB) kết hợp với 2 EC2 instances chạy script User Data phân biệt.
 
 
 **No la gi:**
-ELB la dich vu phan phoi tu dong luu luong truy cap den nhieu muc tieu nhu EC2 instance, container, va IP. ELB giup dam bao tinh san sang cao (High Availability) va kha nang chiu loi (Fault Tolerance) cho he thong.
+- **ELB (Elastic Load Balancing)**: Là dịch vụ phân phối tự động lưu lượng truy cập đến nhiều mục tiêu như EC2 instance, container, và IP để đảm bảo High Availability và Fault Tolerance.
+- **Auto Scaling**: Là dịch vụ tự động điều chỉnh số lượng tài nguyên máy chủ (như EC2 instances) hoạt động trong một cụm dựa trên nhu cầu sử dụng thực tế để tối ưu hóa hiệu năng và chi phí.
 
 **Khi nao su dung:**
-- Khi chay nhieu hon 1 web server va can phan chia deu traffic cho cac server phia sau.
-- Khi muon tu dong loc va bo cac server khong healthy ra khoi he thong qua Health Checks.
-- Khi muon cau hinh SSL/TLS tap trung (SSL termination) tai Load Balancer.
-
----
-
-## 15. Auto Scaling - Tự động co giãn
-
-**Danh sach tai lieu hoc tap va huong dan chi tiet:**
-
-### Tai lieu ly thuyet (Theory Documents)
-- [1. Scaling Strategies](5. Auto Scaling/1. Scaling Strategies.md): Chiến lược co giãn hệ thống, phân biệt mở rộng theo chiều dọc (Vertical Scaling - Scale Up/Down) và mở rộng theo chiều ngang (Horizontal Scaling - Scale Out/In), ưu nhược điểm và bảng so sánh chi tiết.
-
-**No la gi:**
-Auto Scaling là dịch vụ tự động điều chỉnh số lượng tài nguyên máy chủ (như EC2 instances) hoạt động trong một cụm dựa trên nhu cầu sử dụng thực tế (như tải CPU, lưu lượng mạng) để tối ưu hóa hiệu năng và chi phí.
-
-**Khi nao su dung:**
-- Khi lưu lượng truy cập hệ thống thay đổi liên tục theo thời gian (ví dụ: giờ cao điểm ban ngày cần nhiều server, ban đêm cần ít server).
-- Khi muốn tự động thay thế các máy chủ ảo bị lỗi (Self-healing).
-- Khi muốn duy trì số lượng máy chủ chạy ổn định tối thiểu để đảm bảo khả năng đáp ứng.
+- Khi chạy nhiều hơn 1 server và cần phân phối đều traffic, tự động loại bỏ các server bị lỗi (Health Checks).
+- Khi lưu lượng truy cập thay đổi theo thời gian và cần tự động thêm/bớt server (Scale Out/In) hoặc tự động thay thế server bị lỗi (Self-healing).
 
 ---
 
