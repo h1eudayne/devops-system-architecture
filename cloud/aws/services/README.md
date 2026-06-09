@@ -22,6 +22,7 @@ Thu muc nay mo ta cac dich vu AWS thuong duoc su dung trong quy trinh DevOps va 
 | 12 | [ACM](#11-acm---certificate-manager) | TLS certificates |
 | 13 | [EFS](#12-efs---elastic-file-system) | Shared file storage |
 | 14 | [ELB (Elastic Load Balancing)](4. ELB/1. Amazon ELB.md) | Bo can bang tai |
+| 15 | [Auto Scaling](5. Auto Scaling/1. Scaling Strategies.md) | Tự động co giãn hệ thống |
 
 ---
 
@@ -340,6 +341,23 @@ ELB la dich vu phan phoi tu dong luu luong truy cap den nhieu muc tieu nhu EC2 i
 - Khi chay nhieu hon 1 web server va can phan chia deu traffic cho cac server phia sau.
 - Khi muon tu dong loc va bo cac server khong healthy ra khoi he thong qua Health Checks.
 - Khi muon cau hinh SSL/TLS tap trung (SSL termination) tai Load Balancer.
+
+---
+
+## 15. Auto Scaling - Tự động co giãn
+
+**Danh sach tai lieu hoc tap va huong dan chi tiet:**
+
+### Tai lieu ly thuyet (Theory Documents)
+- [1. Scaling Strategies](5. Auto Scaling/1. Scaling Strategies.md): Chiến lược co giãn hệ thống, phân biệt mở rộng theo chiều dọc (Vertical Scaling - Scale Up/Down) và mở rộng theo chiều ngang (Horizontal Scaling - Scale Out/In), ưu nhược điểm và bảng so sánh chi tiết.
+
+**No la gi:**
+Auto Scaling là dịch vụ tự động điều chỉnh số lượng tài nguyên máy chủ (như EC2 instances) hoạt động trong một cụm dựa trên nhu cầu sử dụng thực tế (như tải CPU, lưu lượng mạng) để tối ưu hóa hiệu năng và chi phí.
+
+**Khi nao su dung:**
+- Khi lưu lượng truy cập hệ thống thay đổi liên tục theo thời gian (ví dụ: giờ cao điểm ban ngày cần nhiều server, ban đêm cần ít server).
+- Khi muốn tự động thay thế các máy chủ ảo bị lỗi (Self-healing).
+- Khi muốn duy trì số lượng máy chủ chạy ổn định tối thiểu để đảm bảo khả năng đáp ứng.
 
 ---
 

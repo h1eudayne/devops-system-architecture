@@ -26,6 +26,7 @@ aws/
 | --- | --- | --- |
 | Compute | EKS | Managed Kubernetes |
 | Compute | ECS | Container orchestration |
+| Compute | Auto Scaling | Tu dong co gian he thong |
 | Registry | ECR | Docker image registry |
 | Database | RDS | Managed relational database |
 | Storage | S3 | Object storage |
