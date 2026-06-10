@@ -53,68 +53,6 @@ export default function App() {
     localStorage.setItem('completedSections', JSON.stringify(Array.from(completedSections)));
   }, [completedSections]);
 
-  // --- Hash Routing Setup ---
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash && hash.startsWith('#')) {
-        const decodedPath = decodeURIComponent(hash.slice(1));
-        
-        // Glossary route (with or without anchor)
-        if (decodedPath.startsWith('glossary')) {
-          setActivePath('glossary');
-          setSelectedTopic('glossary');
-          
-          const hashIndex = decodedPath.indexOf('#');
-          if (hashIndex !== -1) {
-            const targetId = decodedPath.slice(hashIndex + 1);
-            setTimeout(() => {
-              const targetEl = document.getElementById(targetId);
-              if (targetEl) {
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                targetEl.classList.add('highlight-flash');
-                setTimeout(() => targetEl.classList.remove('highlight-flash'), 2000);
-              }
-            }, 100);
-          }
-          return;
-        }
-
-        if (rawData.docs[decodedPath]) {
-          setActivePath(decodedPath);
-          // Auto-expand parent folders of active path
-          expandParentFolders(decodedPath);
-          return;
-        }
-      }
-      // Fallback: Default to first file in the tree
-      const firstFilePath = getFirstFilePath(rawData.tree);
-      if (firstFilePath) {
-        window.location.hash = `#${firstFilePath}`;
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    // Initial load
-    handleHashChange();
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  // --- Auto-switch page when topic changes ---
-  useEffect(() => {
-    if (selectedTopic === 'glossary') {
-      setActivePath('glossary');
-      window.location.hash = '#glossary';
-    } else if (activePath === 'glossary') {
-      const firstFile = getFirstFilePath(filteredTree);
-      if (firstFile) {
-        setActivePath(firstFile);
-        window.location.hash = `#${firstFile}`;
-      }
-    }
-  }, [selectedTopic, filteredTree]);
-
   // Get first file path recursively
   const getFirstFilePath = (nodes) => {
     if (!nodes || nodes.length === 0) return '';
@@ -273,6 +211,68 @@ export default function App() {
 
     return filterNodes(rawData.tree);
   }, [searchQuery, selectedTopic]);
+
+  // --- Hash Routing Setup ---
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#')) {
+        const decodedPath = decodeURIComponent(hash.slice(1));
+        
+        // Glossary route (with or without anchor)
+        if (decodedPath.startsWith('glossary')) {
+          setActivePath('glossary');
+          setSelectedTopic('glossary');
+          
+          const hashIndex = decodedPath.indexOf('#');
+          if (hashIndex !== -1) {
+            const targetId = decodedPath.slice(hashIndex + 1);
+            setTimeout(() => {
+              const targetEl = document.getElementById(targetId);
+              if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                targetEl.classList.add('highlight-flash');
+                setTimeout(() => targetEl.classList.remove('highlight-flash'), 2000);
+              }
+            }, 100);
+          }
+          return;
+        }
+
+        if (rawData.docs[decodedPath]) {
+          setActivePath(decodedPath);
+          // Auto-expand parent folders of active path
+          expandParentFolders(decodedPath);
+          return;
+        }
+      }
+      // Fallback: Default to first file in the tree
+      const firstFilePath = getFirstFilePath(rawData.tree);
+      if (firstFilePath) {
+        window.location.hash = `#${firstFilePath}`;
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    // Initial load
+    handleHashChange();
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // --- Auto-switch page when topic changes ---
+  useEffect(() => {
+    if (selectedTopic === 'glossary') {
+      setActivePath('glossary');
+      window.location.hash = '#glossary';
+    } else if (activePath === 'glossary') {
+      const firstFile = getFirstFilePath(filteredTree);
+      if (firstFile) {
+        setActivePath(firstFile);
+        window.location.hash = `#${firstFile}`;
+      }
+    }
+  }, [selectedTopic, filteredTree]);
 
   // --- Callbacks ---
   const handleSelectFile = useCallback((path) => {
