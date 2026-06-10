@@ -109,6 +109,7 @@ Các hướng dẫn thực hành quản lý và triển khai cơ sở dữ liệ
 | File | Mô tả | Công nghệ |
 |------|-------|-----------|
 | [1. Amazon RDS Hands-on Lab(Basic)](5.%20RDS/1.%20Amazon%20RDS%20Hands-on%20Lab%28Basic%29.md) | Thực hành tạo một RDS Instance sử dụng tùy chọn Full Configuration với cơ sở dữ liệu MySQL và cấu hình phần cứng db.t3.medium | AWS RDS, MySQL, db.t3.medium |
+| [2. Amazon RDS Hands-on Lab(Cluster)](5.%20RDS/2.%20Amazon%20RDS%20Hands-on%20Lab%28Cluster%29.md) | Thực hành tạo một RDS Cluster gồm 1 Writer và 2 Readers, giải thích vai trò của các node, các loại Endpoint và kết nối qua Cluster Write Endpoint | AWS RDS, DB Cluster, Writer/Reader Endpoints |
 
 ---
 
@@ -152,6 +153,7 @@ cloud/aws/deploy/
     2. Amazon Auto Scaling Group Hands-on Lab.md
   5. RDS/
     1. Amazon RDS Hands-on Lab(Basic).md
+    2. Amazon RDS Hands-on Lab(Cluster).md
   README.md
 ```
 
