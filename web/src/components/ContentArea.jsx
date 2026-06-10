@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import { marked } from 'marked';
 
-export default function ContentArea({
+const ContentArea = memo(function ContentArea({
   content,
   title,
   glossaryData,
@@ -194,4 +194,6 @@ export default function ContentArea({
       </div>
     </main>
   );
-}
+});
+
+export default ContentArea;

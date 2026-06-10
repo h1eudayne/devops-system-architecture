@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Sidebar from './components/Sidebar';
 import ContentArea from './components/ContentArea';
 import Outline from './components/Outline';
@@ -182,14 +182,14 @@ export default function App() {
   }, [searchQuery]);
 
   // --- Callbacks ---
-  const handleSelectFile = (path) => {
+  const handleSelectFile = useCallback((path) => {
     window.location.hash = `#${path}`;
     if (window.innerWidth <= 768) {
       setMobileSidebarOpen(false);
     }
-  };
+  }, []);
 
-  const handleToggleFileComplete = (paths, isChecked) => {
+  const handleToggleFileComplete = useCallback((paths, isChecked) => {
     setCompletedFiles(prev => {
       const next = new Set(prev);
       paths.forEach(path => {
@@ -206,8 +206,6 @@ export default function App() {
     setCompletedSections(prev => {
       const next = new Set(prev);
       paths.forEach(path => {
-        // Find all headings from DOM if they are currently loaded
-        // Or if we know the headings, but DOM is simpler
         if (path === activePath) {
           const headers = document.getElementById('content-area')?.querySelectorAll('h2, h3') || [];
           headers.forEach(h => {
@@ -219,9 +217,9 @@ export default function App() {
       });
       return next;
     });
-  };
+  }, [activePath]);
 
-  const handleToggleSectionComplete = (sectionId, isChecked) => {
+  const handleToggleSectionComplete = useCallback((sectionId, isChecked) => {
     setCompletedSections(prev => {
       const next = new Set(prev);
       if (isChecked) next.add(sectionId);
@@ -251,9 +249,9 @@ export default function App() {
         return currentSections;
       });
     }, 0);
-  };
+  }, [activePath]);
 
-  const handleToggleExpand = (nodeId) => {
+  const handleToggleExpand = useCallback((nodeId) => {
     setExpandedNodes(prev => {
       const next = new Set(prev);
       if (next.has(nodeId)) {
@@ -263,7 +261,11 @@ export default function App() {
       }
       return next;
     });
-  };
+  }, []);
+
+  const handleShowTooltip = useCallback((text, rect) => setTooltip({ text, rect }), []);
+  const handleHideTooltip = useCallback(() => setTooltip(null), []);
+  const handleImageClick = useCallback((src, alt) => setZoomerImage({ src, alt }), []);
 
   const activeDoc = rawData.docs[activePath] || null;
 
@@ -355,10 +357,10 @@ export default function App() {
           glossaryData={rawData.glossary}
           completedSections={completedSections}
           onToggleSection={handleToggleSectionComplete}
-          onImageClick={(src, alt) => setZoomerImage({ src, alt })}
+          onImageClick={handleImageClick}
           activePath={activePath}
-          onShowTooltip={(text, rect) => setTooltip({ text, rect })}
-          onHideTooltip={() => setTooltip(null)}
+          onShowTooltip={handleShowTooltip}
+          onHideTooltip={handleHideTooltip}
         />
 
         <Outline
