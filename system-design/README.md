@@ -51,6 +51,7 @@ graph TD
 | [4. Security-Architecture](./4.%20Security-Architecture/README.md) | Kien truc mang bao mat bao ve tai nguyen ha tang, phan vung mang (VPC Subnets), IAM, Secret Management. | [AWS IAM Configuration Guides](../cloud/aws/services/2.%20IAM/), [Secret Management](../on-premise/kubernetes/secret/) |
 | [5. Database-Architecture](./5.%20Database-Architecture/README.md) | Thiet ke luu tru du lieu, replication (Master-Slave, Multi-Master), CSDL SQL vs NoSQL, Sharding va Partitioning. | [MariaDB StatefulSet](../on-premise/kubernetes/statefulset/), [Persistent Volume va NFS Storage](../on-premise/kubernetes/storage/) |
 | [6. Case-Studies](./6.%20Case-Studies/README.md) | Phan tich thiet ke chi tiet cho cac bai toan thuc te (He thong E-commerce, Chat thoi gian thuc, He thong thong bao). | [Du an mau Fullstack](../on-premise/kubernetes/full-stack/) |
+| [7. Alex-Xu-System-Design-Interview](./Alex-Xu-System-Design-Interview/README.md) | Tài liệu thiết kế hệ thống chi tiết gồm 28 chương dựa trên sách System Design Interview (Scaling, Rate Limiter, Chat, Youtube, v.v.). | [Tài liệu bổ trợ & Case-studies](./Alex-Xu-System-Design-Interview/README.md) |
 
 ---
 

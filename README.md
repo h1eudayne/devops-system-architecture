@@ -51,7 +51,7 @@ Repository này tập trung lưu trữ, chuẩn hóa và hướng dẫn triển 
 
 | Folder | Mo ta |
 | --- | --- |
-| `system-design/` | Tai lieu, so do kien truc va ly thuyet System Design (danh cho System Architect) |
+| `system-design/` | Tai lieu, so do kien truc va ly thuyet System Design (gom 6 chuyen de chinh va 28 chuong sach System Design Interview cua Alex Xu) |
 | `on-premise/` |  Toan bo tai nguyen lien quan ha tang on-premise: huong dan, script, manifest K8s, Docker Compose, Nginx |
 | `cloud/` |  Placeholder cho cac cloud provider (AWS, GCP, Azure) - san sang mo rong |
 | `pipelines/` |  Pipeline templates cho GitLab CI, GitHub Actions, Jenkins - phan loai theo delivery model |
