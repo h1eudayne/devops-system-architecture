@@ -333,6 +333,7 @@ EFS la dich vu shared file storage (NFS) cua AWS. EFS cho phep nhieu EC2 instanc
 
 ### Huong dan thuc hanh (Hands-on Labs)
 - [4. Amazon ELB Hands-on Lab](4. ELB/4. Amazon ELB Hands-on Lab.md) (Lien ket den thuc hanh deploy): Cấu hình cân bằng tải bằng Application Load Balancer (ALB) kết hợp với 2 EC2 instances chạy script User Data phân biệt.
+- [6. Amazon Auto Scaling Group Hands-on Lab](4. ELB/6. Amazon Auto Scaling Group Hands-on Lab.md) (Lien ket den thuc hanh deploy): Hướng dẫn cấu hình Auto Scaling Group, Launch Template, tích hợp CloudWatch Alarms và cấu hình các chính sách co giãn tự động (Self-healing, Manual, Dynamic, Scheduled, Rollout Update).
 
 
 **No la gi:**
