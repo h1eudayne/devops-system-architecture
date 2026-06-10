@@ -11,7 +11,7 @@ Thư mục này mô tả các dịch vụ AWS thường được sử dụng tro
 | 01 | [EC2 (Amazon Elastic Compute Cloud)](1. EC2/1. Amazon EC2.md) | Máy chủ ảo (Virtual Server) |
 | 02 | [IAM (Identity & Access Management)](2. IAM/1. Amazon IAM.md) | Quản lý định danh & quyền truy cập (IAM) |
 | 03 | [S3 (Amazon Simple Storage Service)](3. S3/1. Amazon S3.md) | Lưu trữ đối tượng (Object Storage) |
-| 04 | [ELB & Auto Scaling (Cân bằng tải & Co giãn)](4. ELB/1. Amazon ELB.md) | Bộ cân bằng tải và Co giãn tự động (ELB & ASG) |
+| 04 | [ELB & Auto Scaling (Cân bằng tải & Co giãn)](4. ELB & Auto Scaling/1. Amazon ELB.md) | Bộ cân bằng tải và Co giãn tự động (ELB & ASG) |
 | 05 | [RDS (Relational Database Service)](5. RDS/1. Amazon RDS.md) | Cơ sở dữ liệu quan hệ được quản lý (Managed SQL Database) |
 | 06 | [EKS (Elastic Kubernetes Service)](6. EKS.md) | Dịch vụ Kubernetes được quản lý (Managed Kubernetes) |
 | 07 | [ECS (Elastic Container Service)](7. ECS.md) | Điều phối container (Container Orchestration) |
