@@ -194,7 +194,8 @@ export default function App() {
 
     // Auto expand search results / topic filtering
     const newExpanded = new Set();
-    if (selectedTopic !== 'all' || query) {
+    if (query) {
+      // If there is a search query, expand all matching folders
       matches.forEach(p => {
         if (p.includes('/')) {
           newExpanded.add(p);
@@ -207,10 +208,27 @@ export default function App() {
         }
       });
       setExpandedNodes(newExpanded);
+    } else {
+      // If no search query, only expand the active path's parent folders
+      // and the top-level categories that have matches, keeping nested sub-folders collapsed.
+      rawData.tree.forEach(cat => {
+        if (matches.has(cat.name)) {
+          newExpanded.add(cat.name);
+        }
+      });
+      if (activePath) {
+        const parts = activePath.split('/');
+        let current = '';
+        for (let i = 0; i < parts.length - 1; i++) {
+          current = current ? `${current}/${parts[i]}` : parts[i];
+          newExpanded.add(current);
+        }
+      }
+      setExpandedNodes(newExpanded);
     }
 
     return filterNodes(rawData.tree);
-  }, [searchQuery, selectedTopic]);
+  }, [searchQuery, selectedTopic, activePath]);
 
   // --- Hash Routing Setup ---
   useEffect(() => {
