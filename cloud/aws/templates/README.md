@@ -26,6 +26,9 @@ templates/
 │   ├── user-data-instance-a.sh      # Script User Data khởi tạo Instance A (giao diện màu Blue)
 │   └── user-data-instance-b.sh      # Script User Data khởi tạo Instance B (giao diện màu Green)
 │
+├── rds/                             # Các mẫu mã lệnh SQL cho dịch vụ Amazon RDS
+│   └── employee_crud_slow_query.sql # File script SQL kiểm thử CRUD và giả lập Slow Query
+│
 └── README.md                        # (file này)
 ```
 
@@ -50,3 +53,6 @@ templates/
 ### 3. Amazon ELB Templates (`templates/elb/`)
 *   **[user-data-instance-a.sh](elb/user-data-instance-a.sh)**: Script cài đặt máy chủ web Apache và cấu hình giao diện Instance A (tiêu đề xanh dương, hiển thị IP Private/Public động qua IMDSv2).
 *   **[user-data-instance-b.sh](elb/user-data-instance-b.sh)**: Script cài đặt máy chủ web Apache và cấu hình giao diện Instance B (tiêu đề xanh lá, hiển thị IP Private/Public động qua IMDSv2).
+
+### 4. Amazon RDS Templates (`templates/rds/`)
+*   **[employee_crud_slow_query.sql](rds/employee_crud_slow_query.sql)**: Mẫu mã lệnh SQL phục vụ cho bài thực hành RDS bao gồm các câu lệnh tạo database/table, CRUD dữ liệu mẫu và định nghĩa thủ tục `iterateSleep` để giả lập các Slow Query phục vụ kiểm thử giám sát.
