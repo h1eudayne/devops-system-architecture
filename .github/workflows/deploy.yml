@@ -3,7 +3,8 @@ name: Deploy DevOps & System Design Explorer to GitHub Pages
 on:
   push:
     branches:
-      - aws # Run workflow on pushes to aws branch
+      - main
+      - aws # Chạy workflow khi push lên cả nhánh main và aws
 
 permissions:
   contents: write
