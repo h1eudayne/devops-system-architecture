@@ -1041,3 +1041,28 @@ button {
   transform: rotate(45deg);
 }
 
+/* ----------------------------------------------------
+   Mermaid Diagrams Styling
+   ---------------------------------------------------- */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+  padding: 16px;
+  background-color: var(--bg-surface-muted);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.mermaid svg {
+  max-width: 100% !important;
+  height: auto !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .mermaid svg {
+  filter: invert(0.9) hue-rotate(180deg);
+}
+
+

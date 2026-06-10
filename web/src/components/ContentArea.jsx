@@ -30,6 +30,9 @@ const ContentArea = memo(function ContentArea({
     // 3. Bind image click handlers for Zoomer
     bindImageTriggers(container);
 
+    // 3.5. Render Mermaid diagrams
+    renderMermaidDiagrams(container);
+
     // 4. Setup Glossary tooltip delegation
     const handleMouseOver = (e) => {
       const term = e.target.closest('.glossary-term');
@@ -176,6 +179,41 @@ const ContentArea = memo(function ContentArea({
         onImageClick(img.src, img.alt || 'Sơ đồ thiết kế hệ thống');
       };
     });
+  };
+
+  // Render Mermaid diagrams dynamically
+  const renderMermaidDiagrams = (root) => {
+    if (!window.mermaid) return;
+    try {
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        securityLevel: 'loose',
+        suppressErrors: true
+      });
+
+      const codeBlocks = root.querySelectorAll('pre code.language-mermaid');
+      codeBlocks.forEach((codeEl, idx) => {
+        const preEl = codeEl.parentNode;
+        const text = codeEl.textContent.trim();
+
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.id = `mermaid-diagram-${idx}-${Date.now()}`;
+        div.textContent = text;
+
+        preEl.parentNode.replaceChild(div, preEl);
+      });
+
+      const mermaidDivs = root.querySelectorAll('.mermaid');
+      if (mermaidDivs.length > 0) {
+        window.mermaid.run({
+          nodes: mermaidDivs
+        });
+      }
+    } catch (e) {
+      console.error("Failed to render mermaid diagrams:", e);
+    }
   };
 
   return (
