@@ -25,6 +25,7 @@ metadata:
   name: mariadb-service
   namespace: ecommerce
 spec:
+  clusterIP: None # Thiết lập headless service để quản lý định danh mạng Pod
   selector:
     app: mariadb # Ánh xạ tới Pod MariaDB của StatefulSet
   type: ClusterIP # Chỉ truy cập nội bộ

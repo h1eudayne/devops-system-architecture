@@ -73,6 +73,13 @@ spec:
     spec:
       securityContext:
         fsGroup: 65534 # Trùng với GID nogroup của NFS Server để giải quyết quyền ghi
+      initContainers:
+        - name: init-permissions
+          image: busybox:latest
+          command: ["sh", "-c", "chown -R 999:999 /var/lib/mysql && chmod 775 /var/lib/mysql"]
+          volumeMounts:
+            - name: mariadb-storage
+              mountPath: /var/lib/mysql
       containers:
         - name: mariadb
           image: mariadb:latest
@@ -107,6 +114,7 @@ metadata:
   name: mariadb-service
   namespace: ecommerce
 spec:
+  clusterIP: None # Thiết lập headless service để quản lý định danh mạng Pod
   selector:
     app: mariadb # Ánh xạ tới StatefulSet MariaDB
   type: ClusterIP # Chỉ truy cập nội bộ trong cụm

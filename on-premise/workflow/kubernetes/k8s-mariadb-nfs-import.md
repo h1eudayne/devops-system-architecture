@@ -55,6 +55,13 @@ sequenceDiagram
        spec:
          securityContext:
            fsGroup: 65534 # Tránh lỗi ghi quyền NFS
+         initContainers:
+           - name: init-permissions
+             image: busybox:latest
+             command: ["sh", "-c", "chown -R 999:999 /var/lib/mysql && chmod 775 /var/lib/mysql"]
+             volumeMounts:
+               - name: mariadb-storage
+                 mountPath: /var/lib/mysql
          containers:
            - name: mariadb
              image: mariadb:latest
@@ -82,6 +89,7 @@ sequenceDiagram
      name: mariadb-service
      namespace: ecommerce
    spec:
+     clusterIP: None # Thiết lập headless service để quản lý định danh mạng Pod
      selector:
        app: mariadb
      type: ClusterIP # Chỉ truy cập nội bộ
