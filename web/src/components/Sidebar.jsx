@@ -146,7 +146,7 @@ export default function Sidebar({
       // Check if file is chapter in Alex Xu (starts with a number)
       // Extract number to display
       const match = node.name.match(/^(\d+)/);
-      const fileNum = match ? `${parseInt(match[1])}.` : '';
+      const fileNum = match ? `${match[1].padStart(2, '0')}.` : '';
       const displayTitle = node.title || node.name.replace(/\.md$/, '');
 
       return (
