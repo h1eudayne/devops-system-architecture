@@ -300,6 +300,44 @@ export default function App() {
   const handleHideTooltip = useCallback(() => setTooltip(null), []);
   const handleImageClick = useCallback((src, alt) => setZoomerImage({ src, alt }), []);
 
+  // Flat list of files currently visible in the sidebar to compute next/prev
+  const visibleFiles = useMemo(() => {
+    const files = [];
+    const traverse = (nodes) => {
+      nodes.forEach(node => {
+        if (node.type === 'file') {
+          files.push({
+            path: node.path,
+            title: node.title || node.name.replace(/\.md$/, '')
+          });
+        } else if (node.children) {
+          traverse(node.children);
+        }
+      });
+    };
+    traverse(filteredTree);
+    return files;
+  }, [filteredTree]);
+
+  // Find index of activePath in visibleFiles
+  const activeFileIndex = useMemo(() => {
+    return visibleFiles.findIndex(f => f.path === activePath);
+  }, [visibleFiles, activePath]);
+
+  const prevFile = useMemo(() => {
+    if (activeFileIndex > 0) {
+      return visibleFiles[activeFileIndex - 1];
+    }
+    return null;
+  }, [visibleFiles, activeFileIndex]);
+
+  const nextFile = useMemo(() => {
+    if (activeFileIndex >= 0 && activeFileIndex < visibleFiles.length - 1) {
+      return visibleFiles[activeFileIndex + 1];
+    }
+    return null;
+  }, [visibleFiles, activeFileIndex]);
+
   const activeDoc = rawData.docs[activePath] || null;
 
   return (
@@ -400,6 +438,8 @@ export default function App() {
           onHideTooltip={handleHideTooltip}
           onSelectFile={handleSelectFile}
           availablePaths={useMemo(() => Object.keys(rawData.docs), [])}
+          prevFile={prevFile}
+          nextFile={nextFile}
         />
 
         <Outline

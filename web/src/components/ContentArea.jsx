@@ -45,7 +45,9 @@ const ContentArea = memo(function ContentArea({
   onShowTooltip,
   onHideTooltip,
   onSelectFile,
-  availablePaths = []
+  availablePaths = [],
+  prevFile = null,
+  nextFile = null
 }) {
   const containerRef = useRef(null);
   const codeRef = useRef(null);
@@ -358,6 +360,48 @@ const ContentArea = memo(function ContentArea({
           <div className="loading-state">
             <div className="spinner"></div>
             <p>Vui lòng chọn tài liệu từ thanh bên trái để bắt đầu đọc...</p>
+          </div>
+        )}
+        
+        {content && (prevFile || nextFile) && (
+          <div className="doc-pagination">
+            {prevFile ? (
+              <button 
+                className="pagination-btn prev-btn"
+                onClick={() => onSelectFile(prevFile.path)}
+                title={prevFile.title}
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pagination-arrow">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <div className="pagination-info">
+                  <span className="pagination-label">Bài trước</span>
+                  <span className="pagination-title">{prevFile.title}</span>
+                </div>
+              </button>
+            ) : (
+              <div className="pagination-spacer" />
+            )}
+            
+            {nextFile ? (
+              <button 
+                className="pagination-btn next-btn"
+                onClick={() => onSelectFile(nextFile.path)}
+                title={nextFile.title}
+              >
+                <div className="pagination-info">
+                  <span className="pagination-label">Bài tiếp theo</span>
+                  <span className="pagination-title">{nextFile.title}</span>
+                </div>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pagination-arrow">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            ) : (
+              <div className="pagination-spacer" />
+            )}
           </div>
         )}
       </div>

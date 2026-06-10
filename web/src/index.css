@@ -1219,4 +1219,112 @@ button {
   padding: 0 !important;
 }
 
+/* ----------------------------------------------------
+   Document Pagination (Next / Prev)
+---------------------------------------------------- */
+.doc-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-color);
+}
+
+.pagination-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  color: var(--text-main);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  max-width: 48%;
+}
+
+.pagination-btn:hover {
+  border-color: var(--accent);
+  background-color: var(--bg-surface-muted);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.pagination-btn:hover .pagination-arrow {
+  color: var(--accent);
+}
+
+.prev-btn {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.next-btn {
+  justify-content: flex-end;
+  text-align: right;
+  flex-direction: row;
+}
+
+.pagination-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.pagination-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+
+.pagination-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-bright);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pagination-arrow {
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.prev-btn:hover .pagination-arrow {
+  transform: translateX(-4px);
+}
+
+.next-btn:hover .pagination-arrow {
+  transform: translateX(4px);
+}
+
+.pagination-spacer {
+  flex: 1;
+  max-width: 48%;
+}
+
+@media (max-width: 600px) {
+  .doc-pagination {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pagination-btn {
+    max-width: 100%;
+    width: 100%;
+  }
+  .pagination-spacer {
+    display: none;
+  }
+}
+
 
