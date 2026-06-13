@@ -112,6 +112,14 @@ Các hướng dẫn thực hành quản lý và triển khai cơ sở dữ liệ
 | [2. Amazon RDS Hands-on Lab(Cluster)](5.%20RDS/2.%20Amazon%20RDS%20Hands-on%20Lab%28Cluster%29.md) | Thực hành tạo một RDS Cluster gồm 1 Writer và 2 Readers, giải thích vai trò của các node, các loại Endpoint và kết nối qua Cluster Write Endpoint | AWS RDS, DB Cluster, Writer/Reader Endpoints |
 | [3. Amazon Aurora Hands-on Lab(Backtrack)](5.%20RDS/3.%20Amazon%20Aurora%20Hands-on%20Lab%28Backtrack%29.md) | Thực hành tạo Aurora DB Cluster với tính năng Backtrack, thực hiện xóa dữ liệu và quay ngược thời gian (Backtracking) để khôi phục dữ liệu | AWS Aurora, Backtrack, DB Cluster |
 
+### 9. Hướng dẫn thực hành DynamoDB (DynamoDB Hands-on Labs)
+
+Các hướng dẫn thực hành quản lý và thao tác với cơ sở dữ liệu NoSQL trên Amazon DynamoDB:
+
+| File | Mô tả | Công nghệ |
+|------|-------|-----------|
+| [1. Amazon DynamoDB Hands-on Lab(Basic)](6.%20DynamoDB/1.%20Amazon%20DynamoDB%20Hands-on%20Lab%28Basic%29.md) | Thực hành tạo bảng student với Partition Key (id) và Sort Key (name), nhập các dữ liệu học sinh với cấu trúc động và trường tùy biến | AWS DynamoDB, AWS Console, NoSQL |
+
 ---
 
 ## Cấu trúc khuyến nghị
@@ -156,6 +164,8 @@ cloud/aws/deploy/
     1. Amazon RDS Hands-on Lab(Basic).md
     2. Amazon RDS Hands-on Lab(Cluster).md
     3. Amazon Aurora Hands-on Lab(Backtrack).md
+  6. DynamoDB/
+    1. Amazon DynamoDB Hands-on Lab(Basic).md
   README.md
 ```
 
