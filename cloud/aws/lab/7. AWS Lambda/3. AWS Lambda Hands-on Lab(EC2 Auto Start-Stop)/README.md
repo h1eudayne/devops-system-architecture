@@ -131,13 +131,20 @@ Chúng ta sẽ sử dụng EventBridge Scheduler để cấu hình lịch biểu
 
 ---
 
-### Bước 5: Kiểm tra Log thực thi trong CloudWatch Logs
+### Bước 5: Kiểm tra Log và xác nhận trạng thái trên EC2 Console
 
 Sau khi EventBridge Scheduler kích hoạt Lambda Function theo đúng khung giờ đã cấu hình:
 
-1. Quay lại Lambda Console $\rightarrow$ Chọn tab **Monitor** $\rightarrow$ Chọn mục **Logs** $\rightarrow$ Nhấp chọn **View CloudWatch logs**.
-2. Chọn Log stream mới nhất để kiểm tra nội dung log.
-3. Nếu quá trình chạy thành công, bạn sẽ thấy thông tin log ghi nhận lệnh gọi EC2 Start/Stop kèm phản hồi của AWS SDK thành công. Máy chủ EC2 của bạn sẽ tự động thay đổi trạng thái sang **Stopping** (hoặc **Running**).
+1. Quay lại Lambda Console $\rightarrow$ Chọn tab **Monitor** $\rightarrow$ Chọn mục **Logs** $\rightarrow$ Nhấp chọn **View CloudWatch logs** để kiểm tra nội dung log.
+2. Nếu quá trình chạy thành công, bạn sẽ thấy log ghi nhận lệnh gọi EC2 Start/Stop kèm phản hồi của AWS SDK thành công.
+3. Để chắc chắn máy chủ đã hoạt động đúng theo yêu cầu, hãy quay lại **Amazon EC2 Console** $\rightarrow$ **Instances** để kiểm tra trạng thái máy chủ:
+   * Nếu payload gửi đi là `"action": "STOP"`, máy chủ của bạn lúc này sẽ hiển thị trạng thái **Stopped**.
+
+<p align="center">
+  <img src="../../../../../images/aws/lambda_ec2_scheduler_instance_stopped.png" alt="Xác nhận trạng thái máy chủ EC2 chuyển sang Stopped" width="750"/>
+</p>
+
+4. Quy trình cấu hình tự động bật máy chủ (**START**) cũng được tiến hành lặp lại tương tự như trên.
 
 ---
 
