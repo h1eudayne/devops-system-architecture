@@ -190,13 +190,35 @@ Sau khi hoàn tất, bạn sẽ thấy danh sách hiển thị **2 Event notific
   <img src="../../../../../images/aws/lambda_s3_resize_s3_event_list.png" alt="Danh sách 2 Event notification cho JPG và PNG" width="750"/>
 </p>
 
+Đồng thời, khi quay lại giao diện chính của hàm Lambda (Tab **Code** hoặc **Configuration**), phần **Function overview** lúc này sẽ hiển thị trigger từ **S3** với ký hiệu **(2)** (biểu thị đã kết nối thành công 2 trigger sự kiện):
+
+<p align="center">
+  <img src="../../../../../images/aws/lambda_s3_resize_function_overview.png" alt="Function overview hiển thị 2 trigger S3 kết nối với Lambda" width="750"/>
+</p>
+
 ---
 
-### Bước 10: Chạy thử và Kiểm nghiệm kết quả (Test)
+### Bước 10: Thử tải một tệp tin hình ảnh lên S3 (Upload Test Image)
 
-1. Tải một file ảnh có định dạng `.jpg` hoặc `.png` lên thư mục `images/` trong S3 Bucket của bạn. *Lưu ý: Tên ảnh không nên chứa ký tự đặc biệt!*
-2. Kiểm tra log thực thi của hàm Lambda trong **CloudWatch Logs** để xác minh quá trình xử lý hoàn tất.
-3. Xác nhận các thư mục con sau tự động được tạo và chứa các phiên bản ảnh đã resize tương ứng:
+1. Truy cập vào **Amazon S3 Console** $\rightarrow$ Click vào Bucket của bạn $\rightarrow$ Mở thư mục `images/`.
+2. Click chọn **Upload** $\rightarrow$ Chọn một tệp tin hình ảnh có định dạng `.jpg` hoặc `.png` từ máy tính (ví dụ: `maxresdefault.jpg`).
+   * *Lưu ý: Tên ảnh không nên chứa khoảng trắng hoặc ký tự đặc biệt để tránh lỗi giải mã URL!*
+3. Nhấp chọn nút **Upload** ở góc dưới cùng để tiến hành tải ảnh lên.
+
+<p align="center">
+  <img src="../../../../../images/aws/lambda_s3_resize_s3_upload.png" alt="Tải tệp tin ảnh thử nghiệm lên thư mục images của S3" width="750"/>
+</p>
+
+---
+
+### Bước 11: Kiểm tra Log thực thi của Lambda trong CloudWatch (Check Logs)
+
+Để kiểm soát và đảm bảo Lambda đã hoạt động bình thường, ta kiểm tra logs ghi nhận:
+
+1. Quay lại giao diện hàm Lambda của bạn $\rightarrow$ Chọn tab **Monitor** $\rightarrow$ Chọn mục **Logs**.
+2. Click chọn nút **View CloudWatch logs** (hoặc **View logs in CloudWatch**) để chuyển hướng sang giao diện quản lý CloudWatch Logs.
+3. Nhấp chọn vào Log stream mới nhất. Tại đây, bạn sẽ thấy các log chi tiết hiển thị quá trình Lambda nhận sự kiện, tải ảnh xuống, thực hiện resize thành 4 kích thước khác nhau và ghi ngược lại vào các thư mục tương ứng trên S3.
+4. Truy cập lại S3 bucket của bạn để xác nhận các thư mục con sau đã tự động được tạo và chứa các phiên bản ảnh tương ứng:
    * `resized_100/`
    * `resized_200/`
    * `resized_500/`
