@@ -218,6 +218,11 @@ Sau khi hoàn tất, bạn sẽ thấy danh sách hiển thị **2 Event notific
 1. Quay lại giao diện hàm Lambda của bạn $\rightarrow$ Chọn tab **Monitor** $\rightarrow$ Chọn mục **Logs**.
 2. Click chọn nút **View CloudWatch logs** (hoặc **View logs in CloudWatch**) để chuyển hướng sang giao diện quản lý CloudWatch Logs.
 3. Nhấp chọn vào Log stream mới nhất. Tại đây, bạn sẽ thấy các log chi tiết hiển thị quá trình Lambda nhận sự kiện, tải ảnh xuống, thực hiện resize thành 4 kích thước khác nhau và ghi ngược lại vào các thư mục tương ứng trên S3.
+
+<p align="center">
+  <img src="../../../../../images/aws/lambda_s3_resize_cloudwatch_log.png" alt="Kiểm tra chi tiết Log thực thi của Lambda trong CloudWatch" width="750"/>
+</p>
+
 4. Truy cập lại S3 bucket của bạn để xác nhận các thư mục con sau đã tự động được tạo và chứa các phiên bản ảnh tương ứng:
    * `resized_100/`
    * `resized_200/`
