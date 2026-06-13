@@ -134,7 +134,7 @@ Các hướng dẫn thực hành viết code và cấu hình vận hành tự đ
 ## Cấu trúc khuyến nghị
 
 ```text
-cloud/aws/deploy/
+cloud/aws/lab/
   github-actions/
     github-actions-eks-deploy.yml
     github-actions-ecs-deploy.yml

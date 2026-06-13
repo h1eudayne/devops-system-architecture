@@ -32,4 +32,4 @@ Thư mục này mô tả các dịch vụ AWS thường được sử dụng tro
 - Tất cả các dịch vụ trên nên được cấu hình bằng IaC (Terraform, CloudFormation) để đảm bảo tính tái sử dụng và đồng bộ.
 - Không commit AWS Access Key, Secret Key, hoặc bất kỳ thông tin xác thực nào vào repository.
 - Ưu tiên sử dụng IAM Role thay vì Access Key khi có thể.
-- Tham khảo thư mục `cloud/aws/deploy/` để xem các deploy template tích hợp với các dịch vụ này.
+- Tham khảo thư mục `cloud/aws/lab/` để xem các deploy template tích hợp với các dịch vụ này.
