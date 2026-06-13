@@ -1,7 +1,7 @@
 import json
 import boto3
 import botocore
-ec2 = boto3.client("ec2", region_name="ap-southeast-1")
+ec2 = boto3.client("ec2", region_name="us-east-1")
 
 def lambda_handler(event, context):
     # TODO implement
