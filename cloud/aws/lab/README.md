@@ -128,6 +128,8 @@ Các hướng dẫn thực hành viết code và cấu hình vận hành tự đ
 | File | Mô tả | Công nghệ |
 |------|-------|-----------|
 | [1. Hello Lambda (Làm quen với AWS Lambda Console)](7.%20AWS%20Lambda/1.%20Hello%20Lambda.md) | Thực hành tạo hàm Lambda đơn giản trả về Hello World, cấu hình sự kiện kiểm thử (Test Event) và thực thi kiểm nghiệm | AWS Lambda, Python, AWS Console |
+| [2. AWS Lambda Hands-on Lab(Resize Image on S3)](7.%20AWS%20Lambda/2.%20AWS%20Lambda%20Hands-on%20Lab%28Resize%20Image%20on%20S3%29.md) | Tự động co nhỏ kích thước ảnh (Thumbnail 300x300) khi có ảnh tải lên S3 bucket nguồn và upload ảnh kết quả lên S3 bucket đích | AWS Lambda, S3, IAM, Python (Pillow) |
+| [3. AWS Lambda Hands-on Lab(EC2 Auto Start-Stop)](7.%20AWS%20Lambda/3.%20AWS%20Lambda%20Hands-on%20Lab%28EC2%20Auto%20Start-Stop%29.md) | Lập lịch tự động bật/tắt các máy chủ EC2 có gắn thẻ tag chỉ định (ví dụ: Env: Dev) qua EventBridge Rules để tiết kiệm chi phí | AWS Lambda, EC2, EventBridge, Python (boto3) |
 
 ---
 
@@ -178,6 +180,8 @@ cloud/aws/lab/
     2. Amazon DynamoDB Hands-on Lab(Index).md
   7. AWS Lambda/
     1. Hello Lambda.md
+    2. AWS Lambda Hands-on Lab(Resize Image on S3).md
+    3. AWS Lambda Hands-on Lab(EC2 Auto Start-Stop).md
   README.md
 ```
 
