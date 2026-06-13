@@ -121,6 +121,14 @@ Các hướng dẫn thực hành quản lý và thao tác với cơ sở dữ li
 | [1. Amazon DynamoDB Hands-on Lab(Basic)](6.%20DynamoDB/1.%20Amazon%20DynamoDB%20Hands-on%20Lab%28Basic%29.md) | Thực hành tạo bảng student với Partition Key (id) và Sort Key (name), nhập các dữ liệu học sinh với cấu trúc động và trường tùy biến | AWS DynamoDB, AWS Console, NoSQL |
 | [2. Amazon DynamoDB Hands-on Lab(Index)](6.%20DynamoDB/2.%20Amazon%20DynamoDB%20Hands-on%20Lab%28Index%29.md) | Thực hành tạo Global Secondary Index (GSI) với partition key (name) và sort key (birthday), truy vấn kiểm nghiệm dữ liệu qua GSI | AWS DynamoDB, AWS Console, Index |
 
+### 10. Hướng dẫn thực hành AWS Lambda (AWS Lambda Hands-on Labs)
+
+Các hướng dẫn thực hành viết code và cấu hình vận hành tự động trên AWS Lambda:
+
+| File | Mô tả | Công nghệ |
+|------|-------|-----------|
+| [1. Hello Lambda (Làm quen với AWS Lambda Console)](7.%20AWS%20Lambda/1.%20Hello%20Lambda.md) | Thực hành tạo hàm Lambda đơn giản trả về Hello World, cấu hình sự kiện kiểm thử (Test Event) và thực thi kiểm nghiệm | AWS Lambda, Python, AWS Console |
+
 ---
 
 ## Cấu trúc khuyến nghị
@@ -168,6 +176,8 @@ cloud/aws/deploy/
   6. DynamoDB/
     1. Amazon DynamoDB Hands-on Lab(Basic).md
     2. Amazon DynamoDB Hands-on Lab(Index).md
+  7. AWS Lambda/
+    1. Hello Lambda.md
   README.md
 ```
 
